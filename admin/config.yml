@@ -2,8 +2,6 @@ backend:
   name: github
   repo: aylinirk/spielgruppe-seon
   branch: main
-  auth_type: pkce
-  app_id: Ov23linQ78sGUv8nTWNj
 
 # Lokale Entwicklung: Ersetze oben durch `name: proxy` + `proxy_url: http://localhost:8081`
 # und starte `npx decap-server` für lokale Vorschau ohne GitHub-Login
