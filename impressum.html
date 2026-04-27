@@ -126,13 +126,21 @@
           fetch('_data/impressum.json').then(r => r.ok ? r.json() : {}),
           fetch('_data/contact.json').then(r => r.ok ? r.json() : {}),
         ]);
-        const set = (id, val) => { const el = document.getElementById(id); if (el && val) el.textContent = val; };
+        const set    = (id, val) => { const el = document.getElementById(id); if (el && val) el.textContent = val; };
+        const setRich = (id, val) => {
+          const el = document.getElementById(id);
+          if (!el || !val) return;
+          el.innerHTML = val
+            .split(/\n\n+/)
+            .map(p => `<p>${p.replace(/\n/g, '<br />')}</p>`)
+            .join('');
+        };
         set('imp-inhaber', imp.inhaber);
         set('imp-street',  contact.address?.street);
         set('imp-city',    contact.address?.city);
-        set('imp-haftung',      imp.haftung);
-        set('imp-urheberrecht', imp.urheberrecht);
-        set('imp-datenschutz',  imp.datenschutz);
+        setRich('imp-haftung',      imp.haftung);
+        setRich('imp-urheberrecht', imp.urheberrecht);
+        setRich('imp-datenschutz',  imp.datenschutz);
         if (contact.email) {
           const el = document.getElementById('imp-email');
           if (el) { el.textContent = contact.email; el.href = 'mailto:' + contact.email; }
