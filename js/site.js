@@ -24,13 +24,14 @@ async function loadSettings() {
     if (d.web3formsKey) {
       document.querySelectorAll('input[name="access_key"]').forEach(el => { el.value = d.web3formsKey; });
     }
-    if (d.logoImage) {
+    const validImg = src => src && typeof src === 'string' && src.startsWith('/');
+    if (validImg(d.logoImage)) {
       const icon = document.getElementById('site-logo-icon');
       const img  = document.getElementById('site-logo-img');
       if (icon) icon.style.display = 'none';
       if (img)  { img.src = d.logoImage; img.classList.remove('hidden'); }
     }
-    if (d.ueber_uns_image) {
+    if (validImg(d.ueber_uns_image)) {
       const wrap = document.getElementById('ueber-uns-img-wrap');
       if (wrap) wrap.innerHTML = `<img src="${d.ueber_uns_image}" alt="Spielgruppe Seon" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />`;
     }
@@ -351,7 +352,7 @@ async function loadContactData() {
           const bioEl = info.querySelector('p');
           if (bioEl) bioEl.innerHTML = d.dina.bio.replace(/\n\n/g, '<br /><br />');
         }
-        if (d.dina.photo) {
+        if (d.dina.photo && d.dina.photo.startsWith('/')) {
           const photoWrap = document.getElementById('team-photo-wrap');
           if (photoWrap) {
             photoWrap.innerHTML = `<img src="${d.dina.photo}" alt="${d.dina.firstName}" style="width:100%;height:100%;object-fit:cover;" />`;
@@ -561,9 +562,9 @@ function initCheckboxes() {
       }
     };
     input.addEventListener('change', update);
-    // make the whole label clickable
+    // make the whole label clickable; preventDefault stops browser double-toggle
     label.addEventListener('click', e => {
-      if (e.target === input) return;
+      e.preventDefault();
       input.checked = !input.checked;
       update();
     });
