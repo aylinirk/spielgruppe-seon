@@ -1,0 +1,98 @@
+backend:
+  name: github
+  repo: DEIN-GITHUB-USERNAME/spielgruppe-seon   # ← hier anpassen
+  branch: main
+  auth_type: pkce
+  app_id: DEIN-GITHUB-OAUTH-APP-CLIENT-ID       # ← hier anpassen (siehe README unten)
+
+# Lokale Entwicklung: Ersetze oben durch `name: proxy` + `proxy_url: http://localhost:8081`
+# und starte `npx decap-server` für lokale Vorschau ohne GitHub-Login
+
+media_folder: "uploads"
+public_folder: "/uploads"
+
+locale: de
+
+collections:
+  # ─── BANNER ────────────────────────────────────────────────
+  - name: "banner"
+    label: "Top-Banner"
+    files:
+      - name: "banner"
+        label: "Banner-Einstellungen"
+        file: "_data/banner.json"
+        format: json
+        fields:
+          - { label: "Banner anzeigen", name: "visible", widget: "boolean", default: false, hint: "Banner ein- oder ausschalten" }
+          - { label: "Text", name: "text", widget: "string", hint: "z.B. 🗓 Tag der offenen Tür am 17. Mai 2026" }
+          - { label: "Button-Text", name: "buttonText", widget: "string", default: "Mehr erfahren" }
+          - { label: "Button-Link", name: "buttonUrl", widget: "string", default: "#events", hint: "URL oder Anker wie #events" }
+
+  # ─── EVENTS ────────────────────────────────────────────────
+  - name: "events"
+    label: "Events & Termine"
+    file: "_data/events.json"
+    format: json
+    fields:
+      - label: "Events"
+        name: "events"
+        widget: "list"
+        summary: "{{fields.date}} – {{fields.title}}"
+        fields:
+          - { label: "Titel / Kategorie", name: "title", widget: "string", hint: "z.B. Tag der offenen Tür" }
+          - label: "Farbe"
+            name: "color"
+            widget: "select"
+            options:
+              - { label: "Salbeigrün", value: "sage" }
+              - { label: "Terrakotta", value: "terra" }
+              - { label: "Honiggelb", value: "honey" }
+          - { label: "Datum", name: "date", widget: "string", hint: "z.B. Sonntag, 17. Mai oder Auf Anfrage" }
+          - { label: "Uhrzeit", name: "time", widget: "string", hint: "z.B. 11 – 16 Uhr" }
+          - { label: "Ort", name: "location", widget: "string", default: "Oholten 3, 5703 Seon" }
+          - { label: "Beschreibung", name: "description", widget: "text" }
+          - { label: "Hinweis (optional)", name: "note", widget: "string", required: false, hint: "Kleiner Zusatztext, z.B. Mit Grill!" }
+          - { label: "Anmelden-Button anzeigen", name: "showButton", widget: "boolean", default: false }
+          - { label: "Button-Text", name: "buttonText", widget: "string", default: "Mehr erfahren", required: false }
+          - { label: "Button-Link", name: "buttonUrl", widget: "string", default: "#kontakt", required: false }
+
+  # ─── GALERIE ───────────────────────────────────────────────
+  - name: "gallery"
+    label: "Galerie"
+    file: "_data/gallery.json"
+    format: json
+    fields:
+      - label: "Fotos"
+        name: "photos"
+        widget: "list"
+        summary: "{{fields.alt}}"
+        fields:
+          - { label: "Foto", name: "src", widget: "image" }
+          - { label: "Bildbeschreibung (Alt-Text)", name: "alt", widget: "string", hint: "Kurze Beschreibung fürs Barrierefreiheit" }
+
+  # ─── KONTAKT & TEAM ────────────────────────────────────────
+  - name: "kontakt"
+    label: "Kontakt & Team"
+    files:
+      - name: "kontakt"
+        label: "Kontaktinformationen"
+        file: "_data/contact.json"
+        format: json
+        fields:
+          - { label: "E-Mail", name: "email", widget: "string" }
+          - { label: "Telefon", name: "tel", widget: "string", hint: "z.B. +41 79 123 45 67" }
+          - label: "Adresse"
+            name: "address"
+            widget: "object"
+            fields:
+              - { label: "Strasse", name: "street", widget: "string", default: "Oholten 3" }
+              - { label: "PLZ & Ort", name: "city", widget: "string", default: "5703 Seon" }
+          - label: "Team: Dina"
+            name: "dina"
+            widget: "object"
+            fields:
+              - { label: "Vorname", name: "firstName", widget: "string", default: "Dina" }
+              - { label: "Nachname", name: "lastName", widget: "string" }
+              - { label: "Rolle", name: "role", widget: "string", default: "Leiterin Spielgruppe Seon" }
+              - { label: "Biografie", name: "bio", widget: "text" }
+              - { label: "Foto", name: "photo", widget: "image", required: false }

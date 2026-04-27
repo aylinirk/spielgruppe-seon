@@ -1,0 +1,40 @@
+{
+  "events": [
+    {
+      "title": "Tag der offenen Tür",
+      "color": "terra",
+      "date": "Sonntag, 17. Mai",
+      "time": "11 – 16 Uhr",
+      "location": "Oholten 3, 5703 Seon",
+      "description": "Schaut einfach vorbei, lernt die Spielgruppe kennen und stellt eure Fragen direkt an Dina. Für alle Neugierigen – Anmeldung nicht nötig.",
+      "note": "Mit Grill! Ich freue mich auf euch.",
+      "showButton": true,
+      "buttonText": "Mehr erfahren",
+      "buttonUrl": "#kontakt"
+    },
+    {
+      "title": "Schnuppertag",
+      "color": "sage",
+      "date": "Auf Anfrage",
+      "time": "08:30 – 11:45 Uhr",
+      "location": "Oholten 3, 5703 Seon",
+      "description": "Euer Kind darf die Spielgruppe unverbindlich kennenlernen. Wir finden gemeinsam einen Termin, der zu eurer Familie passt – einfach Dina kontaktieren.",
+      "note": "",
+      "showButton": true,
+      "buttonText": "Schnuppertag anfragen",
+      "buttonUrl": "#kontakt"
+    },
+    {
+      "title": "Elternabend",
+      "color": "honey",
+      "date": "Datum folgt",
+      "time": "19:30 Uhr",
+      "location": "Oholten 3, 5703 Seon",
+      "description": "Informationsabend für Eltern des neuen Jahrgangs. Programm, Alltagsablauf, Fragen – alles in gemütlichem Rahmen. Alle Eltern sind herzlich willkommen.",
+      "note": "",
+      "showButton": false,
+      "buttonText": "",
+      "buttonUrl": ""
+    }
+  ]
+}

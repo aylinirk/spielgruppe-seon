@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spielgruppe Seon</title>
+  <meta name="description" content="Die Spielgruppe Seon bietet Kindern von 2½ bis 4 Jahren einen liebevollen Ort zum Spielen, Wachsen und Entdecken. Mo, Di, Do in Seon AG." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sage:    { DEFAULT: 'oklch(0.64 0.09 148)', light: 'oklch(0.88 0.05 148)', dark: 'oklch(0.48 0.09 148)' },
+            terra:   { DEFAULT: 'oklch(0.62 0.11 42)',  light: 'oklch(0.90 0.05 42)' },
+            cream:   { DEFAULT: 'oklch(0.97 0.015 85)', dark:  'oklch(0.93 0.02 85)' },
+            honey:   { DEFAULT: 'oklch(0.84 0.11 88)',  dark:  'oklch(0.74 0.13 88)' },
+            ink:     { DEFAULT: 'oklch(0.26 0.02 85)',  mid:   'oklch(0.45 0.02 85)', light: 'oklch(0.68 0.02 85)' },
+          },
+          fontFamily: {
+            display: ['"Baloo 2"', 'sans-serif'],
+            body:    ['Nunito', 'sans-serif'],
+          },
+          borderRadius: {
+            '2xl': '20px',
+            '3xl': '32px',
+            '4xl': '48px',
+          },
+          boxShadow: {
+            sm:  '0 2px 8px oklch(0.26 0.02 85 / 0.08)',
+            md:  '0 6px 24px oklch(0.26 0.02 85 / 0.12)',
+            lg:  '0 12px 40px oklch(0.26 0.02 85 / 0.15)',
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* ─── base ─── */
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Nunito', sans-serif; }
+    h1,h2,h3,h4 { font-family: 'Baloo 2', sans-serif; }
+    p { text-wrap: pretty; }
+    img { display: block; max-width: 100%; }
+
+    /* ─── brand tokens (fallback + reference) ─── */
+    :root {
+      --sage:       oklch(0.64 0.09 148);
+      --sage-light: oklch(0.88 0.05 148);
+      --sage-dark:  oklch(0.48 0.09 148);
+      --terra:      oklch(0.62 0.11 42);
+      --terra-light:oklch(0.90 0.05 42);
+      --cream:      oklch(0.97 0.015 85);
+      --cream-dark: oklch(0.93 0.02 85);
+      --honey:      oklch(0.84 0.11 88);
+      --honey-dark: oklch(0.74 0.13 88);
+      --ink:        oklch(0.26 0.02 85);
+      --ink-mid:    oklch(0.45 0.02 85);
+      --ink-light:  oklch(0.68 0.02 85);
+    }
+
+    /* ─── reveal animations ─── */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .delay-1 { transition-delay:.1s; }
+    .delay-2 { transition-delay:.2s; }
+    .delay-3 { transition-delay:.3s; }
+    .delay-4 { transition-delay:.4s; }
+
+    /* ─── hero gradient bg ─── */
+    .hero-bg {
+      position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 70% 60% at 85% 40%, oklch(0.88 0.05 148 / .5) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 50% at 15% 80%, oklch(0.90 0.05 42 / .35) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 60% 90%, oklch(0.84 0.11 88 / .25) 0%, transparent 60%);
+    }
+
+    /* ─── stripe bg ─── */
+    .stripe-bg {
+      position: absolute; inset: 0;
+      background-image: repeating-linear-gradient(-45deg, transparent, transparent 12px, oklch(0.64 0.09 148 / .08) 12px, oklch(0.64 0.09 148 / .08) 14px);
+    }
+
+    /* ─── card top bar gradient ─── */
+    .card-rainbow::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:6px;
+      background: linear-gradient(90deg, var(--sage), var(--terra), var(--honey));
+    }
+
+    /* ─── checkbox toggle ─── */
+    .checkbox-label { cursor: pointer; transition: all .2s; }
+    .checkbox-label.checked {
+      border-color: var(--sage) !important;
+      background: var(--sage-light) !important;
+      color: var(--sage-dark) !important;
+      box-shadow: 0 3px 10px oklch(0.64 0.09 148 / .18);
+    }
+
+    /* ─── events slider ─── */
+    .events-slider { scrollbar-width:none; -webkit-overflow-scrolling:touch; }
+    .events-slider::-webkit-scrollbar { display:none; }
+
+    /* ─── gallery ─── */
+    .gallery-track { transition: transform .6s cubic-bezier(.4,0,.2,1); will-change:transform; }
+    .gallery-slide { flex: 0 0 100%; height: 420px; position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; }
+
+    /* ─── slider dots ─── */
+    .slider-dot { width:7px; height:7px; border-radius:50%; background: var(--cream-dark); transition:all .2s; cursor:pointer; border:none; padding:0; }
+    .slider-dot.active { background: var(--sage); width:20px; border-radius:4px; }
+
+    /* ─── schnuppertag section ─── */
+    #schnuppertag::before {
+      content:''; position:absolute; inset:0; pointer-events:none;
+      background:
+        radial-gradient(ellipse 60% 80% at 90% 50%, oklch(0.62 0.11 42 / .25) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 60% at 10% 50%, oklch(0.84 0.11 88 / .15) 0%, transparent 60%);
+    }
+
+    /* ─── nav active link ─── */
+    .nav-link.active { background: var(--sage-light); color: var(--sage-dark); }
+
+    /* ─── form error state ─── */
+    .input-error { border-color: var(--terra) !important; }
+
+    /* ─── Decap CMS ─── */
+    /* no extra styles needed */
+  </style>
+</head>
+
+<!-- ════════════════════════════════════════════════════ BODY -->
+<body class="bg-cream text-ink overflow-x-hidden font-body">
+
+<!-- no Netlify Identity needed with GitHub PKCE backend -->
+
+<!-- ═══ TOP BANNER (loaded from _data/banner.json) ══════════ -->
+<div id="top-banner" class="hidden fixed top-0 left-0 right-0 z-[102] bg-honey text-ink text-sm font-semibold flex items-center justify-center gap-3 px-6 py-[9px]" style="line-height:1.3;">
+  <span id="banner-text"></span>
+  <a id="banner-btn" href="#" class="bg-ink text-white rounded-full px-[14px] py-[5px] text-xs font-bold whitespace-nowrap hover:bg-[var(--sage-dark)] transition-colors"></a>
+  <button id="banner-close" class="absolute right-4 top-1/2 -translate-y-1/2 bg-transparent border-none text-ink opacity-50 hover:opacity-100 text-lg leading-none p-1" aria-label="Banner schliessen">✕</button>
+</div>
+
+<!-- ═══ NAVIGATION ══════════════════════════════════════════ -->
+<nav id="navbar" class="fixed left-0 right-0 z-[100] px-6 bg-cream/[0.92] backdrop-blur-md border-b border-[oklch(0.90_0.03_148_/_0.5)] transition-shadow" style="top:0;">
+  <div class="max-w-[1140px] mx-auto h-[68px] flex items-center justify-between gap-6">
+
+    <!-- Logo -->
+    <a href="#home" class="flex items-center gap-[10px] shrink-0">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <rect width="40" height="40" rx="10" fill="oklch(0.88 0.05 148)"/>
+        <rect x="18.5" y="26" width="3" height="8" rx="1.5" fill="oklch(0.48 0.09 148)"/>
+        <polygon points="20,6 28,20 12,20" fill="oklch(0.64 0.09 148)"/>
+        <polygon points="20,11 27,23 13,23" fill="oklch(0.55 0.09 148)"/>
+        <circle cx="9" cy="9" r="2" fill="oklch(0.84 0.11 88)" opacity=".8"/>
+        <circle cx="31" cy="11" r="1.5" fill="oklch(0.62 0.11 42)" opacity=".8"/>
+      </svg>
+      <div>
+        <div class="font-display font-extrabold text-[1.15rem] text-[var(--sage-dark)] leading-[1.1]">Spielgruppe Seon</div>
+        <div class="font-body text-[0.72rem] font-semibold text-[var(--ink-mid)] tracking-[.04em]">Oholten 3 · 5703 Seon</div>
+      </div>
+    </a>
+
+    <!-- Desktop links -->
+    <ul class="hidden lg:flex items-center gap-1 list-none" id="nav-links">
+      <li><a href="#ueber-uns"   class="nav-link text-[.88rem] font-semibold px-3 py-[6px] rounded-full text-[var(--ink-mid)] hover:bg-[var(--sage-light)] hover:text-[var(--sage-dark)] transition-all">Über uns</a></li>
+      <li><a href="#spielgruppe" class="nav-link text-[.88rem] font-semibold px-3 py-[6px] rounded-full text-[var(--ink-mid)] hover:bg-[var(--sage-light)] hover:text-[var(--sage-dark)] transition-all">Spielgruppe</a></li>
+      <li><a href="#zeiten-preise" class="nav-link text-[.88rem] font-semibold px-3 py-[6px] rounded-full text-[var(--ink-mid)] hover:bg-[var(--sage-light)] hover:text-[var(--sage-dark)] transition-all">Zeiten & Preise</a></li>
+      <li><a href="#events"      class="nav-link text-[.88rem] font-semibold px-3 py-[6px] rounded-full text-[var(--ink-mid)] hover:bg-[var(--sage-light)] hover:text-[var(--sage-dark)] transition-all">Events</a></li>
+      <li><a href="#schnuppertag" class="nav-link text-[.88rem] font-semibold px-3 py-[6px] rounded-full text-[var(--ink-mid)] hover:bg-[var(--sage-light)] hover:text-[var(--sage-dark)] transition-all">Schnuppertag</a></li>
+      <li><a href="#team"        class="nav-link text-[.88rem] font-semibold px-3 py-[6px] rounded-full text-[var(--ink-mid)] hover:bg-[var(--sage-light)] hover:text-[var(--sage-dark)] transition-all">Team</a></li>
+      <li><a href="#kontakt"     class="nav-link text-[.88rem] font-semibold px-3 py-[6px] rounded-full text-[var(--ink-mid)] hover:bg-[var(--sage-light)] hover:text-[var(--sage-dark)] transition-all">Kontakt</a></li>
+    </ul>
+
+    <div class="flex items-center gap-3">
+      <a href="#anmeldung" class="hidden lg:inline-flex items-center gap-[6px] bg-[var(--terra)] text-white font-bold rounded-full px-6 py-[11px] text-[.92rem] hover:bg-[oklch(0.55_0.11_42)] hover:shadow-[0_4px_16px_oklch(0.62_0.11_42_/_0.35)] hover:-translate-y-px transition-all">Jetzt anmelden</a>
+      <!-- Hamburger -->
+      <button id="hamburger-btn" class="lg:hidden flex flex-col gap-[5px] bg-transparent border-none p-1" aria-label="Menü öffnen">
+        <span class="block w-6 h-[2px] bg-ink rounded-[2px] transition-all"></span>
+        <span class="block w-6 h-[2px] bg-ink rounded-[2px] transition-all"></span>
+        <span class="block w-6 h-[2px] bg-ink rounded-[2px] transition-all"></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div id="mobile-menu" class="hidden fixed inset-0 z-[99] bg-cream flex-col gap-2 px-8 pb-10 pt-[90px]">
+  <a href="#ueber-uns"    class="font-display text-2xl font-bold text-ink py-[10px] border-b border-cream-dark" onclick="closeMobileMenu()">Über uns</a>
+  <a href="#spielgruppe"  class="font-display text-2xl font-bold text-ink py-[10px] border-b border-cream-dark" onclick="closeMobileMenu()">Spielgruppe</a>
+  <a href="#zeiten-preise" class="font-display text-2xl font-bold text-ink py-[10px] border-b border-cream-dark" onclick="closeMobileMenu()">Zeiten & Preise</a>
+  <a href="#events"       class="font-display text-2xl font-bold text-ink py-[10px] border-b border-cream-dark" onclick="closeMobileMenu()">Events</a>
+  <a href="#schnuppertag" class="font-display text-2xl font-bold text-ink py-[10px] border-b border-cream-dark" onclick="closeMobileMenu()">Schnuppertag</a>
+  <a href="#team"         class="font-display text-2xl font-bold text-ink py-[10px] border-b border-cream-dark" onclick="closeMobileMenu()">Team</a>
+  <a href="#anmeldung"    class="font-display text-2xl font-bold text-ink py-[10px] border-b border-cream-dark" onclick="closeMobileMenu()">Anmeldung</a>
+  <a href="#kontakt"      class="font-display text-2xl font-bold text-ink py-[10px] border-b border-cream-dark" onclick="closeMobileMenu()">Kontakt</a>
+  <a href="#anmeldung" class="mt-4 self-start inline-flex items-center bg-[var(--terra)] text-white font-bold rounded-full px-6 py-3 text-base" onclick="closeMobileMenu()">Jetzt anmelden</a>
+</div>
+
+<!-- ═══ HERO ═════════════════════════════════════════════════ -->
+<section id="home" class="relative overflow-hidden pt-32 pb-24">
+  <div class="hero-bg"></div>
+  <div class="max-w-[1140px] mx-auto px-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
+
+      <!-- Text -->
+      <div class="reveal">
+        <div class="inline-flex items-center gap-2 bg-[var(--sage-light)] text-[var(--sage-dark)] text-[.82rem] font-bold tracking-[.06em] uppercase px-[14px] py-[6px] rounded-full mb-[18px]">
+          <svg width="12" height="12" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5" fill="oklch(0.64 0.09 148)"/></svg>
+          Willkommen in Seon
+        </div>
+        <h1 class="font-display font-extrabold text-[clamp(1.9rem,3.5vw,3.2rem)] leading-[1.2] text-ink mb-[18px]">
+          Ein Ort zum<br /><em class="text-[var(--sage-dark)] not-italic">Spielen,&nbsp;Wachsen</em><br />und Entdecken
+        </h1>
+        <p class="text-[1.1rem] text-[var(--ink-mid)] max-w-[480px] mb-7 leading-[1.7]">
+          Die Spielgruppe Seon bietet Kindern von 2½ bis 4 Jahren einen liebevollen Ort, um die Welt zu erkunden – in einer kleinen, familiären Gruppe mit erfahrener Begleitung.
+        </p>
+        <!-- Pills -->
+        <div class="flex flex-wrap gap-[10px] mb-8">
+          <span class="inline-flex items-center gap-[6px] px-[15px] py-[7px] rounded-full text-[.85rem] font-semibold bg-white shadow-sm border border-[var(--sage-light)] text-[var(--sage-dark)]">
+            <svg width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M7 4v3l2 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            Mo · Di · Do
+          </span>
+          <span class="inline-flex items-center gap-[6px] px-[15px] py-[7px] rounded-full text-[.85rem] font-semibold bg-white shadow-sm border border-[var(--sage-light)] text-[var(--sage-dark)]">
+            <svg width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M7 4v3l2 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            Morgen & Nachmittag
+          </span>
+          <span class="inline-flex items-center gap-[6px] px-[15px] py-[7px] rounded-full text-[.85rem] font-semibold bg-white shadow-sm border border-[var(--terra-light)] text-[var(--terra)]">
+            <svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1a4 4 0 100 8A4 4 0 007 1zM3 10s0 3 4 3 4-3 4-3" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+            2½ – 4 Jahre
+          </span>
+        </div>
+        <div class="flex gap-[14px] flex-wrap">
+          <a href="#anmeldung" class="inline-flex items-center justify-center gap-[6px] bg-[var(--terra)] text-white font-bold rounded-full px-9 py-4 text-[1.05rem] hover:bg-[oklch(0.55_0.11_42)] hover:shadow-[0_4px_16px_oklch(0.62_0.11_42_/_0.35)] hover:-translate-y-px transition-all">Jetzt anmelden</a>
+          <a href="#schnuppertag" class="inline-flex items-center justify-center gap-[6px] bg-transparent text-[var(--sage-dark)] border-2 border-[var(--sage)] font-bold rounded-full px-9 py-4 text-[1.05rem] hover:bg-[var(--sage-light)] transition-all">Schnuppertag anfragen</a>
+        </div>
+      </div>
+
+      <!-- Hero card -->
+      <div class="reveal delay-2 flex justify-center items-center order-first md:order-last">
+        <div class="relative w-full max-w-[360px] mx-auto">
+          <div class="relative bg-white rounded-4xl p-10 shadow-lg overflow-hidden text-center card-rainbow">
+            <div class="text-[4rem] mb-3 leading-none" aria-hidden="true">
+              <svg width="64" height="64" viewBox="0 0 64 64" fill="none" class="mx-auto">
+                <rect x="29" y="46" width="6" height="12" rx="3" fill="oklch(0.48 0.09 148)"/>
+                <polygon points="32,8 48,36 16,36" fill="oklch(0.64 0.09 148)"/>
+                <polygon points="32,18 46,40 18,40" fill="oklch(0.55 0.09 148)"/>
+                <circle cx="14" cy="44" r="4" fill="oklch(0.62 0.11 42)"/>
+                <circle cx="50" cy="44" r="4" fill="oklch(0.84 0.11 88)"/>
+                <circle cx="8" cy="12" r="2" fill="oklch(0.84 0.11 88)"/>
+                <circle cx="56" cy="16" r="2.5" fill="oklch(0.62 0.11 42)"/>
+              </svg>
+            </div>
+            <h3 class="font-display font-bold text-[1.3rem] text-ink mb-4">Spielgruppe Seon</h3>
+            <div class="flex flex-col gap-[10px]">
+              <div class="flex justify-between items-center px-3 py-2 bg-cream rounded-xl"><span class="text-[.82rem] text-[var(--ink-mid)] font-semibold">Morgen</span><span class="text-[.88rem] text-ink font-bold">08:30 – 11:45</span></div>
+              <div class="flex justify-between items-center px-3 py-2 bg-cream rounded-xl"><span class="text-[.82rem] text-[var(--ink-mid)] font-semibold">Nachmittag</span><span class="text-[.88rem] text-ink font-bold">13:30 – 16:00</span></div>
+              <div class="flex justify-between items-center px-3 py-2 bg-cream rounded-xl"><span class="text-[.82rem] text-[var(--ink-mid)] font-semibold">Tage</span><span class="text-[.88rem] text-ink font-bold">Mo / Di / Do</span></div>
+              <div class="flex justify-between items-center px-3 py-2 bg-cream rounded-xl"><span class="text-[.82rem] text-[var(--ink-mid)] font-semibold">Alter</span><span class="text-[.88rem] text-ink font-bold">2½ – 4 Jahre</span></div>
+            </div>
+          </div>
+          <!-- Floating badges -->
+          <div class="absolute -top-4 -right-4 bg-honey text-ink font-bold text-[.8rem] rounded-2xl px-4 py-[10px] shadow-md">🌿 Seon, AG</div>
+          <div class="absolute -bottom-3 -left-4 bg-[var(--sage)] text-white font-bold text-[.8rem] rounded-2xl px-4 py-[10px] shadow-md">10+ Jahre Erfahrung</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ÜBER UNS ══════════════════════════════════════════════ -->
+<section id="ueber-uns" class="bg-white py-24">
+  <div class="max-w-[1140px] mx-auto px-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
+
+      <!-- Text -->
+      <div>
+        <div class="reveal mb-[52px]">
+          <div class="inline-flex items-center gap-[6px] text-[.78rem] font-bold tracking-[.08em] uppercase text-[var(--terra)] mb-3">
+            <span class="w-5 h-[2px] bg-[var(--terra)] rounded-[2px]"></span>Über uns
+          </div>
+          <h2 class="font-display font-bold text-[clamp(1.8rem,3vw,2.6rem)] leading-[1.2] text-ink mb-4">Klein, vertraut<br />und herzlich</h2>
+          <p class="text-[1.05rem] text-[var(--ink-mid)] max-w-[580px] leading-[1.7]">Die Spielgruppe Seon ist ein Ort, an dem Kinder in einer kleinen, familiären Gruppe spielen, lachen und die Welt entdecken. Mit bewusst kleinen Gruppen schaffen wir Raum für individuelle Aufmerksamkeit.</p>
+        </div>
+
+        <ul class="reveal delay-1 flex flex-col gap-3 mb-8 list-none">
+          <li class="flex gap-3 items-start">
+            <span class="w-6 h-6 rounded-full bg-[var(--sage-light)] flex items-center justify-center shrink-0 mt-[2px]">
+              <svg width="11" height="11" viewBox="0 0 11 11"><path d="M2 5.5l2.5 2.5 4.5-4.5" stroke="oklch(0.48 0.09 148)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+            </span>
+            <span class="text-[.95rem] text-ink leading-[1.6]">Das Kind steht im Mittelpunkt – mit seinen eigenen Bedürfnissen, seinem eigenen Tempo.</span>
+          </li>
+          <li class="flex gap-3 items-start">
+            <span class="w-6 h-6 rounded-full bg-[var(--terra-light)] flex items-center justify-center shrink-0 mt-[2px]">
+              <svg width="11" height="11" viewBox="0 0 11 11"><path d="M2 5.5l2.5 2.5 4.5-4.5" stroke="oklch(0.55 0.11 42)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+            </span>
+            <span class="text-[.95rem] text-ink leading-[1.6]">Klare Tagesstruktur mit wiederkehrenden Ritualen gibt Sicherheit und Orientierung.</span>
+          </li>
+          <li class="flex gap-3 items-start">
+            <span class="w-6 h-6 rounded-full bg-[oklch(0.95_0.06_88)] flex items-center justify-center shrink-0 mt-[2px]">
+              <svg width="11" height="11" viewBox="0 0 11 11"><path d="M2 5.5l2.5 2.5 4.5-4.5" stroke="oklch(0.56 0.1 88)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+            </span>
+            <span class="text-[.95rem] text-ink leading-[1.6]">Dina schafft eine wertschätzende, liebevolle Atmosphäre mit klaren und kindgerechten Regeln.</span>
+          </li>
+          <li class="flex gap-3 items-start">
+            <span class="w-6 h-6 rounded-full bg-[var(--sage-light)] flex items-center justify-center shrink-0 mt-[2px]">
+              <svg width="11" height="11" viewBox="0 0 11 11"><path d="M2 5.5l2.5 2.5 4.5-4.5" stroke="oklch(0.48 0.09 148)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+            </span>
+            <span class="text-[.95rem] text-ink leading-[1.6]">Die Spielgruppe Seon orientiert sich an den Qualitätsrichtlinien der IG Spielgruppe Schweiz.</span>
+          </li>
+          <li class="flex gap-3 items-start">
+            <span class="w-6 h-6 rounded-full bg-[var(--terra-light)] flex items-center justify-center shrink-0 mt-[2px]">
+              <svg width="11" height="11" viewBox="0 0 11 11"><path d="M2 5.5l2.5 2.5 4.5-4.5" stroke="oklch(0.55 0.11 42)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+            </span>
+            <span class="text-[.95rem] text-ink leading-[1.6]">Enge, vertrauensvolle Zusammenarbeit mit den Eltern – Austausch per Telefon oder E-Mail.</span>
+          </li>
+        </ul>
+
+        <!-- Montessori blockquote -->
+        <blockquote class="reveal delay-2 mt-8 pl-6 pr-4 py-5 border-l-[3px] border-[var(--sage)] bg-[var(--sage-light)] rounded-r-2xl">
+          <p class="font-display font-bold italic text-[1.15rem] text-[var(--sage-dark)] leading-[1.4]">«Hilf mir, es selbst zu tun.»</p>
+          <cite class="block mt-[6px] text-[.8rem] font-semibold text-[var(--ink-mid)] not-italic">— Maria Montessori</cite>
+        </blockquote>
+      </div>
+
+      <!-- Visual -->
+      <div class="reveal delay-2">
+        <div class="relative rounded-4xl aspect-[4/3] bg-[var(--sage-light)] overflow-hidden flex items-center justify-center">
+          <div class="stripe-bg"></div>
+          <div class="relative z-10 flex flex-col items-center gap-3 text-[var(--sage-dark)] text-[.82rem] font-semibold font-mono text-center px-5 opacity-40">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="6" y="6" width="36" height="36" rx="4" stroke="currentColor" stroke-width="2"/><circle cx="17" cy="19" r="4" stroke="currentColor" stroke-width="2"/><path d="M6 38l10-10 6 6 8-8 12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Foto: Spielgruppe-Atmosphäre<br />Kinder beim gemeinsamen Spiel
+          </div>
+        </div>
+        <!-- Stat cards -->
+        <div class="grid grid-cols-2 gap-3 mt-4">
+          <div class="reveal delay-2 bg-white rounded-2xl p-5 text-center shadow-sm border border-cream-dark">
+            <div class="font-display font-extrabold text-[1.8rem] text-[var(--sage-dark)] leading-none">10+</div>
+            <div class="text-[.78rem] text-[var(--ink-mid)] font-semibold mt-1">Jahre Erfahrung</div>
+          </div>
+          <div class="reveal delay-3 bg-white rounded-2xl p-5 text-center shadow-sm border border-cream-dark">
+            <div class="font-display font-extrabold text-[1.8rem] text-[var(--sage-dark)] leading-none">3</div>
+            <div class="text-[.78rem] text-[var(--ink-mid)] font-semibold mt-1">Tage pro Woche</div>
+          </div>
+          <div class="reveal delay-3 bg-white rounded-2xl p-5 text-center shadow-sm border border-cream-dark">
+            <div class="font-display font-extrabold text-[1.8rem] text-[var(--sage-dark)] leading-none">3½h</div>
+            <div class="text-[.78rem] text-[var(--ink-mid)] font-semibold mt-1">pro Morgen</div>
+          </div>
+          <div class="reveal delay-4 bg-white rounded-2xl p-5 text-center shadow-sm border border-cream-dark">
+            <div class="font-display font-extrabold text-[1.8rem] text-[var(--sage-dark)] leading-none">2½h</div>
+            <div class="text-[.78rem] text-[var(--ink-mid)] font-semibold mt-1">pro Nachmittag</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SPIELGRUPPE ═══════════════════════════════════════════ -->
+<section id="spielgruppe" class="bg-cream py-24">
+  <div class="max-w-[1140px] mx-auto px-6">
+    <div class="text-center mb-[52px] reveal">
+      <div class="inline-flex items-center gap-[6px] text-[.78rem] font-bold tracking-[.08em] uppercase text-[var(--terra)] mb-3">Was ist die Spielgruppe Seon?</div>
+      <h2 class="font-display font-bold text-[clamp(1.8rem,3vw,2.6rem)] leading-[1.2] text-ink mb-4">Das erste soziale<br />Abenteuer</h2>
+      <p class="text-[1.05rem] text-[var(--ink-mid)] max-w-[580px] mx-auto leading-[1.7]">Die Spielgruppe Seon ist ein Ort, an dem Kinder spielen, lachen, entdecken und wachsen dürfen. Hier beginnt für viele Kinder das erste soziale Abenteuer ausserhalb der Familie.</p>
+    </div>
+
+    <!-- Themenkarten -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5 mb-20">
+
+      <div class="reveal delay-1 bg-white rounded-3xl p-7 border border-cream-dark hover:shadow-md hover:-translate-y-[3px] transition-all">
+        <div class="w-[52px] h-[52px] rounded-xl bg-[var(--sage-light)] flex items-center justify-center mb-4">
+          <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><circle cx="9" cy="10" r="4" stroke="oklch(0.48 0.09 148)" stroke-width="2"/><circle cx="17" cy="10" r="4" stroke="oklch(0.48 0.09 148)" stroke-width="2"/><path d="M3 22c0-4 2.686-6 6-6h8c3.314 0 6 2 6 6" stroke="oklch(0.48 0.09 148)" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <h3 class="font-display font-bold text-[1.05rem] mb-2">Miteinander</h3>
+        <p class="text-[.88rem] text-[var(--ink-mid)] leading-[1.65]">Die Kinder erleben, was es bedeutet, Teil einer Gruppe zu sein. Sie lernen Rücksicht zu nehmen, Freundschaften zu schliessen und gemeinsam zu lachen.</p>
+      </div>
+
+      <div class="reveal delay-2 bg-white rounded-3xl p-7 border border-cream-dark hover:shadow-md hover:-translate-y-[3px] transition-all">
+        <div class="w-[52px] h-[52px] rounded-xl bg-[var(--terra-light)] flex items-center justify-center mb-4">
+          <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M4 20 Q8 10 13 14 Q18 18 22 6" stroke="oklch(0.55 0.11 42)" stroke-width="2" stroke-linecap="round" fill="none"/><circle cx="8" cy="8" r="3" fill="oklch(0.84 0.11 88)"/><circle cx="19" cy="17" r="2" fill="oklch(0.64 0.09 148)"/></svg>
+        </div>
+        <h3 class="font-display font-bold text-[1.05rem] mb-2">Kreativität</h3>
+        <p class="text-[.88rem] text-[var(--ink-mid)] leading-[1.65]">Malen, kneten, basteln, werken – die Kinder entdecken mit allen Sinnen und drücken sich kreativ aus.</p>
+      </div>
+
+      <div class="reveal delay-3 bg-white rounded-3xl p-7 border border-cream-dark hover:shadow-md hover:-translate-y-[3px] transition-all">
+        <div class="w-[52px] h-[52px] rounded-xl bg-[oklch(0.95_0.06_88)] flex items-center justify-center mb-4">
+          <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M13 4 Q18 8 18 13 Q18 19 13 22 Q8 19 8 13 Q8 8 13 4Z" stroke="oklch(0.56 0.1 88)" stroke-width="2" fill="none"/><path d="M9 13 Q13 10 17 13" stroke="oklch(0.56 0.1 88)" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+        </div>
+        <h3 class="font-display font-bold text-[1.05rem] mb-2">Bewegung</h3>
+        <p class="text-[.88rem] text-[var(--ink-mid)] leading-[1.65]">Toben, turnen, tanzen – Kinder haben einen natürlichen Drang, sich zu bewegen und die Welt zu erkunden.</p>
+      </div>
+
+      <div class="reveal delay-2 bg-white rounded-3xl p-7 border border-cream-dark hover:shadow-md hover:-translate-y-[3px] transition-all">
+        <div class="w-[52px] h-[52px] rounded-xl bg-[var(--sage-light)] flex items-center justify-center mb-4">
+          <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M5 8h16M5 13h10M5 18h12" stroke="oklch(0.48 0.09 148)" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <h3 class="font-display font-bold text-[1.05rem] mb-2">Sprache</h3>
+        <p class="text-[.88rem] text-[var(--ink-mid)] leading-[1.65]">Lieder, Geschichten, Verse und Gespräche fördern die Sprachentwicklung spielerisch und mit Freude.</p>
+      </div>
+
+      <div class="reveal delay-3 bg-white rounded-3xl p-7 border border-cream-dark hover:shadow-md hover:-translate-y-[3px] transition-all">
+        <div class="w-[52px] h-[52px] rounded-xl bg-[var(--terra-light)] flex items-center justify-center mb-4">
+          <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><circle cx="13" cy="13" r="9" stroke="oklch(0.55 0.11 42)" stroke-width="2"/><path d="M13 8v5l3 2" stroke="oklch(0.55 0.11 42)" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <h3 class="font-display font-bold text-[1.05rem] mb-2">Tagesstruktur</h3>
+        <p class="text-[.88rem] text-[var(--ink-mid)] leading-[1.65]">Ein verlässlicher Ablauf gibt den Kindern Sicherheit: Begrüssung, freies Spiel, Znüni, Abschlusskreis.</p>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="reveal text-center flex gap-4 justify-center flex-wrap">
+      <a href="#anmeldung" class="inline-flex items-center justify-center bg-[var(--terra)] text-white font-bold rounded-full px-9 py-4 text-[1.05rem] hover:bg-[oklch(0.55_0.11_42)] hover:shadow-[0_4px_16px_oklch(0.62_0.11_42_/_0.35)] hover:-translate-y-px transition-all">Jetzt anmelden</a>
+      <a href="#schnuppertag" class="inline-flex items-center justify-center bg-transparent text-[var(--sage-dark)] border-2 border-[var(--sage)] font-bold rounded-full px-9 py-4 text-[1.05rem] hover:bg-[var(--sage-light)] transition-all">Schnuppertag anfragen</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ZEITEN & PREISE ════════════════════════════════════════ -->
+<section id="zeiten-preise" class="bg-white py-24">
+  <div class="max-w-[1140px] mx-auto px-6">
+    <div class="text-center mb-[52px] reveal">
+      <div class="inline-flex items-center gap-[6px] text-[.78rem] font-bold tracking-[.08em] uppercase text-[var(--terra)] mb-3">Zeiten & Preise</div>
+      <h2 class="font-display font-bold text-[clamp(1.8rem,3vw,2.6rem)] leading-[1.2] text-ink mb-4">Transparent und fair</h2>
+      <p class="text-[1.05rem] text-[var(--ink-mid)] max-w-[580px] mx-auto leading-[1.7]">Morgen- und Nachmittagsgruppen an drei Tagen pro Woche. Wählt die Kombination, die zu eurem Familienalltag passt.</p>
+    </div>
+
+    <!-- Info-Grid -->
+    <div class="reveal mb-3">
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-3">
+        <!-- Start -->
+        <div class="bg-cream border border-cream-dark rounded-2xl p-5 flex flex-col gap-1">
+          <div class="w-9 h-9 rounded-[9px] bg-[var(--sage-light)] flex items-center justify-center text-[var(--sage-dark)] mb-1">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="3" width="14" height="13" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M6 1v3M12 1v3M2 7h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div class="text-[.75rem] font-bold text-[var(--ink-light)] uppercase tracking-[.06em]">Start</div>
+          <div class="text-[1.2rem] font-bold text-ink leading-[1.3]">10. August 2026</div>
+        </div>
+        <!-- Alter -->
+        <div class="bg-cream border border-cream-dark rounded-2xl p-5 flex flex-col gap-1">
+          <div class="w-9 h-9 rounded-[9px] bg-[var(--terra-light)] flex items-center justify-center text-[var(--terra)] mb-1">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="6" r="3.5" stroke="currentColor" stroke-width="1.5"/><path d="M2 16c0-3.866 3.134-7 7-7s7 3.134 7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div class="text-[.75rem] font-bold text-[var(--ink-light)] uppercase tracking-[.06em]">Alter</div>
+          <div class="text-[1.2rem] font-bold text-ink leading-[1.3]">2½ – 4 Jahre</div>
+        </div>
+        <!-- Sprachen -->
+        <div class="bg-cream border border-cream-dark rounded-2xl p-5 flex flex-col gap-1 col-span-2 sm:col-span-1">
+          <div class="w-9 h-9 rounded-[9px] bg-[oklch(0.95_0.06_88)] flex items-center justify-center text-[oklch(0.56_0.1_88)] mb-1">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M9 2c-2 2-3 4-3 7s1 5 3 7M9 2c2 2 3 4 3 7s-1 5-3 7M2 9h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div class="text-[.75rem] font-bold text-[var(--ink-light)] uppercase tracking-[.06em]">Sprachen</div>
+          <div class="text-[1.2rem] font-bold text-ink leading-[1.3]">CH &nbsp;DE &nbsp;GB &nbsp;GR</div>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <!-- Tage -->
+        <div class="bg-cream border border-cream-dark rounded-2xl p-5 flex flex-col gap-1">
+          <div class="w-9 h-9 rounded-[9px] bg-[var(--sage-light)] flex items-center justify-center text-[var(--sage-dark)] mb-1">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="3" width="14" height="13" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M6 1v3M12 1v3M2 7h14M6 11h2M10 11h2M6 14h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div class="text-[.75rem] font-bold text-[var(--ink-light)] uppercase tracking-[.06em]">Tage</div>
+          <div class="text-[1.2rem] font-bold text-ink leading-[1.3]">Mo &nbsp;Di &nbsp;Do</div>
+        </div>
+        <!-- Morgen -->
+        <div class="bg-cream border border-cream-dark rounded-2xl p-5 flex flex-col gap-1">
+          <div class="w-9 h-9 rounded-[9px] bg-[var(--terra-light)] flex items-center justify-center text-[var(--terra)] mb-1">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="3.5" stroke="currentColor" stroke-width="1.5"/><path d="M9 1v2M9 15v2M1 9h2M15 9h2M3.1 3.1l1.4 1.4M13.5 13.5l1.4 1.4M14.9 3.1l-1.4 1.4M4.5 13.5l-1.4 1.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div class="text-[.75rem] font-bold text-[var(--ink-light)] uppercase tracking-[.06em]">Morgen <span class="font-medium normal-case text-[.72rem]">3h15</span></div>
+          <div class="text-[1.2rem] font-bold text-ink leading-[1.3]">08:30 – 11:45 <span class="text-[.75rem] font-medium text-[var(--ink-light)]">Uhr</span></div>
+        </div>
+        <!-- Nachmittag -->
+        <div class="bg-cream border border-cream-dark rounded-2xl p-5 flex flex-col gap-1">
+          <div class="w-9 h-9 rounded-[9px] bg-[oklch(0.95_0.06_88)] flex items-center justify-center text-[oklch(0.56_0.1_88)] mb-1">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M15 10.5A7 7 0 017.5 3 7 7 0 1015 10.5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="text-[.75rem] font-bold text-[var(--ink-light)] uppercase tracking-[.06em]">Nachmittag <span class="font-medium normal-case text-[.72rem]">2h30</span></div>
+          <div class="text-[1.2rem] font-bold text-ink leading-[1.3]">13:30 – 16:00 <span class="text-[.75rem] font-medium text-[var(--ink-light)]">Uhr</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Preistabelle -->
+    <div class="reveal delay-1 mt-8">
+      <div class="bg-white border border-cream-dark rounded-3xl overflow-hidden shadow-sm">
+        <div class="px-6 py-4 text-[.82rem] font-bold text-[var(--ink-mid)] uppercase tracking-[.06em] border-b border-cream-dark bg-cream">Preis pro Kind / Monat</div>
+
+        <div class="px-6 pt-3 pb-2 text-[.78rem] font-bold text-[var(--ink-light)] uppercase tracking-[.06em] bg-cream">Morgen (08:30 – 11:45 Uhr)</div>
+        <div class="flex justify-between items-center px-6 py-[13px] border-b border-dashed border-cream-dark hover:bg-cream transition-colors">
+          <span class="text-[.92rem] font-semibold text-ink">1 Morgen / Woche</span>
+          <span class="font-display font-extrabold text-base text-[var(--sage-dark)]">CHF 140.–</span>
+        </div>
+        <div class="flex justify-between items-center px-6 py-[13px] border-b border-dashed border-cream-dark hover:bg-cream transition-colors">
+          <span class="text-[.92rem] font-semibold text-ink">2 Morgen / Woche</span>
+          <span class="font-display font-extrabold text-base text-[var(--sage-dark)]">CHF 270.–</span>
+        </div>
+        <div class="flex justify-between items-center px-6 py-[13px] border-b border-dashed border-cream-dark hover:bg-cream transition-colors">
+          <span class="text-[.92rem] font-semibold text-ink">3 Morgen / Woche</span>
+          <span class="font-display font-extrabold text-base text-[var(--sage-dark)]">CHF 390.–</span>
+        </div>
+
+        <div class="px-6 pt-3 pb-2 text-[.78rem] font-bold text-[var(--ink-light)] uppercase tracking-[.06em] bg-cream border-t border-dashed border-cream-dark">Nachmittag (13:30 – 16:00 Uhr)</div>
+        <div class="flex justify-between items-center px-6 py-[13px] border-b border-dashed border-cream-dark hover:bg-cream transition-colors">
+          <span class="text-[.92rem] font-semibold text-ink">1 Nachmittag / Woche</span>
+          <span class="font-display font-extrabold text-base text-[var(--sage-dark)]">CHF 130.–</span>
+        </div>
+        <div class="flex justify-between items-center px-6 py-[13px] border-b border-dashed border-cream-dark hover:bg-cream transition-colors">
+          <span class="text-[.92rem] font-semibold text-ink">2 Nachmittage / Woche</span>
+          <span class="font-display font-extrabold text-base text-[var(--sage-dark)]">CHF 240.–</span>
+        </div>
+        <div class="flex justify-between items-center px-6 py-[13px] hover:bg-cream transition-colors">
+          <span class="text-[.92rem] font-semibold text-ink">3 Nachmittage / Woche</span>
+          <span class="font-display font-extrabold text-base text-[var(--sage-dark)]">CHF 350.–</span>
+        </div>
+      </div>
+
+      <!-- Warteliste hint -->
+      <div class="mt-4 flex items-center gap-[10px] bg-[oklch(0.97_0.04_88)] border border-[oklch(0.88_0.07_88)] rounded-full px-5 py-3 text-[.88rem] font-medium text-[var(--ink-mid)]">
+        <span class="text-[.95rem] shrink-0">ⓘ</span>
+        <span>Es besteht eine Warteliste. Bitte bei der Anmeldung angeben, falls ihr flexibel beim Startdatum seid. Dina meldet sich persönlich.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SCHNUPPERTAG ═══════════════════════════════════════════ -->
+<section id="schnuppertag" class="relative overflow-hidden bg-[var(--sage-dark)] py-24">
+  <div class="max-w-[1140px] mx-auto px-6">
+    <div class="relative text-center max-w-[680px] mx-auto reveal">
+      <div class="w-20 h-20 rounded-full bg-white/10 flex items-center justify-center text-[2.2rem] mx-auto mb-6">🔍</div>
+      <h2 class="font-display font-bold text-[clamp(1.8rem,3vw,2.6rem)] text-white mb-4">Schnuppertag – ganz individuell</h2>
+      <p class="text-[1.1rem] text-white/75 max-w-[520px] mx-auto mb-8">Ihr seid neugierig und möchtet die Spielgruppe kennenlernen? Der Schnuppertag ist kein fixes Datum – wir finden gemeinsam einen passenden Termin, der zu eurer Familie passt.</p>
+      <div class="flex gap-4 justify-center flex-wrap">
+        <a href="#kontakt" class="inline-flex items-center justify-center bg-white text-[var(--sage-dark)] font-bold rounded-full px-9 py-4 text-[1.05rem] hover:bg-cream hover:shadow-[0_4px_16px_oklch(0_0_0_/_0.15)] hover:-translate-y-px transition-all">Schnuppertag anfragen</a>
+        <a href="#anmeldung" class="inline-flex items-center justify-center border-2 border-white/50 text-white font-bold rounded-full px-9 py-4 text-[1.05rem] hover:bg-white/10 transition-all">Direkt anmelden</a>
+      </div>
+      <p class="mt-6 text-[.85rem] text-white/60">Einfach Dina per E-Mail oder Telefon kontaktieren – sie antwortet persönlich.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ EVENTS ═════════════════════════════════════════════════ -->
+<section id="events" class="bg-cream py-24">
+  <div class="max-w-[1140px] mx-auto px-6">
+    <div class="flex justify-between items-end flex-wrap gap-4 mb-9 reveal">
+      <div>
+        <div class="inline-flex items-center gap-[6px] text-[.78rem] font-bold tracking-[.08em] uppercase text-[var(--terra)] mb-3">Veranstaltungen</div>
+        <h2 class="font-display font-bold text-[clamp(1.8rem,3vw,2.6rem)] leading-[1.2] text-ink">Events & Termine</h2>
+      </div>
+      <div class="flex gap-[10px]">
+        <button id="events-prev" class="w-10 h-10 rounded-full border border-cream-dark bg-white flex items-center justify-center text-[var(--ink-mid)] hover:bg-[var(--sage-light)] hover:border-[var(--sage)] hover:text-[var(--sage-dark)] transition-all" aria-label="Zurück">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button id="events-next" class="w-10 h-10 rounded-full border border-cream-dark bg-white flex items-center justify-center text-[var(--ink-mid)] hover:bg-[var(--sage-light)] hover:border-[var(--sage)] hover:text-[var(--sage-dark)] transition-all" aria-label="Weiter">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="reveal delay-1">
+      <!-- Events rendered by JS from _data/events.json -->
+      <div id="events-slider" class="events-slider flex gap-5 overflow-x-auto scroll-snap-x pb-3" style="scroll-snap-type:x mandatory;"></div>
+      <div id="events-dots" class="flex gap-[6px] justify-center mt-4"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TEAM ═══════════════════════════════════════════════════ -->
+<section id="team" class="bg-white py-24">
+  <div class="max-w-[1140px] mx-auto px-6">
+    <div class="text-center mb-[52px] reveal">
+      <div class="inline-flex items-center gap-[6px] text-[.78rem] font-bold tracking-[.08em] uppercase text-[var(--terra)] mb-3">Das Team</div>
+      <h2 class="font-display font-bold text-[clamp(1.8rem,3vw,2.6rem)] leading-[1.2] text-ink">Mit Herz und Erfahrung</h2>
+    </div>
+    <div class="flex justify-center">
+      <div class="reveal delay-1 bg-cream rounded-4xl p-8 md:p-12 max-w-[820px] w-full grid grid-cols-1 md:grid-cols-[200px_1fr] gap-8 md:gap-12 items-start shadow-md border border-cream-dark">
+        <!-- Photo -->
+        <div class="aspect-square rounded-3xl bg-[var(--sage-light)] overflow-hidden relative flex items-center justify-center max-w-[200px] mx-auto md:mx-0 w-full">
+          <div class="stripe-bg"></div>
+          <div class="relative z-10 flex flex-col items-center gap-3 text-[var(--sage-dark)] text-[.82rem] font-semibold font-mono opacity-40">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="14" r="8" stroke="currentColor" stroke-width="2"/><path d="M4 36c0-8.837 7.163-16 16-16s16 7.163 16 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            Foto: Dina
+          </div>
+        </div>
+        <!-- Info (JS-populated from _data/contact.json) -->
+        <div id="team-info">
+          <h3 class="font-display font-bold text-[1.6rem] text-ink mb-1">Dina</h3>
+          <div class="text-[var(--sage-dark)] font-bold text-[.9rem] mb-4">Leiterin Spielgruppe Seon</div>
+          <div class="flex flex-wrap gap-2 mb-5">
+            <span class="bg-white border border-cream-dark px-3 py-1 rounded-full text-[.8rem] font-semibold text-[var(--ink-mid)]">Fachfrau Betreuung Kleinkinder</span>
+            <span class="bg-white border border-cream-dark px-3 py-1 rounded-full text-[.8rem] font-semibold text-[var(--ink-mid)]">Gruppenleiterin</span>
+            <span class="bg-white border border-cream-dark px-3 py-1 rounded-full text-[.8rem] font-semibold text-[var(--ink-mid)]">10+ Jahre Erfahrung</span>
+          </div>
+          <p class="text-[.95rem] text-[var(--ink-mid)] leading-[1.75]">Ich begleite Kinder mit viel Herzblut und Fachwissen durch ihre ersten grossen Schritte ausserhalb des Familienumfelds. Als ausgebildete Fachfrau Betreuung mit über 10 Jahren Berufserfahrung weiss ich, wie wichtig eine geborgene, spielerische Umgebung für die Entwicklung kleiner Kinder ist.<br /><br />Bei mir dürfen Kinder ganz sie selbst sein – neugierig, kreativ und manchmal auch ein bisschen wild. Ich freue mich, euer Kind kennenzulernen!</p>
+          <div class="mt-5">
+            <a href="#kontakt" class="inline-flex items-center justify-center bg-[var(--sage)] text-white font-bold rounded-full px-5 py-[9px] text-[.88rem] hover:bg-[var(--sage-dark)] hover:shadow-[0_4px_16px_oklch(0.64_0.09_148_/_0.35)] hover:-translate-y-px transition-all">Kontakt aufnehmen</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ANMELDUNG ══════════════════════════════════════════════ -->
+<section id="anmeldung" class="bg-cream py-24">
+  <div class="max-w-[1140px] mx-auto px-6">
+    <div class="text-center mb-[52px] reveal">
+      <div class="inline-flex items-center gap-[6px] text-[.78rem] font-bold tracking-[.08em] uppercase text-[var(--terra)] mb-3">Online-Anmeldung</div>
+      <h2 class="font-display font-bold text-[clamp(1.8rem,3vw,2.6rem)] leading-[1.2] text-ink mb-4">Jetzt einen Platz sichern</h2>
+      <p class="text-[1.05rem] text-[var(--ink-mid)] max-w-[580px] mx-auto leading-[1.7]">Füllt das Formular aus und Dina meldet sich bei euch. Bitte beachtet: Es besteht eine Warteliste.</p>
+    </div>
+
+    <div id="anmeldung-wrap" class="reveal delay-1 bg-white rounded-4xl p-8 md:p-12 shadow-md max-w-[760px] mx-auto">
+
+      <!-- Anmeldeformular (Netlify Forms) -->
+      <form id="anmeldung-form" novalidate>
+        <input type="hidden" name="access_key" value="DEIN-WEB3FORMS-KEY" />
+        <input type="hidden" name="subject" value="Neue Anmeldung – Spielgruppe Seon" />
+        <input type="hidden" name="from_name" value="Spielgruppe Seon Website" />
+        <!-- Honeypot -->
+        <input type="checkbox" name="botcheck" class="hidden" style="display:none;" />
+
+        <h3 class="font-display font-bold text-[1.25rem] text-ink mb-6">Anmeldeformular</h3>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <!-- Kind -->
+          <div class="flex flex-col gap-[6px]">
+            <label class="text-[.85rem] font-bold text-ink" for="a-kind-name">Name des Kindes <span class="text-[var(--terra)]">*</span></label>
+            <input class="border border-cream-dark rounded-xl px-[14px] py-[10px] text-[.95rem] bg-cream text-ink outline-none transition-all focus:border-[var(--sage)] focus:shadow-[0_0_0_3px_oklch(0.64_0.09_148_/_0.15)] focus:bg-white" type="text" id="a-kind-name" name="kindName" placeholder="Vorname Nachname" required />
+            <span class="form-error text-[.78rem] text-[var(--terra)] font-semibold hidden" id="err-kind-name"></span>
+          </div>
+          <!-- Geburtsdatum -->
+          <div class="flex flex-col gap-[6px]">
+            <label class="text-[.85rem] font-bold text-ink" for="a-geburtsdatum">Geburtsdatum <span class="text-[var(--terra)]">*</span></label>
+            <input class="border border-cream-dark rounded-xl px-[14px] py-[10px] text-[.95rem] bg-cream text-ink outline-none transition-all focus:border-[var(--sage)] focus:shadow-[0_0_0_3px_oklch(0.64_0.09_148_/_0.15)] focus:bg-white" type="date" id="a-geburtsdatum" name="geburtsdatum" required />
+            <span class="form-error text-[.78rem] text-[var(--terra)] font-semibold hidden" id="err-geburtsdatum"></span>
+          </div>
+          <!-- Eltern -->
+          <div class="flex flex-col gap-[6px]">
+            <label class="text-[.85rem] font-bold text-ink" for="a-eltern-name">Name der Eltern <span class="text-[var(--terra)]">*</span></label>
+            <input class="border border-cream-dark rounded-xl px-[14px] py-[10px] text-[.95rem] bg-cream text-ink outline-none transition-all focus:border-[var(--sage)] focus:shadow-[0_0_0_3px_oklch(0.64_0.09_148_/_0.15)] focus:bg-white" type="text" id="a-eltern-name" name="elternName" placeholder="Mutter / Vater" required />
+            <span class="form-error text-[.78rem] text-[var(--terra)] font-semibold hidden" id="err-eltern-name"></span>
+          </div>
+          <!-- E-Mail -->
+          <div class="flex flex-col gap-[6px]">
+            <label class="text-[.85rem] font-bold text-ink" for="a-email">E-Mail <span class="text-[var(--terra)]">*</span></label>
+            <input class="border border-cream-dark rounded-xl px-[14px] py-[10px] text-[.95rem] bg-cream text-ink outline-none transition-all focus:border-[var(--sage)] focus:shadow-[0_0_0_3px_oklch(0.64_0.09_148_/_0.15)] focus:bg-white" type="email" id="a-email" name="email" placeholder="name@beispiel.ch" required />
+            <span class="form-error text-[.78rem] text-[var(--terra)] font-semibold hidden" id="err-email"></span>
+          </div>
+          <!-- Telefon -->
+          <div class="flex flex-col gap-[6px] sm:col-span-2">
+            <label class="text-[.85rem] font-bold text-ink" for="a-telefon">Telefon <span class="text-[var(--terra)]">*</span></label>
+            <input class="border border-cream-dark rounded-xl px-[14px] py-[10px] text-[.95rem] bg-cream text-ink outline-none transition-all focus:border-[var(--sage)] focus:shadow-[0_0_0_3px_oklch(0.64_0.09_148_/_0.15)] focus:bg-white" type="tel" id="a-telefon" name="telefon" placeholder="079 123 45 67" required />
+            <span class="form-error text-[.78rem] text-[var(--terra)] font-semibold hidden" id="err-telefon"></span>
+          </div>
+
+          <!-- Tage (Checkboxen) -->
+          <div class="flex flex-col gap-[6px] sm:col-span-2">
+            <label class="text-[.85rem] font-bold text-ink">Gewünschte Tage & Zeit <span class="text-[var(--terra)]">*</span></label>
+            <div class="flex flex-col gap-3 mt-1">
+
+              <div>
+                <div class="text-[.8rem] font-bold text-[var(--ink-mid)] mb-[6px] uppercase tracking-[.05em]">Montag</div>
+                <div class="flex flex-wrap gap-[10px]">
+                  <label class="checkbox-label flex items-center gap-2 px-4 py-2 rounded-xl border border-cream-dark bg-cream font-semibold text-[.9rem]">
+                    <input type="checkbox" name="tage" value="Montag Morgen" class="hidden" />
+                    <span class="checkbox-custom w-[18px] h-[18px] rounded-[4px] border-2 border-current flex items-center justify-center shrink-0"></span>
+                    Morgen 08:30–11:45
+                  </label>
+                  <label class="checkbox-label flex items-center gap-2 px-4 py-2 rounded-xl border border-cream-dark bg-cream font-semibold text-[.9rem]">
+                    <input type="checkbox" name="tage" value="Montag Nachmittag" class="hidden" />
+                    <span class="checkbox-custom w-[18px] h-[18px] rounded-[4px] border-2 border-current flex items-center justify-center shrink-0"></span>
+                    Nachmittag 13:30–16:00
+                  </label>
+                </div>
+              </div>
+
+              <div>
+                <div class="text-[.8rem] font-bold text-[var(--ink-mid)] mb-[6px] uppercase tracking-[.05em]">Dienstag</div>
+                <div class="flex flex-wrap gap-[10px]">
+                  <label class="checkbox-label flex items-center gap-2 px-4 py-2 rounded-xl border border-cream-dark bg-cream font-semibold text-[.9rem]">
+                    <input type="checkbox" name="tage" value="Dienstag Morgen" class="hidden" />
+                    <span class="checkbox-custom w-[18px] h-[18px] rounded-[4px] border-2 border-current flex items-center justify-center shrink-0"></span>
+                    Morgen 08:30–11:45
+                  </label>
+                  <label class="checkbox-label flex items-center gap-2 px-4 py-2 rounded-xl border border-cream-dark bg-cream font-semibold text-[.9rem]">
+                    <input type="checkbox" name="tage" value="Dienstag Nachmittag" class="hidden" />
+                    <span class="checkbox-custom w-[18px] h-[18px] rounded-[4px] border-2 border-current flex items-center justify-center shrink-0"></span>
+                    Nachmittag 13:30–16:00
+                  </label>
+                </div>
+              </div>
+
+              <div>
+                <div class="text-[.8rem] font-bold text-[var(--ink-mid)] mb-[6px] uppercase tracking-[.05em]">Donnerstag</div>
+                <div class="flex flex-wrap gap-[10px]">
+                  <label class="checkbox-label flex items-center gap-2 px-4 py-2 rounded-xl border border-cream-dark bg-cream font-semibold text-[.9rem]">
+                    <input type="checkbox" name="tage" value="Donnerstag Morgen" class="hidden" />
+                    <span class="checkbox-custom w-[18px] h-[18px] rounded-[4px] border-2 border-current flex items-center justify-center shrink-0"></span>
+                    Morgen 08:30–11:45
+                  </label>
+                  <label class="checkbox-label flex items-center gap-2 px-4 py-2 rounded-xl border border-cream-dark bg-cream font-semibold text-[.9rem]">
+                    <input type="checkbox" name="tage" value="Donnerstag Nachmittag" class="hidden" />
+                    <span class="checkbox-custom w-[18px] h-[18px] rounded-[4px] border-2 border-current flex items-center justify-center shrink-0"></span>
+                    Nachmittag 13:30–16:00
+                  </label>
+                </div>
+              </div>
+            </div>
+            <span class="form-error text-[.78rem] text-[var(--terra)] font-semibold hidden" id="err-tage"></span>
+          </div>
+
+          <!-- Bemerkungen -->
+          <div class="flex flex-col gap-[6px] sm:col-span-2">
+            <label class="text-[.85rem] font-bold text-ink" for="a-bemerkungen">Bemerkungen / Warteliste</label>
+            <textarea class="border border-cream-dark rounded-xl px-[14px] py-[10px] text-[.95rem] bg-cream text-ink outline-none transition-all focus:border-[var(--sage)] focus:shadow-[0_0_0_3px_oklch(0.64_0.09_148_/_0.15)] focus:bg-white resize-y min-h-[100px]" id="a-bemerkungen" name="bemerkungen" placeholder="Allfällige Bemerkungen, gewünschter Starttermin, Hinweis auf Warteliste…"></textarea>
+          </div>
+        </div>
+
+        <div class="mt-7 flex items-center gap-4 flex-wrap">
+          <button type="submit" class="inline-flex items-center justify-center bg-[var(--terra)] text-white font-bold rounded-full px-9 py-4 text-[1.05rem] hover:bg-[oklch(0.55_0.11_42)] hover:shadow-[0_4px_16px_oklch(0.62_0.11_42_/_0.35)] hover:-translate-y-px transition-all">Anmeldung absenden</button>
+          <span class="text-[.8rem] text-[var(--ink-light)]">Mit dem Absenden nehmt ihr zur Kenntnis, dass eine Warteliste besteht und Dina sich persönlich bei euch melden wird.</span>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ KONTAKT ════════════════════════════════════════════════ -->
+<section id="kontakt" class="bg-white py-24">
+  <div class="max-w-[1140px] mx-auto px-6">
+    <div class="reveal mb-[52px]">
+      <div class="inline-flex items-center gap-[6px] text-[.78rem] font-bold tracking-[.08em] uppercase text-[var(--terra)] mb-3">
+        <span class="w-5 h-[2px] bg-[var(--terra)] rounded-[2px]"></span>Kontakt
+      </div>
+      <h2 class="font-display font-bold text-[clamp(1.8rem,3vw,2.6rem)] leading-[1.2] text-ink">Wir freuen uns<br />von euch zu hören</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-[1fr_1.2fr] gap-14 items-start">
+      <!-- Kontaktinfos (JS-populated from _data/contact.json) -->
+      <div>
+        <div class="flex flex-col gap-5">
+          <div class="reveal delay-1 flex gap-4 items-start">
+            <div class="w-11 h-11 rounded-xl bg-[var(--sage-light)] flex items-center justify-center text-[var(--sage-dark)] shrink-0">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 1a6 6 0 016 6c0 4-6 10-6 10S3 11 3 7a6 6 0 016-6z" stroke="currentColor" stroke-width="1.5"/><circle cx="9" cy="7" r="2" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+            <div>
+              <h4 class="text-[.88rem] font-bold text-[var(--ink-mid)] mb-[2px]">Adresse</h4>
+              <p class="text-[.95rem] text-ink font-semibold" id="kontakt-adresse">Oholten 3<br />5703 Seon</p>
+            </div>
+          </div>
+          <div class="reveal delay-2 flex gap-4 items-start">
+            <div class="w-11 h-11 rounded-xl bg-[var(--terra-light)] flex items-center justify-center text-[var(--terra)] shrink-0">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="4" width="14" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M2 6l7 5 7-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <div>
+              <h4 class="text-[.88rem] font-bold text-[var(--ink-mid)] mb-[2px]">E-Mail</h4>
+              <p class="text-[.95rem] font-semibold"><a id="kontakt-email-link" href="mailto:" class="text-[var(--sage-dark)] hover:underline" id="kontakt-email">[E-Mail Platzhalter]</a></p>
+            </div>
+          </div>
+          <div class="reveal delay-3 flex gap-4 items-start">
+            <div class="w-11 h-11 rounded-xl bg-[oklch(0.95_0.06_88)] flex items-center justify-center text-[oklch(0.56_0.1_88)] shrink-0">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 3h3l1.5 3.5-2 1.5a11 11 0 005 5l1.5-2L15 12.5V15a1 1 0 01-1 1A13 13 0 012 4a1 1 0 011-1z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <h4 class="text-[.88rem] font-bold text-[var(--ink-mid)] mb-[2px]">Telefon</h4>
+              <p class="text-[.95rem] font-semibold"><a id="kontakt-tel-link" href="tel:" class="text-[var(--sage-dark)] hover:underline" id="kontakt-tel">[Telefon Platzhalter]</a></p>
+            </div>
+          </div>
+          <div class="reveal delay-4 flex gap-4 items-start">
+            <div class="w-11 h-11 rounded-xl bg-[var(--sage-light)] flex items-center justify-center text-[var(--sage-dark)] shrink-0">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M9 5v4l3 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <div>
+              <h4 class="text-[.88rem] font-bold text-[var(--ink-mid)] mb-[2px]">Spielgruppenzeiten</h4>
+              <p class="text-[.95rem] text-ink font-semibold">Mo, Di, Do<br />Morgen: 08:30 – 11:45 Uhr<br />Nachmittag: 13:30 – 16:00 Uhr</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Map placeholder -->
+        <div class="mt-7 rounded-3xl overflow-hidden h-[200px] bg-[var(--sage-light)] border border-[var(--sage-light)] relative flex items-center justify-center">
+          <div class="stripe-bg"></div>
+          <div class="relative z-10 flex flex-col items-center gap-2 text-[var(--sage-dark)] text-[.85rem] font-semibold font-mono opacity-50">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M16 3a9 9 0 110 18A9 9 0 0116 3z" stroke="currentColor" stroke-width="2"/><path d="M16 21v8M12 29h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="16" cy="12" r="3" stroke="currentColor" stroke-width="2"/></svg>
+            Kartenansicht · Oholten 3, 5703 Seon
+          </div>
+        </div>
+      </div>
+
+      <!-- Kontaktformular -->
+      <div class="reveal delay-2">
+        <div class="bg-cream rounded-3xl p-8 border border-cream-dark">
+          <h3 class="font-display font-bold text-[1.25rem] text-ink mb-5">Allgemeine Anfrage</h3>
+          <form id="kontakt-form" novalidate>
+            <input type="hidden" name="access_key" value="DEIN-WEB3FORMS-KEY" />
+            <input type="hidden" name="subject" value="Kontaktanfrage – Spielgruppe Seon" />
+            <input type="hidden" name="from_name" value="Spielgruppe Seon Website" />
+            <input type="checkbox" name="botcheck" class="hidden" style="display:none;" />
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="flex flex-col gap-[6px]">
+                <label class="text-[.85rem] font-bold text-ink" for="k-name">Name <span class="text-[var(--terra)]">*</span></label>
+                <input class="border border-cream-dark rounded-xl px-[14px] py-[10px] text-[.95rem] bg-white text-ink outline-none transition-all focus:border-[var(--sage)] focus:shadow-[0_0_0_3px_oklch(0.64_0.09_148_/_0.15)]" type="text" id="k-name" name="name" placeholder="Euer Name" required />
+                <span class="form-error text-[.78rem] text-[var(--terra)] font-semibold hidden" id="k-err-name"></span>
+              </div>
+              <div class="flex flex-col gap-[6px]">
+                <label class="text-[.85rem] font-bold text-ink" for="k-email">E-Mail <span class="text-[var(--terra)]">*</span></label>
+                <input class="border border-cream-dark rounded-xl px-[14px] py-[10px] text-[.95rem] bg-white text-ink outline-none transition-all focus:border-[var(--sage)] focus:shadow-[0_0_0_3px_oklch(0.64_0.09_148_/_0.15)]" type="email" id="k-email" name="email" placeholder="name@beispiel.ch" required />
+                <span class="form-error text-[.78rem] text-[var(--terra)] font-semibold hidden" id="k-err-email"></span>
+              </div>
+              <div class="flex flex-col gap-[6px] sm:col-span-2">
+                <label class="text-[.85rem] font-bold text-ink" for="k-betreff">Betreff</label>
+                <input class="border border-cream-dark rounded-xl px-[14px] py-[10px] text-[.95rem] bg-white text-ink outline-none transition-all focus:border-[var(--sage)] focus:shadow-[0_0_0_3px_oklch(0.64_0.09_148_/_0.15)]" type="text" id="k-betreff" name="betreff" placeholder="z.B. Schnuppertag anfragen" />
+              </div>
+              <div class="flex flex-col gap-[6px] sm:col-span-2">
+                <label class="text-[.85rem] font-bold text-ink" for="k-nachricht">Nachricht <span class="text-[var(--terra)]">*</span></label>
+                <textarea class="border border-cream-dark rounded-xl px-[14px] py-[10px] text-[.95rem] bg-white text-ink outline-none transition-all focus:border-[var(--sage)] focus:shadow-[0_0_0_3px_oklch(0.64_0.09_148_/_0.15)] resize-y min-h-[120px]" id="k-nachricht" name="nachricht" placeholder="Eure Nachricht an Dina…" required></textarea>
+                <span class="form-error text-[.78rem] text-[var(--terra)] font-semibold hidden" id="k-err-nachricht"></span>
+              </div>
+            </div>
+            <div class="mt-5">
+              <button type="submit" class="inline-flex items-center justify-center bg-[var(--sage)] text-white font-bold rounded-full px-6 py-3 text-[.95rem] hover:bg-[var(--sage-dark)] hover:shadow-[0_4px_16px_oklch(0.64_0.09_148_/_0.35)] hover:-translate-y-px transition-all">Nachricht senden</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ GALERIE ════════════════════════════════════════════════ -->
+<section id="galerie" class="bg-cream py-24 overflow-hidden">
+  <div class="max-w-[1140px] mx-auto px-6">
+    <div class="text-center mb-[52px] reveal">
+      <div class="inline-flex items-center gap-[6px] text-[.78rem] font-bold tracking-[.08em] uppercase text-[var(--terra)] mb-3">Galerie</div>
+      <h2 class="font-display font-bold text-[clamp(1.8rem,3vw,2.6rem)] leading-[1.2] text-ink">Einblicke in unseren Alltag</h2>
+    </div>
+  </div>
+  <div class="reveal delay-1">
+    <div class="overflow-hidden" id="gallery-outer">
+      <div class="gallery-track flex" id="gallery-track">
+        <!-- Slides rendered by JS from _data/gallery.json -->
+        <div class="gallery-slide bg-[var(--sage-light)]"><div class="stripe-bg"></div><div class="relative z-10 opacity-40 flex flex-col items-center gap-2 text-[var(--sage-dark)] text-[.85rem] font-mono"><svg width="36" height="36" viewBox="0 0 48 48" fill="none"><rect x="6" y="6" width="36" height="36" rx="4" stroke="oklch(0.48 0.09 148)" stroke-width="2"/><circle cx="17" cy="19" r="4" stroke="oklch(0.48 0.09 148)" stroke-width="2"/><path d="M6 38l10-10 6 6 8-8 12 12" stroke="oklch(0.48 0.09 148)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Foto 1</span></div></div>
+        <div class="gallery-slide bg-[var(--terra-light)]"><div class="stripe-bg" style="background-image:repeating-linear-gradient(-45deg,transparent,transparent 12px,oklch(0.62 0.11 42 / .08) 12px,oklch(0.62 0.11 42 / .08) 14px)"></div><div class="relative z-10 opacity-40 flex flex-col items-center gap-2 text-[var(--terra)] text-[.85rem] font-mono"><svg width="36" height="36" viewBox="0 0 48 48" fill="none"><rect x="6" y="6" width="36" height="36" rx="4" stroke="oklch(0.55 0.11 42)" stroke-width="2"/><circle cx="17" cy="19" r="4" stroke="oklch(0.55 0.11 42)" stroke-width="2"/><path d="M6 38l10-10 6 6 8-8 12 12" stroke="oklch(0.55 0.11 42)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Foto 2</span></div></div>
+        <div class="gallery-slide bg-[oklch(0.93_0.05_88)]"><div class="stripe-bg" style="background-image:repeating-linear-gradient(-45deg,transparent,transparent 12px,oklch(0.74 0.13 88 / .1) 12px,oklch(0.74 0.13 88 / .1) 14px)"></div><div class="relative z-10 opacity-40 flex flex-col items-center gap-2 text-[oklch(0.56_0.1_88)] text-[.85rem] font-mono"><svg width="36" height="36" viewBox="0 0 48 48" fill="none"><rect x="6" y="6" width="36" height="36" rx="4" stroke="oklch(0.56 0.1 88)" stroke-width="2"/><circle cx="17" cy="19" r="4" stroke="oklch(0.56 0.1 88)" stroke-width="2"/><path d="M6 38l10-10 6 6 8-8 12 12" stroke="oklch(0.56 0.1 88)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Foto 3</span></div></div>
+        <div class="gallery-slide bg-[var(--sage-light)]"><div class="stripe-bg"></div><div class="relative z-10 opacity-40 flex flex-col items-center gap-2 text-[var(--sage-dark)] text-[.85rem] font-mono"><svg width="36" height="36" viewBox="0 0 48 48" fill="none"><rect x="6" y="6" width="36" height="36" rx="4" stroke="oklch(0.48 0.09 148)" stroke-width="2"/><circle cx="17" cy="19" r="4" stroke="oklch(0.48 0.09 148)" stroke-width="2"/><path d="M6 38l10-10 6 6 8-8 12 12" stroke="oklch(0.48 0.09 148)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Foto 4</span></div></div>
+        <div class="gallery-slide bg-[var(--terra-light)]"><div class="stripe-bg" style="background-image:repeating-linear-gradient(-45deg,transparent,transparent 12px,oklch(0.62 0.11 42 / .08) 12px,oklch(0.62 0.11 42 / .08) 14px)"></div><div class="relative z-10 opacity-40 flex flex-col items-center gap-2 text-[var(--terra)] text-[.85rem] font-mono"><svg width="36" height="36" viewBox="0 0 48 48" fill="none"><rect x="6" y="6" width="36" height="36" rx="4" stroke="oklch(0.55 0.11 42)" stroke-width="2"/><circle cx="17" cy="19" r="4" stroke="oklch(0.55 0.11 42)" stroke-width="2"/><path d="M6 38l10-10 6 6 8-8 12 12" stroke="oklch(0.55 0.11 42)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Foto 5</span></div></div>
+        <div class="gallery-slide bg-[oklch(0.93_0.05_88)]"><div class="stripe-bg" style="background-image:repeating-linear-gradient(-45deg,transparent,transparent 12px,oklch(0.74 0.13 88 / .1) 12px,oklch(0.74 0.13 88 / .1) 14px)"></div><div class="relative z-10 opacity-40 flex flex-col items-center gap-2 text-[oklch(0.56_0.1_88)] text-[.85rem] font-mono"><svg width="36" height="36" viewBox="0 0 48 48" fill="none"><rect x="6" y="6" width="36" height="36" rx="4" stroke="oklch(0.56 0.1 88)" stroke-width="2"/><circle cx="17" cy="19" r="4" stroke="oklch(0.56 0.1 88)" stroke-width="2"/><path d="M6 38l10-10 6 6 8-8 12 12" stroke="oklch(0.56 0.1 88)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Foto 6</span></div></div>
+      </div>
+    </div>
+    <div id="gallery-dots" class="flex gap-[6px] justify-center mt-5"></div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ════════════════════════════════════════════════ -->
+<footer class="bg-ink text-white/60 py-8 px-6 text-[.85rem] text-center">
+  <div class="max-w-[1140px] mx-auto flex justify-between items-center flex-wrap gap-3">
+    <span>© 2026 Spielgruppe Seon · Oholten 3, 5703 Seon</span>
+    <span>
+      <a href="impressum.html" class="text-honey hover:underline">Impressum</a> ·
+      <a href="#kontakt" class="text-honey hover:underline">Kontakt</a> ·
+      <a href="#anmeldung" class="text-honey hover:underline">Anmeldung</a>
+    </span>
+  </div>
+</footer>
+
+<!-- ═══════════════════════ JAVASCRIPT ════════════════════════ -->
+<script src="js/site.js"></script>
+</body>
+</html>
