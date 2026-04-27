@@ -1,9 +1,9 @@
 backend:
   name: github
-  repo: DEIN-GITHUB-USERNAME/spielgruppe-seon   # ← hier anpassen
+  repo: aylinirk/spielgruppe-seon
   branch: main
   auth_type: pkce
-  app_id: DEIN-GITHUB-OAUTH-APP-CLIENT-ID       # ← hier anpassen (siehe README unten)
+  app_id: Ov23linQ78sGUv8nTWNj
 
 # Lokale Entwicklung: Ersetze oben durch `name: proxy` + `proxy_url: http://localhost:8081`
 # und starte `npx decap-server` für lokale Vorschau ohne GitHub-Login
