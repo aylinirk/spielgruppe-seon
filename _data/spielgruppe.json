@@ -1,0 +1,26 @@
+{
+  "heading": "Das erste soziale\nAbenteuer",
+  "intro": "Die Spielgruppe Seon ist ein Ort, an dem Kinder spielen, lachen, entdecken und wachsen dürfen. Hier beginnt für viele Kinder das erste soziale Abenteuer ausserhalb der Familie.",
+  "cards": [
+    {
+      "title": "Miteinander",
+      "text": "Die Kinder erleben, was es bedeutet, Teil einer Gruppe zu sein. Sie lernen Rücksicht zu nehmen, Freundschaften zu schliessen und gemeinsam zu lachen."
+    },
+    {
+      "title": "Kreativität",
+      "text": "Malen, kneten, basteln, werken – die Kinder entdecken mit allen Sinnen und drücken sich kreativ aus."
+    },
+    {
+      "title": "Bewegung",
+      "text": "Toben, turnen, tanzen – Kinder haben einen natürlichen Drang, sich zu bewegen und die Welt zu erkunden."
+    },
+    {
+      "title": "Sprache",
+      "text": "Lieder, Geschichten, Verse und Gespräche fördern die Sprachentwicklung spielerisch und mit Freude."
+    },
+    {
+      "title": "Tagesstruktur",
+      "text": "Ein verlässlicher Ablauf gibt den Kindern Sicherheit: Begrüssung, freies Spiel, Znüni, Abschlusskreis."
+    }
+  ]
+}

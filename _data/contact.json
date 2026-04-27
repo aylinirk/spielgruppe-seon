@@ -1,9 +1,15 @@
 {
+  "kontakt_heading": "Wir freuen uns von euch zu hören",
   "email": "",
   "tel": "",
   "address": {
     "street": "Oholten 3",
     "city": "5703 Seon"
+  },
+  "zeiten": {
+    "tage": "Mo, Di, Do",
+    "morgen": "08:30 – 11:45 Uhr",
+    "nachmittag": "13:30 – 16:00 Uhr"
   },
   "dina": {
     "firstName": "Dina",

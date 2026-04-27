@@ -5,18 +5,28 @@ backend:
   base_url: https://spielgruppe-seon.vercel.app
   auth_endpoint: api/auth
 
-# Lokale Entwicklung: Ersetze oben durch `name: proxy` + `proxy_url: http://localhost:8081`
-# und starte `npx decap-server` für lokale Vorschau ohne GitHub-Login
-
 media_folder: "uploads"
 public_folder: "/uploads"
 
 locale: de
 
 collections:
-  # ─── BANNER ────────────────────────────────────────────────
+  # ─── EINSTELLUNGEN ─────────────────────────────────────────
+  - name: "einstellungen"
+    label: "⚙️ Einstellungen"
+    files:
+      - name: "einstellungen"
+        label: "Website-Einstellungen"
+        file: "_data/settings.json"
+        format: json
+        fields:
+          - { label: "Web3Forms API-Schlüssel", name: "web3formsKey", widget: "string", required: false, hint: "Von web3forms.com – damit werden Anmeldungen per E-Mail zugestellt" }
+          - { label: "Logo-Bild (optional)", name: "logoImage", widget: "image", required: false, hint: "Ersetzt das Standard-Icon in der Navigation" }
+          - { label: "Über-uns-Foto", name: "ueber_uns_image", widget: "image", required: false, hint: "Foto für den Über-uns-Abschnitt (Verhältnis 4:3 empfohlen)" }
+
+  # ─── TOP-BANNER ────────────────────────────────────────────
   - name: "banner"
-    label: "Top-Banner"
+    label: "📢 Top-Banner"
     files:
       - name: "banner"
         label: "Banner-Einstellungen"
@@ -28,9 +38,132 @@ collections:
           - { label: "Button-Text", name: "buttonText", widget: "string", default: "Mehr erfahren" }
           - { label: "Button-Link", name: "buttonUrl", widget: "string", default: "#events", hint: "URL oder Anker wie #events" }
 
+  # ─── HERO ──────────────────────────────────────────────────
+  - name: "hero"
+    label: "🏠 Hero (Startseite)"
+    files:
+      - name: "hero"
+        label: "Hero-Abschnitt"
+        file: "_data/hero.json"
+        format: json
+        fields:
+          - { label: "Badge-Text", name: "badge", widget: "string", default: "Willkommen in Seon", hint: "Kleines Label über der Überschrift" }
+          - { label: "Überschrift – Zeile 1", name: "headingLine1", widget: "string", default: "Ein Ort zum", hint: "Erste Zeile (normal)" }
+          - { label: "Überschrift – farbiger Teil", name: "headingHighlight", widget: "string", default: "Spielen, Wachsen", hint: "Mittelteil in Salbeigrün" }
+          - { label: "Überschrift – Zeile 3", name: "headingLine2", widget: "string", default: "und Entdecken", hint: "Letzte Zeile (normal)" }
+          - { label: "Untertitel", name: "subtitle", widget: "text" }
+          - label: "Primärer Button"
+            name: "primaryCta"
+            widget: "object"
+            fields:
+              - { label: "Text", name: "text", widget: "string", default: "Jetzt anmelden" }
+              - { label: "Link", name: "url", widget: "string", default: "#anmeldung" }
+          - label: "Sekundärer Button"
+            name: "secondaryCta"
+            widget: "object"
+            fields:
+              - { label: "Text", name: "text", widget: "string", default: "Schnuppertag anfragen" }
+              - { label: "Link", name: "url", widget: "string", default: "#schnuppertag" }
+
+  # ─── ÜBER UNS ──────────────────────────────────────────────
+  - name: "ueber_uns"
+    label: "💚 Über uns"
+    files:
+      - name: "ueber_uns"
+        label: "Über-uns-Abschnitt"
+        file: "_data/ueber_uns.json"
+        format: json
+        fields:
+          - { label: "Überschrift", name: "heading", widget: "string", default: "Klein, vertraut und herzlich", hint: "Zeilenumbruch mit Enter möglich" }
+          - { label: "Einleitungstext", name: "text", widget: "text" }
+          - label: "Stichpunkte"
+            name: "bullets"
+            widget: "list"
+            field: { label: "Stichpunkt", name: "item", widget: "string" }
+          - label: "Zitat"
+            name: "quote"
+            widget: "object"
+            fields:
+              - { label: "Zitat-Text", name: "text", widget: "string", default: "«Hilf mir, es selbst zu tun.»" }
+              - { label: "Autorin / Autor", name: "author", widget: "string", default: "Maria Montessori" }
+
+  # ─── SPIELGRUPPE ───────────────────────────────────────────
+  - name: "spielgruppe"
+    label: "🎨 Spielgruppe"
+    files:
+      - name: "spielgruppe"
+        label: "Spielgruppe-Abschnitt"
+        file: "_data/spielgruppe.json"
+        format: json
+        fields:
+          - { label: "Überschrift", name: "heading", widget: "string", default: "Das erste soziale Abenteuer" }
+          - { label: "Einleitungstext", name: "intro", widget: "text" }
+          - label: "Themenkarten"
+            name: "cards"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Titel", name: "title", widget: "string" }
+              - { label: "Text", name: "text", widget: "text" }
+
+  # ─── ZEITEN & PREISE ───────────────────────────────────────
+  - name: "zeiten_preise"
+    label: "🕐 Zeiten & Preise"
+    files:
+      - name: "zeiten_preise"
+        label: "Zeiten & Preise"
+        file: "_data/zeiten_preise.json"
+        format: json
+        fields:
+          - { label: "Startdatum", name: "start", widget: "string", default: "10. August 2026", hint: "z.B. 10. August 2026" }
+          - { label: "Altersgruppe", name: "alter", widget: "string", default: "2½ – 4 Jahre" }
+          - { label: "Tage", name: "tage", widget: "string", default: "Mo · Di · Do" }
+          - { label: "Morgenzeit", name: "morgen", widget: "string", default: "08:30 – 11:45" }
+          - { label: "Nachmittagszeit", name: "nachmittag", widget: "string", default: "13:30 – 16:00" }
+          - label: "Preise Morgen"
+            name: "preise_morgen"
+            widget: "list"
+            summary: "{{fields.label}} → {{fields.price}}"
+            fields:
+              - { label: "Bezeichnung", name: "label", widget: "string", hint: "z.B. 1 Morgen / Woche" }
+              - { label: "Preis", name: "price", widget: "string", hint: "z.B. CHF 140.–" }
+          - label: "Preise Nachmittag"
+            name: "preise_nachmittag"
+            widget: "list"
+            summary: "{{fields.label}} → {{fields.price}}"
+            fields:
+              - { label: "Bezeichnung", name: "label", widget: "string" }
+              - { label: "Preis", name: "price", widget: "string" }
+          - { label: "Wartelisten-Hinweis", name: "warteliste_text", widget: "text" }
+
+  # ─── SCHNUPPERTAG ──────────────────────────────────────────
+  - name: "schnuppertag"
+    label: "🔍 Schnuppertag"
+    files:
+      - name: "schnuppertag"
+        label: "Schnuppertag-Abschnitt"
+        file: "_data/schnuppertag.json"
+        format: json
+        fields:
+          - { label: "Überschrift", name: "heading", widget: "string" }
+          - { label: "Text", name: "text", widget: "text" }
+          - { label: "Kleingedrucktes", name: "hint", widget: "string" }
+          - label: "Primärer Button"
+            name: "primaryCta"
+            widget: "object"
+            fields:
+              - { label: "Text", name: "text", widget: "string" }
+              - { label: "Link", name: "url", widget: "string" }
+          - label: "Sekundärer Button"
+            name: "secondaryCta"
+            widget: "object"
+            fields:
+              - { label: "Text", name: "text", widget: "string" }
+              - { label: "Link", name: "url", widget: "string" }
+
   # ─── EVENTS ────────────────────────────────────────────────
   - name: "events"
-    label: "Events & Termine"
+    label: "📅 Events & Termine"
     files:
       - name: "events"
         label: "Events & Termine"
@@ -42,7 +175,7 @@ collections:
             widget: "list"
             summary: "{{fields.date}} – {{fields.title}}"
             fields:
-              - { label: "Titel / Kategorie", name: "title", widget: "string", hint: "z.B. Tag der offenen Tür" }
+              - { label: "Titel / Kategorie", name: "title", widget: "string" }
               - label: "Farbe"
                 name: "color"
                 widget: "select"
@@ -51,17 +184,17 @@ collections:
                   - { label: "Terrakotta", value: "terra" }
                   - { label: "Honiggelb", value: "honey" }
               - { label: "Datum", name: "date", widget: "string", hint: "z.B. Sonntag, 17. Mai oder Auf Anfrage" }
-              - { label: "Uhrzeit", name: "time", widget: "string", hint: "z.B. 11 – 16 Uhr" }
+              - { label: "Uhrzeit", name: "time", widget: "string" }
               - { label: "Ort", name: "location", widget: "string", default: "Oholten 3, 5703 Seon" }
               - { label: "Beschreibung", name: "description", widget: "text" }
-              - { label: "Hinweis (optional)", name: "note", widget: "string", required: false, hint: "Kleiner Zusatztext, z.B. Mit Grill!" }
+              - { label: "Hinweis (optional)", name: "note", widget: "string", required: false }
               - { label: "Anmelden-Button anzeigen", name: "showButton", widget: "boolean", default: false }
               - { label: "Button-Text", name: "buttonText", widget: "string", default: "Mehr erfahren", required: false }
               - { label: "Button-Link", name: "buttonUrl", widget: "string", default: "#kontakt", required: false }
 
   # ─── GALERIE ───────────────────────────────────────────────
   - name: "gallery"
-    label: "Galerie"
+    label: "🖼️ Galerie"
     files:
       - name: "gallery"
         label: "Galerie"
@@ -74,17 +207,32 @@ collections:
             summary: "{{fields.alt}}"
             fields:
               - { label: "Foto", name: "src", widget: "image" }
-              - { label: "Bildbeschreibung (Alt-Text)", name: "alt", widget: "string", hint: "Kurze Beschreibung fürs Barrierefreiheit" }
+              - { label: "Bildbeschreibung (Alt-Text)", name: "alt", widget: "string" }
+
+  # ─── ANMELDEFORMULAR ───────────────────────────────────────
+  - name: "anmeldung"
+    label: "📋 Anmeldeformular"
+    files:
+      - name: "anmeldung"
+        label: "Anmeldeformular-Texte"
+        file: "_data/anmeldung.json"
+        format: json
+        fields:
+          - { label: "Überschrift", name: "heading", widget: "string", default: "Jetzt einen Platz sichern" }
+          - { label: "Einleitungstext", name: "intro", widget: "text" }
+          - { label: "Button-Text", name: "submitText", widget: "string", default: "Anmeldung absenden" }
+          - { label: "Hinweistext unter dem Button", name: "disclaimer", widget: "text" }
 
   # ─── KONTAKT & TEAM ────────────────────────────────────────
   - name: "kontakt"
-    label: "Kontakt & Team"
+    label: "📞 Kontakt & Team"
     files:
       - name: "kontakt"
         label: "Kontaktinformationen"
         file: "_data/contact.json"
         format: json
         fields:
+          - { label: "Abschnitts-Überschrift", name: "kontakt_heading", widget: "string", default: "Wir freuen uns von euch zu hören" }
           - { label: "E-Mail", name: "email", widget: "string" }
           - { label: "Telefon", name: "tel", widget: "string", hint: "z.B. +41 79 123 45 67" }
           - label: "Adresse"
@@ -93,6 +241,13 @@ collections:
             fields:
               - { label: "Strasse", name: "street", widget: "string", default: "Oholten 3" }
               - { label: "PLZ & Ort", name: "city", widget: "string", default: "5703 Seon" }
+          - label: "Spielgruppenzeiten"
+            name: "zeiten"
+            widget: "object"
+            fields:
+              - { label: "Tage", name: "tage", widget: "string", default: "Mo, Di, Do" }
+              - { label: "Morgen", name: "morgen", widget: "string", default: "08:30 – 11:45 Uhr" }
+              - { label: "Nachmittag", name: "nachmittag", widget: "string", default: "13:30 – 16:00 Uhr" }
           - label: "Team: Dina"
             name: "dina"
             widget: "object"
@@ -101,4 +256,18 @@ collections:
               - { label: "Nachname", name: "lastName", widget: "string" }
               - { label: "Rolle", name: "role", widget: "string", default: "Leiterin Spielgruppe Seon" }
               - { label: "Biografie", name: "bio", widget: "text" }
-              - { label: "Foto", name: "photo", widget: "image", required: false }
+              - { label: "Porträtfoto", name: "photo", widget: "image", required: false }
+
+  # ─── IMPRESSUM ─────────────────────────────────────────────
+  - name: "impressum"
+    label: "⚖️ Impressum"
+    files:
+      - name: "impressum"
+        label: "Impressum-Seite"
+        file: "_data/impressum.json"
+        format: json
+        fields:
+          - { label: "Inhaberin (vollständiger Name)", name: "inhaber", widget: "string", hint: "z.B. Dina Muster" }
+          - { label: "Haftungsausschluss", name: "haftung", widget: "text" }
+          - { label: "Urheberrechte", name: "urheberrecht", widget: "text" }
+          - { label: "Datenschutz", name: "datenschutz", widget: "text" }

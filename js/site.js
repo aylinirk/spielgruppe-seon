@@ -13,7 +13,32 @@ const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
 const WEB3FORMS_URL = 'https://api.web3forms.com/submit';
 
 /* ══════════════════════════════════════════════════════════
-   1. BANNER  (loads from _data/banner.json)
+   1. SETTINGS  (loads from _data/settings.json)
+══════════════════════════════════════════════════════════ */
+async function loadSettings() {
+  try {
+    const res = await fetch('_data/settings.json');
+    if (!res.ok) return;
+    const d = await res.json();
+
+    if (d.web3formsKey) {
+      document.querySelectorAll('input[name="access_key"]').forEach(el => { el.value = d.web3formsKey; });
+    }
+    if (d.logoImage) {
+      const icon = document.getElementById('site-logo-icon');
+      const img  = document.getElementById('site-logo-img');
+      if (icon) icon.style.display = 'none';
+      if (img)  { img.src = d.logoImage; img.classList.remove('hidden'); }
+    }
+    if (d.ueber_uns_image) {
+      const wrap = document.getElementById('ueber-uns-img-wrap');
+      if (wrap) wrap.innerHTML = `<img src="${d.ueber_uns_image}" alt="Spielgruppe Seon" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />`;
+    }
+  } catch (e) {}
+}
+
+/* ══════════════════════════════════════════════════════════
+   2. BANNER  (loads from _data/banner.json)
 ══════════════════════════════════════════════════════════ */
 async function loadBanner() {
   try {
@@ -302,13 +327,22 @@ async function loadContactData() {
       const addrEl = $('#kontakt-adresse');
       if (addrEl) addrEl.innerHTML = `${d.address.street}<br />${d.address.city}`;
     }
+    /* kontakt heading */
+    if (d.kontakt_heading) {
+      const h = document.getElementById('kontakt-heading');
+      if (h) h.textContent = d.kontakt_heading;
+    }
+    /* zeiten */
+    if (d.zeiten) {
+      const z = document.getElementById('kontakt-zeiten');
+      if (z) z.innerHTML = `${d.zeiten.tage}<br />Morgen: ${d.zeiten.morgen}<br />Nachmittag: ${d.zeiten.nachmittag}`;
+    }
     /* team */
     if (d.dina) {
       const info = $('#team-info');
       if (info) {
         const nameEl = info.querySelector('h3');
         if (nameEl && d.dina.firstName) nameEl.textContent = d.dina.firstName + (d.dina.lastName ? ' ' + d.dina.lastName : '');
-        const roleEl = info.querySelector('.team-role') || info.querySelector('[class*="sage-dark"]');
         if (d.dina.role) {
           const roleDiv = info.querySelector('div');
           if (roleDiv) roleDiv.textContent = d.dina.role;
@@ -318,7 +352,7 @@ async function loadContactData() {
           if (bioEl) bioEl.innerHTML = d.dina.bio.replace(/\n\n/g, '<br /><br />');
         }
         if (d.dina.photo) {
-          const photoWrap = document.querySelector('.team-photo');
+          const photoWrap = document.getElementById('team-photo-wrap');
           if (photoWrap) {
             photoWrap.innerHTML = `<img src="${d.dina.photo}" alt="${d.dina.firstName}" style="width:100%;height:100%;object-fit:cover;" />`;
           }
@@ -329,7 +363,189 @@ async function loadContactData() {
 }
 
 /* ══════════════════════════════════════════════════════════
-   7. CHECKBOX TOGGLE  (Anmeldungsformular)
+   7. ANMELDUNG SECTION TEXT  (loads from _data/anmeldung.json)
+══════════════════════════════════════════════════════════ */
+async function loadAnmeldung() {
+  try {
+    const res = await fetch('_data/anmeldung.json');
+    if (!res.ok) return;
+    const d = await res.json();
+    const heading    = document.getElementById('anmeldung-heading');
+    const intro      = document.getElementById('anmeldung-intro');
+    const disclaimer = document.getElementById('anmeldung-disclaimer');
+    const submitBtn  = $('#anmeldung-form [type="submit"]');
+    if (d.heading    && heading)    heading.textContent    = d.heading;
+    if (d.intro      && intro)      intro.textContent      = d.intro;
+    if (d.disclaimer && disclaimer) disclaimer.textContent = d.disclaimer;
+    if (d.submitText && submitBtn)  submitBtn.textContent  = d.submitText;
+  } catch (e) {}
+}
+
+/* ══════════════════════════════════════════════════════════
+   8. HERO  (loads from _data/hero.json)
+══════════════════════════════════════════════════════════ */
+async function loadHero() {
+  try {
+    const res = await fetch('_data/hero.json');
+    if (!res.ok) return;
+    const d = await res.json();
+    const badge       = document.getElementById('hero-badge');
+    const heading     = document.getElementById('hero-heading');
+    const subtitle    = document.getElementById('hero-subtitle');
+    const ctaPrimary  = document.getElementById('hero-cta-primary');
+    const ctaSecondary= document.getElementById('hero-cta-secondary');
+    if (d.badge && badge) badge.textContent = d.badge;
+    if (heading && (d.headingLine1 || d.headingHighlight || d.headingLine2)) {
+      heading.innerHTML = `${d.headingLine1 || ''}<br /><em style="color:oklch(0.48 0.09 148);font-style:normal;">${d.headingHighlight || ''}</em><br />${d.headingLine2 || ''}`;
+    }
+    if (d.subtitle && subtitle) subtitle.textContent = d.subtitle;
+    if (d.primaryCta)   { if (ctaPrimary)   { ctaPrimary.textContent   = d.primaryCta.text;   ctaPrimary.href   = d.primaryCta.url;   } }
+    if (d.secondaryCta) { if (ctaSecondary) { ctaSecondary.textContent = d.secondaryCta.text; ctaSecondary.href = d.secondaryCta.url; } }
+  } catch (e) {}
+}
+
+/* ══════════════════════════════════════════════════════════
+   9. ÜBER UNS  (loads from _data/ueber_uns.json)
+══════════════════════════════════════════════════════════ */
+async function loadUeberUns() {
+  try {
+    const res = await fetch('_data/ueber_uns.json');
+    if (!res.ok) return;
+    const d = await res.json();
+    const heading     = document.getElementById('ueber-uns-heading');
+    const text        = document.getElementById('ueber-uns-text');
+    const bullets     = document.getElementById('ueber-uns-bullets');
+    const quoteText   = document.getElementById('ueber-uns-quote-text');
+    const quoteAuthor = document.getElementById('ueber-uns-quote-author');
+    if (d.heading && heading) heading.innerHTML = d.heading.replace(/\n/g, '<br />');
+    if (d.text && text) text.textContent = d.text;
+    if (d.bullets && bullets) {
+      const colors = [
+        { bg: 'var(--sage-light)',      stroke: 'oklch(0.48 0.09 148)' },
+        { bg: 'var(--terra-light)',     stroke: 'oklch(0.55 0.11 42)'  },
+        { bg: 'oklch(0.95 0.06 88)',   stroke: 'oklch(0.56 0.1 88)'   },
+        { bg: 'var(--sage-light)',      stroke: 'oklch(0.48 0.09 148)' },
+        { bg: 'var(--terra-light)',     stroke: 'oklch(0.55 0.11 42)'  },
+      ];
+      bullets.innerHTML = d.bullets.map((b, i) => {
+        const c = colors[i % colors.length];
+        return `<li class="flex gap-3 items-start">
+          <span style="width:24px;height:24px;border-radius:50%;background:${c.bg};flex:0 0 24px;display:flex;align-items:center;justify-content:center;margin-top:2px;">
+            <svg width="11" height="11" viewBox="0 0 11 11"><path d="M2 5.5l2.5 2.5 4.5-4.5" stroke="${c.stroke}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          </span>
+          <span class="text-[.95rem] text-ink leading-[1.6]">${b}</span>
+        </li>`;
+      }).join('');
+    }
+    if (d.quote) {
+      if (d.quote.text   && quoteText)   quoteText.textContent   = d.quote.text;
+      if (d.quote.author && quoteAuthor) quoteAuthor.textContent = '— ' + d.quote.author;
+    }
+  } catch (e) {}
+}
+
+/* ══════════════════════════════════════════════════════════
+   10. SPIELGRUPPE  (loads from _data/spielgruppe.json)
+══════════════════════════════════════════════════════════ */
+async function loadSpielgruppe() {
+  try {
+    const res = await fetch('_data/spielgruppe.json');
+    if (!res.ok) return;
+    const d = await res.json();
+    const heading = document.getElementById('spielgruppe-heading');
+    const intro   = document.getElementById('spielgruppe-intro');
+    if (d.heading && heading) heading.innerHTML = d.heading.replace(/\n/g, '<br />');
+    if (d.intro   && intro)   intro.textContent = d.intro;
+    if (d.cards) {
+      d.cards.forEach((card, i) => {
+        const titleEl = document.getElementById(`spielgruppe-card-${i + 1}-title`);
+        const textEl  = document.getElementById(`spielgruppe-card-${i + 1}-text`);
+        if (card.title && titleEl) titleEl.textContent = card.title;
+        if (card.text  && textEl)  textEl.textContent  = card.text;
+      });
+    }
+  } catch (e) {}
+}
+
+/* ══════════════════════════════════════════════════════════
+   11. ZEITEN & PREISE  (loads from _data/zeiten_preise.json)
+══════════════════════════════════════════════════════════ */
+async function loadZeitenPreise() {
+  try {
+    const res = await fetch('_data/zeiten_preise.json');
+    if (!res.ok) return;
+    const d = await res.json();
+
+    const set = (id, val) => { const el = document.getElementById(id); if (el && val) el.textContent = val; };
+    set('zeiten-start',         d.start);
+    set('zeiten-alter',         d.alter);
+    set('zeiten-tage',          d.tage);
+    set('hero-card-tage',       d.tage);
+    set('hero-card-alter',      d.alter);
+
+    if (d.morgen) {
+      ['zeiten-morgen', 'hero-card-morgen'].forEach(id => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        if (id === 'zeiten-morgen') el.innerHTML = `${d.morgen} <span class="text-[.75rem] font-medium text-[var(--ink-light)]">Uhr</span>`;
+        else el.textContent = d.morgen;
+      });
+    }
+    if (d.nachmittag) {
+      ['zeiten-nachmittag', 'hero-card-nachmittag'].forEach(id => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        if (id === 'zeiten-nachmittag') el.innerHTML = `${d.nachmittag} <span class="text-[.75rem] font-medium text-[var(--ink-light)]">Uhr</span>`;
+        else el.textContent = d.nachmittag;
+      });
+    }
+    set('warteliste-text', d.warteliste_text);
+
+    const table = document.getElementById('preise-table');
+    if (table && (d.preise_morgen || d.preise_nachmittag)) {
+      const rows = (list, last) => list.map((r, i) =>
+        `<div class="flex justify-between items-center px-6 py-[13px] ${i < list.length - 1 || !last ? 'border-b border-dashed border-cream-dark' : ''} hover:bg-cream transition-colors">
+          <span class="text-[.92rem] font-semibold text-ink">${r.label}</span>
+          <span class="font-display font-extrabold text-base text-[var(--sage-dark)]">${r.price}</span>
+        </div>`
+      ).join('');
+      let html = `<div class="px-6 py-4 text-[.82rem] font-bold text-[var(--ink-mid)] uppercase tracking-[.06em] border-b border-cream-dark bg-cream">Preis pro Kind / Monat</div>`;
+      if (d.preise_morgen) {
+        html += `<div class="px-6 pt-3 pb-2 text-[.78rem] font-bold text-[var(--ink-light)] uppercase tracking-[.06em] bg-cream">Morgen (${d.morgen || '08:30 – 11:45'} Uhr)</div>`;
+        html += rows(d.preise_morgen, !d.preise_nachmittag);
+      }
+      if (d.preise_nachmittag) {
+        html += `<div class="px-6 pt-3 pb-2 text-[.78rem] font-bold text-[var(--ink-light)] uppercase tracking-[.06em] bg-cream border-t border-dashed border-cream-dark">Nachmittag (${d.nachmittag || '13:30 – 16:00'} Uhr)</div>`;
+        html += rows(d.preise_nachmittag, true);
+      }
+      table.innerHTML = html;
+    }
+  } catch (e) {}
+}
+
+/* ══════════════════════════════════════════════════════════
+   12. SCHNUPPERTAG  (loads from _data/schnuppertag.json)
+══════════════════════════════════════════════════════════ */
+async function loadSchnuppertag() {
+  try {
+    const res = await fetch('_data/schnuppertag.json');
+    if (!res.ok) return;
+    const d = await res.json();
+    const heading     = document.getElementById('schnuppertag-heading');
+    const text        = document.getElementById('schnuppertag-text');
+    const hint        = document.getElementById('schnuppertag-hint');
+    const ctaPrimary  = document.getElementById('schnuppertag-cta-primary');
+    const ctaSecondary= document.getElementById('schnuppertag-cta-secondary');
+    if (d.heading && heading) heading.textContent = d.heading;
+    if (d.text    && text)    text.textContent    = d.text;
+    if (d.hint    && hint)    hint.textContent    = d.hint;
+    if (d.primaryCta)   { if (ctaPrimary)   { ctaPrimary.textContent   = d.primaryCta.text;   ctaPrimary.href   = d.primaryCta.url;   } }
+    if (d.secondaryCta) { if (ctaSecondary) { ctaSecondary.textContent = d.secondaryCta.text; ctaSecondary.href = d.secondaryCta.url; } }
+  } catch (e) {}
+}
+
+/* ══════════════════════════════════════════════════════════
+   13. CHECKBOX TOGGLE  (Anmeldungsformular)
 ══════════════════════════════════════════════════════════ */
 function initCheckboxes() {
   $$('.checkbox-label').forEach(label => {
@@ -527,10 +743,17 @@ function initKontaktForm() {
    INIT
 ══════════════════════════════════════════════════════════ */
 document.addEventListener('DOMContentLoaded', () => {
+  loadSettings();
+  loadHero();
+  loadUeberUns();
+  loadSpielgruppe();
+  loadZeitenPreise();
+  loadSchnuppertag();
   loadBanner();
   loadEvents();
   loadGallery();
   loadContactData();
+  loadAnmeldung();
   initCheckboxes();
   initAnmeldungForm();
   initKontaktForm();

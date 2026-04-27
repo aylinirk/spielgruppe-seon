@@ -70,9 +70,9 @@
         <h2 class="font-display font-bold text-[1.1rem] text-ink mb-3">Angaben gemäss Schweizer Recht</h2>
         <address class="not-italic text-[.95rem] text-[var(--ink-mid)] leading-[1.8]">
           <strong class="text-ink">Spielgruppe Seon</strong><br />
-          Dina [Nachname Platzhalter]<br />
-          Oholten 3<br />
-          5703 Seon<br />
+          <span id="imp-inhaber">Dina [Nachname]</span><br />
+          <span id="imp-street">Oholten 3</span><br />
+          <span id="imp-city">5703 Seon</span><br />
           Schweiz
         </address>
       </section>
@@ -80,28 +80,28 @@
       <section class="mb-8">
         <h2 class="font-display font-bold text-[1.1rem] text-ink mb-3">Kontakt</h2>
         <p class="text-[.95rem] text-[var(--ink-mid)] leading-[1.8]">
-          E-Mail: <a href="mailto:[PLATZHALTER]" class="text-[var(--sage-dark)] hover:underline">[E-Mail Platzhalter]</a><br />
-          Telefon: <a href="tel:[PLATZHALTER]" class="text-[var(--sage-dark)] hover:underline">[Telefon Platzhalter]</a>
+          E-Mail: <a id="imp-email" href="mailto:" class="text-[var(--sage-dark)] hover:underline">[E-Mail]</a><br />
+          Telefon: <a id="imp-tel" href="tel:" class="text-[var(--sage-dark)] hover:underline">[Telefon]</a>
         </p>
       </section>
 
       <section class="mb-8">
         <h2 class="font-display font-bold text-[1.1rem] text-ink mb-3">Haftungsausschluss</h2>
-        <p class="text-[.92rem] text-[var(--ink-mid)] leading-[1.75]">
+        <p id="imp-haftung" class="text-[.92rem] text-[var(--ink-mid)] leading-[1.75]">
           Die Autorin übernimmt keine Gewähr für die Richtigkeit, Genauigkeit, Aktualität, Zuverlässigkeit und Vollständigkeit der Informationen. Haftungsansprüche gegen die Autorin wegen Schäden materieller oder immaterieller Art, welche aus dem Zugriff oder der Nutzung bzw. Nichtnutzung der veröffentlichten Informationen, durch Missbrauch der Verbindung oder durch technische Störungen entstanden sind, werden ausgeschlossen.
         </p>
       </section>
 
       <section class="mb-8">
         <h2 class="font-display font-bold text-[1.1rem] text-ink mb-3">Urheberrechte</h2>
-        <p class="text-[.92rem] text-[var(--ink-mid)] leading-[1.75]">
-          Die Urheber- und alle anderen Rechte an Inhalten, Bildern, Fotos oder anderen Dateien auf der Website gehören ausschliesslich Dina [Nachname Platzhalter] oder den speziell genannten Rechtsinhabern. Für die Reproduktion jeglicher Elemente ist die schriftliche Zustimmung der Urheberrechtsträgerin im Voraus einzuholen.
+        <p id="imp-urheberrecht" class="text-[.92rem] text-[var(--ink-mid)] leading-[1.75]">
+          Die Urheber- und alle anderen Rechte an Inhalten, Bildern, Fotos oder anderen Dateien auf der Website gehören ausschliesslich Dina [Nachname] oder den speziell genannten Rechtsinhabern. Für die Reproduktion jeglicher Elemente ist die schriftliche Zustimmung der Urheberrechtsträgerin im Voraus einzuholen.
         </p>
       </section>
 
       <section class="mb-8">
         <h2 class="font-display font-bold text-[1.1rem] text-ink mb-3">Datenschutz</h2>
-        <p class="text-[.92rem] text-[var(--ink-mid)] leading-[1.75]">
+        <p id="imp-datenschutz" class="text-[.92rem] text-[var(--ink-mid)] leading-[1.75]">
           Gestützt auf Artikel 13 der schweizerischen Bundesverfassung und die datenschutzrechtlichen Bestimmungen des Bundes (Datenschutzgesetz, DSG) hat jede Person Anspruch auf Schutz ihrer Privatsphäre sowie auf Schutz vor Missbrauch ihrer persönlichen Daten. Die über das Kontakt- und Anmeldeformular übermittelten Daten werden ausschliesslich zur Bearbeitung Ihrer Anfrage verwendet und nicht an Dritte weitergegeben.
         </p>
       </section>
@@ -118,5 +118,31 @@
   <footer class="text-center py-8 text-[.82rem] text-[var(--ink-mid)]">
     © 2026 Spielgruppe Seon · <a href="impressum.html" class="hover:underline">Impressum</a>
   </footer>
+
+  <script>
+    (async () => {
+      try {
+        const [imp, contact] = await Promise.all([
+          fetch('_data/impressum.json').then(r => r.ok ? r.json() : {}),
+          fetch('_data/contact.json').then(r => r.ok ? r.json() : {}),
+        ]);
+        const set = (id, val) => { const el = document.getElementById(id); if (el && val) el.textContent = val; };
+        set('imp-inhaber', imp.inhaber);
+        set('imp-street',  contact.address?.street);
+        set('imp-city',    contact.address?.city);
+        set('imp-haftung',      imp.haftung);
+        set('imp-urheberrecht', imp.urheberrecht);
+        set('imp-datenschutz',  imp.datenschutz);
+        if (contact.email) {
+          const el = document.getElementById('imp-email');
+          if (el) { el.textContent = contact.email; el.href = 'mailto:' + contact.email; }
+        }
+        if (contact.tel) {
+          const el = document.getElementById('imp-tel');
+          if (el) { el.textContent = contact.tel; el.href = 'tel:' + contact.tel.replace(/\s/g, ''); }
+        }
+      } catch (e) {}
+    })();
+  </script>
 </body>
 </html>

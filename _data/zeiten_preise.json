@@ -1,0 +1,18 @@
+{
+  "start": "10. August 2026",
+  "alter": "2½ – 4 Jahre",
+  "tage": "Mo · Di · Do",
+  "morgen": "08:30 – 11:45",
+  "nachmittag": "13:30 – 16:00",
+  "preise_morgen": [
+    { "label": "1 Morgen / Woche", "price": "CHF 140.–" },
+    { "label": "2 Morgen / Woche", "price": "CHF 270.–" },
+    { "label": "3 Morgen / Woche", "price": "CHF 390.–" }
+  ],
+  "preise_nachmittag": [
+    { "label": "1 Nachmittag / Woche", "price": "CHF 130.–" },
+    { "label": "2 Nachmittage / Woche", "price": "CHF 240.–" },
+    { "label": "3 Nachmittage / Woche", "price": "CHF 350.–" }
+  ],
+  "warteliste_text": "Es besteht eine Warteliste. Bitte bei der Anmeldung angeben, falls ihr flexibel beim Startdatum seid. Dina meldet sich persönlich."
+}
