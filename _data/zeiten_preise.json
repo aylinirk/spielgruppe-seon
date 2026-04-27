@@ -16,6 +16,10 @@
     {
       "label": "3 Morgen / Woche",
       "price": "CHF 390.–"
+    },
+    {
+      "label": "4 Morgen / Woche",
+      "price": "CHF "
     }
   ],
   "preise_nachmittag": [
@@ -32,5 +36,5 @@
       "price": "CHF 360.–"
     }
   ],
-  "warteliste_text": "Es besteht eine Warteliste. Bitte bei der Anmeldung angeben, falls ihr flexibel beim Startdatum seid. Dina meldet sich persönlich."
+  "warteliste_text": "Mehr als 3 Morgen oder Nachmittage sind auch möglich auf Anfrage."
 }
