@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Datenschutzerklärung – Spielgruppe Seon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sage:  { DEFAULT: 'oklch(0.64 0.09 148)', light: 'oklch(0.88 0.05 148)', dark: 'oklch(0.48 0.09 148)' },
+            terra: { DEFAULT: 'oklch(0.62 0.11 42)', light: 'oklch(0.90 0.05 42)' },
+            cream: { DEFAULT: 'oklch(0.97 0.015 85)', dark: 'oklch(0.93 0.02 85)' },
+            honey: { DEFAULT: 'oklch(0.84 0.11 88)' },
+            ink:   { DEFAULT: 'oklch(0.26 0.02 85)', mid: 'oklch(0.45 0.02 85)' },
+          },
+          fontFamily: {
+            display: ['"Baloo 2"', 'sans-serif'],
+            body:    ['Nunito', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --sage-dark: oklch(0.48 0.09 148);
+      --cream:     oklch(0.97 0.015 85);
+      --cream-dark:oklch(0.93 0.02 85);
+      --ink:       oklch(0.26 0.02 85);
+      --ink-mid:   oklch(0.45 0.02 85);
+    }
+    body { font-family: 'Nunito', sans-serif; }
+    h1,h2,h3 { font-family: 'Baloo 2', sans-serif; }
+  </style>
+</head>
+<body class="bg-cream text-ink min-h-screen font-body">
+
+  <!-- Header -->
+  <header class="bg-white border-b border-[var(--cream-dark)] py-4 px-6">
+    <div class="max-w-[760px] mx-auto flex items-center justify-between gap-4">
+      <a href="index.html" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
+        <svg width="36" height="36" viewBox="0 0 40 40" fill="none">
+          <rect width="40" height="40" rx="10" fill="oklch(0.88 0.05 148)"/>
+          <rect x="18.5" y="26" width="3" height="8" rx="1.5" fill="oklch(0.48 0.09 148)"/>
+          <polygon points="20,6 28,20 12,20" fill="oklch(0.64 0.09 148)"/>
+          <polygon points="20,11 27,23 13,23" fill="oklch(0.55 0.09 148)"/>
+        </svg>
+        <span class="font-display font-extrabold text-[1.1rem] text-[var(--sage-dark)]">Spielgruppe Seon</span>
+      </a>
+      <a href="index.html" class="inline-flex items-center gap-2 text-[.88rem] font-semibold text-[var(--ink-mid)] hover:text-[var(--sage-dark)] transition-colors">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Zur Website
+      </a>
+    </div>
+  </header>
+
+  <!-- Content -->
+  <main class="max-w-[760px] mx-auto px-6 py-16">
+    <div class="bg-white rounded-3xl p-8 md:p-12 border border-[var(--cream-dark)] shadow-sm">
+
+      <h1 class="font-display font-extrabold text-[2rem] text-ink mb-2">Datenschutzerklärung</h1>
+      <p class="text-[.85rem] text-[var(--ink-mid)] mb-10">Stand: 1. Januar 2026</p>
+
+      <!-- Verantwortliche Stelle -->
+      <section class="mb-8">
+        <h2 class="font-display font-bold text-[1.1rem] text-ink mb-3">Verantwortliche Stelle</h2>
+        <address class="not-italic text-[.95rem] text-[var(--ink-mid)] leading-[1.8]">
+          <strong class="text-ink">Spielgruppe Seon</strong><br />
+          <span id="dsz-inhaber">Dina [Nachname]</span><br />
+          <span id="dsz-street">Oholten 3</span><br />
+          <span id="dsz-city">5703 Seon</span><br />
+          Schweiz<br />
+          E-Mail: <a id="dsz-email" href="mailto:" class="text-[var(--sage-dark)] hover:underline">[E-Mail]</a>
+        </address>
+        <p class="text-[.92rem] text-[var(--ink-mid)] leading-[1.75] mt-4">
+          Der Schutz Ihrer persönlichen Daten ist uns ein wichtiges Anliegen. Wir handeln in Übereinstimmung mit dem geltenden Schweizer Datenschutzrecht, insbesondere dem Bundesgesetz über den Datenschutz (DSG vom 25. September 2020, SR 235.1).
+        </p>
+      </section>
+
+      <!-- 1. Bearbeitung von Personendaten -->
+      <section class="mb-8">
+        <h2 class="font-display font-bold text-[1.1rem] text-ink mb-3">1. Bearbeitung von Personendaten</h2>
+        <p class="text-[.92rem] text-[var(--ink-mid)] leading-[1.75] mb-3">Im Rahmen des Spielgruppenbetriebs erheben und bearbeiten wir folgende Kategorien von Personendaten:</p>
+        <ul class="text-[.92rem] text-[var(--ink-mid)] leading-[1.75] list-disc pl-5 space-y-1">
+          <li>Kontaktdaten von Kind und Eltern/Erziehungsberechtigten (Vor- und Nachname, Adresse, E-Mail, Telefon)</li>
+          <li>Geburtsdatum des Kindes</li>
+          <li>Ein- und Austrittsdatum</li>
+          <li>Beobachtungen zur Entwicklung des Kindes</li>
+          <li>Gesundheitsrelevante Angaben (Allergien, Medikamente, Notfallkontakte u.ä.), sofern von den Eltern als notwendig erachtet</li>
+          <li>Angaben zu Geschwistern (Vorname, Name, Geburtsdatum)</li>
+          <li>Nationalität und Muttersprache des Kindes und der Eltern</li>
+          <li>Kontaktdaten weiterer Betreuungspersonen</li>
+          <li>Zahlungsdaten</li>
+          <li>Fotos und Bildmaterial (nur mit ausdrücklicher Einwilligung)</li>
+        </ul>
+      </section>
+
+      <!-- 2. Zweck der Bearbeitung -->
+      <section class="mb-8">
+        <h2 class="font-display font-bold text-[1.1rem] text-ink mb-3">2. Zweck der Bearbeitung</h2>
+        <p class="text-[.92rem] text-[var(--ink-mid)] leading-[1.75] mb-3">Die erhobenen Daten werden ausschliesslich für folgende Zwecke verwendet:</p>
+        <ul class="text-[.92rem] text-[var(--ink-mid)] leading-[1.75] list-disc pl-5 space-y-1">
+          <li>Durchführung und Administration des Spielgruppenbetriebs</li>
+          <li>Kommunikation mit Eltern und Erziehungsberechtigten</li>
+          <li>Organisation von Veranstaltungen (z.B. Elternabend, Abschlussfest)</li>
+          <li>Rechnungsstellung und Finanzverwaltung</li>
+          <li>Pflege und Weiterentwicklung dieser Website</li>
+          <li>Öffentlichkeitsarbeit (nur mit Einwilligung)</li>
+        </ul>
+      </section>
+
+      <!-- 3. Weitergabe von Daten -->
+      <section class="mb-8">
+        <h2 class="font-display font-bold text-[1.1rem] text-ink mb-3">3. Weitergabe von Personendaten</h2>
+        <p class="text-[.92rem] text-[var(--ink-mid)] leading-[1.75]">
+          Personendaten werden grundsätzlich nicht an Dritte weitergegeben, es sei denn, dies ist zur Erfüllung des Vertragszwecks notwendig oder gesetzlich vorgeschrieben. Einzelne Daten können bei externen Dienstleistern (z.B. Cloud-Speicher) gespeichert sein; wir stellen sicher, dass diese angemessene Datenschutzmassnahmen einhalten. Eine Weitergabe an staatliche Behörden erfolgt nur im gesetzlich vorgesehenen Rahmen.
+        </p>
+      </section>
+
+      <!-- 4. Datensicherheit -->
+      <section class="mb-8">
+        <h2 class="font-display font-bold text-[1.1rem] text-ink mb-3">4. Datensicherheit</h2>
+        <p class="text-[.92rem] text-[var(--ink-mid)] leading-[1.75]">
+          Wir treffen angemessene technische und organisatorische Massnahmen, um Ihre Personendaten vor unbefugtem Zugriff, Verlust oder Missbrauch zu schützen.
+        </p>
+      </section>
+
+      <!-- 5. Aufbewahrung -->
+      <section class="mb-8">
+        <h2 class="font-display font-bold text-[1.1rem] text-ink mb-3">5. Aufbewahrung der Daten</h2>
+        <p class="text-[.92rem] text-[var(--ink-mid)] leading-[1.75]">
+          Personendaten werden nur so lange aufbewahrt, wie es gesetzliche oder vertragliche Aufbewahrungsfristen erfordern. Nach Ablauf dieser Fristen werden die Daten sicher gelöscht.
+        </p>
+      </section>
+
+      <!-- 6. Website & Kommunikation -->
+      <section class="mb-8">
+        <h2 class="font-display font-bold text-[1.1rem] text-ink mb-3">6. Website und Kommunikation</h2>
+
+        <h3 class="font-display font-semibold text-[1rem] text-ink mt-4 mb-2">6.1 Cookies und Tracking</h3>
+        <p class="text-[.92rem] text-[var(--ink-mid)] leading-[1.75]">
+          Diese Website verwendet keine Cookies und erhebt keine personenbezogenen Nutzungsdaten. Es werden keine Analyse- oder Tracking-Dienste eingesetzt.
+        </p>
+
+        <h3 class="font-display font-semibold text-[1rem] text-ink mt-4 mb-2">6.2 Kontaktformular</h3>
+        <p class="text-[.92rem] text-[var(--ink-mid)] leading-[1.75]">
+          Über das Kontakt- und Anmeldeformular auf dieser Website übermittelte Daten werden ausschliesslich zur Bearbeitung Ihrer Anfrage bzw. Anmeldung verwendet. Die Übermittlung erfolgt verschlüsselt über den Dienst Web3Forms. Ihre Daten werden nicht an Dritte weitergegeben.
+        </p>
+
+        <h3 class="font-display font-semibold text-[1rem] text-ink mt-4 mb-2">6.3 WhatsApp</h3>
+        <p class="text-[.92rem] text-[var(--ink-mid)] leading-[1.75]">
+          Für die laufende Kommunikation mit Eltern nutzen wir WhatsApp (WhatsApp Ireland Limited). Eine teilweise Verarbeitung von Daten findet auf Servern in den USA statt. Wir empfehlen, keine vertraulichen Personendaten über WhatsApp zu übermitteln.
+        </p>
+      </section>
+
+      <!-- 7. Betroffenenrechte -->
+      <section class="mb-8">
+        <h2 class="font-display font-bold text-[1.1rem] text-ink mb-3">7. Ihre Rechte</h2>
+        <p class="text-[.92rem] text-[var(--ink-mid)] leading-[1.75]">
+          Sie haben das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Bearbeitung Ihrer gespeicherten Personendaten sowie das Recht auf Datenherausgabe. Diese Rechte bestehen, soweit keine gesetzlichen Aufbewahrungspflichten entgegenstehen. Eine einmal erteilte Einwilligung können Sie jederzeit widerrufen.
+        </p>
+        <p class="text-[.92rem] text-[var(--ink-mid)] leading-[1.75] mt-3">
+          Zur Ausübung Ihrer Rechte wenden Sie sich bitte per E-Mail an: <a id="dsz-email2" href="mailto:" class="text-[var(--sage-dark)] hover:underline">[E-Mail]</a>
+        </p>
+      </section>
+
+      <!-- 8. Haftung -->
+      <section class="mb-8">
+        <h2 class="font-display font-bold text-[1.1rem] text-ink mb-3">8. Haftungsausschluss</h2>
+        <p class="text-[.92rem] text-[var(--ink-mid)] leading-[1.75]">
+          Für direkte oder indirekte Schäden, die durch die freiwillige Übermittlung von Personendaten über E-Mail oder das Kontaktformular entstehen, übernehmen wir keine Haftung. Diese Website kann Links zu externen Seiten enthalten; für deren Datenschutzpraktiken und Inhalte übernehmen wir keine Verantwortung.
+        </p>
+      </section>
+
+      <!-- 9. Anwendbares Recht -->
+      <section class="mb-8">
+        <h2 class="font-display font-bold text-[1.1rem] text-ink mb-3">9. Anwendbares Recht</h2>
+        <p class="text-[.92rem] text-[var(--ink-mid)] leading-[1.75]">
+          Es gilt Schweizer Recht. Ausschliesslicher Gerichtsstand ist Seon, Schweiz.
+        </p>
+      </section>
+
+      <!-- 10. Änderungen -->
+      <section class="mb-8">
+        <h2 class="font-display font-bold text-[1.1rem] text-ink mb-3">10. Änderungen</h2>
+        <p class="text-[.92rem] text-[var(--ink-mid)] leading-[1.75]">
+          Wir behalten uns vor, diese Datenschutzerklärung bei Bedarf anzupassen. Es gilt jeweils die auf dieser Website veröffentlichte aktuelle Fassung.
+        </p>
+      </section>
+
+      <div class="mt-10 pt-8 border-t border-[var(--cream-dark)]">
+        <a href="index.html" class="inline-flex items-center gap-2 bg-[oklch(0.64_0.09_148)] text-white font-bold rounded-full px-6 py-3 text-[.92rem] hover:bg-[oklch(0.48_0.09_148)] transition-colors">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Zurück zur Website
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="text-center py-8 text-[.82rem] text-[var(--ink-mid)]">
+    © 2026 Spielgruppe Seon ·
+    <a href="impressum.html" class="hover:underline">Impressum</a> ·
+    <a href="datenschutz.html" class="hover:underline">Datenschutz</a>
+  </footer>
+
+  <script>
+    (async () => {
+      try {
+        const contact = await fetch('_data/contact.json').then(r => r.ok ? r.json() : {});
+        const imp     = await fetch('_data/impressum.json').then(r => r.ok ? r.json() : {});
+        const set = (id, val) => { const el = document.getElementById(id); if (el && val) el.textContent = val; };
+        set('dsz-inhaber', imp.inhaber);
+        set('dsz-street',  contact.address?.street);
+        set('dsz-city',    contact.address?.city);
+        if (contact.email) {
+          ['dsz-email', 'dsz-email2'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) { el.textContent = contact.email; el.href = 'mailto:' + contact.email; }
+          });
+        }
+      } catch (e) {}
+    })();
+  </script>
+</body>
+</html>
