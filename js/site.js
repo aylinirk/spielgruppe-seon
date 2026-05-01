@@ -24,17 +24,23 @@ async function loadSettings() {
     if (d.web3formsKey) {
       document.querySelectorAll('input[name="access_key"]').forEach(el => { el.value = d.web3formsKey; });
     }
-    const validImg = src => src && typeof src === 'string' && src.startsWith('/');
-    if (validImg(d.logoImage)) {
+    const tryImg = (src, onOk) => {
+      if (!src || typeof src !== 'string' || !src.startsWith('/')) return;
+      const t = new Image();
+      t.onload  = onOk;
+      t.onerror = () => {}; // silently ignore broken uploads
+      t.src = src;
+    };
+    tryImg(d.logoImage, () => {
       const icon = document.getElementById('site-logo-icon');
       const img  = document.getElementById('site-logo-img');
       if (icon) icon.style.display = 'none';
       if (img)  { img.src = d.logoImage; img.classList.remove('hidden'); }
-    }
-    if (validImg(d.ueber_uns_image)) {
+    });
+    tryImg(d.ueber_uns_image, () => {
       const wrap = document.getElementById('ueber-uns-img-wrap');
       if (wrap) wrap.innerHTML = `<img src="${d.ueber_uns_image}" alt="Spielgruppe Seon" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />`;
-    }
+    });
   } catch (e) {}
 }
 
@@ -353,10 +359,14 @@ async function loadContactData() {
           if (bioEl) bioEl.innerHTML = d.dina.bio.replace(/\n\n/g, '<br /><br />');
         }
         if (d.dina.photo && d.dina.photo.startsWith('/')) {
-          const photoWrap = document.getElementById('team-photo-wrap');
-          if (photoWrap) {
-            photoWrap.innerHTML = `<img src="${d.dina.photo}" alt="${d.dina.firstName}" style="width:100%;height:100%;object-fit:cover;" />`;
-          }
+          const photoSrc  = d.dina.photo;
+          const firstName = d.dina.firstName || 'Dina';
+          const t = new Image();
+          t.onload = () => {
+            const photoWrap = document.getElementById('team-photo-wrap');
+            if (photoWrap) photoWrap.innerHTML = `<img src="${photoSrc}" alt="${firstName}" style="width:100%;height:100%;object-fit:cover;" />`;
+          };
+          t.src = photoSrc;
         }
       }
     }
