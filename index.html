@@ -630,7 +630,7 @@
         <!-- Honeypot -->
         <input type="checkbox" name="botcheck" class="hidden" style="display:none;" />
 
-        <h3 class="font-display font-bold text-[1.25rem] text-ink mb-6">Anmeldeformular</h3>
+        <h3 id="anmeldung-form-title" class="font-display font-bold text-[1.25rem] text-ink mb-6">Anmeldeformular (unverbindlich)</h3>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
           <!-- Kind -->
@@ -702,6 +702,22 @@
               </div>
 
               <div>
+                <div class="text-[.8rem] font-bold text-[var(--ink-mid)] mb-[6px] uppercase tracking-[.05em]">Mittwoch</div>
+                <div class="flex flex-wrap gap-[10px]">
+                  <label class="checkbox-label flex items-center gap-2 px-4 py-2 rounded-xl border border-cream-dark bg-cream font-semibold text-[.9rem]">
+                    <input type="checkbox" name="tage" value="Mittwoch Morgen" class="hidden" />
+                    <span class="checkbox-custom w-[18px] h-[18px] rounded-[4px] border-2 border-current flex items-center justify-center shrink-0"></span>
+                    Morgen 08:30–11:45
+                  </label>
+                  <label class="checkbox-label flex items-center gap-2 px-4 py-2 rounded-xl border border-cream-dark bg-cream font-semibold text-[.9rem]">
+                    <input type="checkbox" name="tage" value="Mittwoch Nachmittag" class="hidden" />
+                    <span class="checkbox-custom w-[18px] h-[18px] rounded-[4px] border-2 border-current flex items-center justify-center shrink-0"></span>
+                    Nachmittag 13:30–16:00
+                  </label>
+                </div>
+              </div>
+
+              <div>
                 <div class="text-[.8rem] font-bold text-[var(--ink-mid)] mb-[6px] uppercase tracking-[.05em]">Donnerstag</div>
                 <div class="flex flex-wrap gap-[10px]">
                   <label class="checkbox-label flex items-center gap-2 px-4 py-2 rounded-xl border border-cream-dark bg-cream font-semibold text-[.9rem]">
@@ -711,6 +727,22 @@
                   </label>
                   <label class="checkbox-label flex items-center gap-2 px-4 py-2 rounded-xl border border-cream-dark bg-cream font-semibold text-[.9rem]">
                     <input type="checkbox" name="tage" value="Donnerstag Nachmittag" class="hidden" />
+                    <span class="checkbox-custom w-[18px] h-[18px] rounded-[4px] border-2 border-current flex items-center justify-center shrink-0"></span>
+                    Nachmittag 13:30–16:00
+                  </label>
+                </div>
+              </div>
+
+              <div>
+                <div class="text-[.8rem] font-bold text-[var(--ink-mid)] mb-[6px] uppercase tracking-[.05em]">Freitag</div>
+                <div class="flex flex-wrap gap-[10px]">
+                  <label class="checkbox-label flex items-center gap-2 px-4 py-2 rounded-xl border border-cream-dark bg-cream font-semibold text-[.9rem]">
+                    <input type="checkbox" name="tage" value="Freitag Morgen" class="hidden" />
+                    <span class="checkbox-custom w-[18px] h-[18px] rounded-[4px] border-2 border-current flex items-center justify-center shrink-0"></span>
+                    Morgen 08:30–11:45
+                  </label>
+                  <label class="checkbox-label flex items-center gap-2 px-4 py-2 rounded-xl border border-cream-dark bg-cream font-semibold text-[.9rem]">
+                    <input type="checkbox" name="tage" value="Freitag Nachmittag" class="hidden" />
                     <span class="checkbox-custom w-[18px] h-[18px] rounded-[4px] border-2 border-current flex items-center justify-center shrink-0"></span>
                     Nachmittag 13:30–16:00
                   </label>

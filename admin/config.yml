@@ -218,7 +218,8 @@ collections:
         file: "_data/anmeldung.json"
         format: json
         fields:
-          - { label: "Überschrift", name: "heading", widget: "string", default: "Jetzt einen Platz sichern" }
+          - { label: "Abschnitts-Überschrift", name: "heading", widget: "string", default: "Jetzt unverbindlich anmelden" }
+          - { label: "Formular-Titel", name: "formTitle", widget: "string", default: "Anmeldeformular (unverbindlich)" }
           - { label: "Einleitungstext", name: "intro", widget: "text" }
           - { label: "Button-Text", name: "submitText", widget: "string", default: "Anmeldung absenden" }
           - { label: "Hinweistext unter dem Button", name: "disclaimer", widget: "text" }

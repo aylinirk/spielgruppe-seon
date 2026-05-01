@@ -372,10 +372,12 @@ async function loadAnmeldung() {
     if (!res.ok) return;
     const d = await res.json();
     const heading    = document.getElementById('anmeldung-heading');
+    const formTitle  = document.getElementById('anmeldung-form-title');
     const intro      = document.getElementById('anmeldung-intro');
     const disclaimer = document.getElementById('anmeldung-disclaimer');
     const submitBtn  = $('#anmeldung-form [type="submit"]');
     if (d.heading    && heading)    heading.textContent    = d.heading;
+    if (d.formTitle  && formTitle)  formTitle.textContent  = d.formTitle;
     if (d.intro      && intro)      intro.textContent      = d.intro;
     if (d.disclaimer && disclaimer) disclaimer.textContent = d.disclaimer;
     if (d.submitText && submitBtn)  submitBtn.textContent  = d.submitText;
