@@ -450,9 +450,11 @@ async function loadUeberUns() {
         </li>`;
       }).join('');
     }
-    if (d.quote) {
-      if (d.quote.text   && quoteText)   quoteText.textContent   = d.quote.text;
-      if (d.quote.author && quoteAuthor) quoteAuthor.textContent = '— ' + d.quote.author;
+    if (d.quote && d.quote.text) {
+      const wrap = document.getElementById('ueber-uns-quote-wrap');
+      if (quoteText)   quoteText.textContent   = d.quote.text;
+      if (quoteAuthor) quoteAuthor.textContent = d.quote.author ? '— ' + d.quote.author : '';
+      if (wrap) wrap.classList.remove('hidden');
     }
   } catch (e) {}
 }
