@@ -1,7 +1,7 @@
 {
   "events": [
     {
-      "title": "Tag der offenen Tür",
+      "title": "Tag der offenen Türe",
       "color": "terra",
       "date": "Sonntag, 17. Mai",
       "time": "11 – 16 Uhr",
@@ -25,16 +25,16 @@
       "buttonUrl": "#kontakt"
     },
     {
-      "title": "Elternabend",
+      "title": "Spielgruppen-Start",
       "color": "honey",
-      "date": "Datum folgt",
-      "time": "19:30 Uhr",
+      "date": "10. August 2026",
+      "time": "08:30 Uhr",
       "location": "Oholten 3, 5703 Seon",
-      "description": "Informationsabend für Eltern des neuen Jahrgangs. Programm, Alltagsablauf, Fragen – alles in gemütlichem Rahmen. Alle Eltern sind herzlich willkommen.",
+      "description": "Der erste Tag der neuen Spielgruppengruppe! Kinder und Eltern lernen sich kennen, wir starten gemeinsam ins neue Jahr.",
       "note": "",
-      "showButton": false,
-      "buttonText": "",
-      "buttonUrl": ""
+      "showButton": true,
+      "buttonText": "Jetzt anmelden",
+      "buttonUrl": "#anmeldung"
     }
   ]
 }

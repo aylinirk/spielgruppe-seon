@@ -165,8 +165,8 @@ function buildEventCard(ev) {
          onmouseover="this.style.boxShadow='0 6px 24px oklch(0.26 0.02 85 / .12)';this.style.transform='translateY(-2px)'"
          onmouseout="this.style.boxShadow='0 2px 8px oklch(0.26 0.02 85 / .08)';this.style.transform=''">
       <div style="position:absolute;top:0;left:0;right:0;height:4px;border-radius:20px 20px 0 0;background:${c.bar};"></div>
-      <span style="display:inline-flex;align-items:center;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:4px 10px;border-radius:999px;width:fit-content;${c.badge}">${ev.title}</span>
-      <div style="font-family:'Baloo 2',sans-serif;font-size:1.5rem;font-weight:800;color:oklch(0.26 0.02 85);line-height:1.2;">${ev.date}</div>
+      <span style="display:inline-flex;align-items:center;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:4px 10px;border-radius:999px;width:fit-content;${c.badge}">${ev.date}</span>
+      <div style="font-family:'Baloo 2',sans-serif;font-size:1.5rem;font-weight:800;color:oklch(0.26 0.02 85);line-height:1.2;">${ev.title}</div>
       <div style="display:flex;flex-direction:column;gap:4px;">
         <div style="display:flex;align-items:center;gap:8px;font-size:.85rem;color:oklch(0.45 0.02 85);font-weight:600;">
           <span style="width:18px;text-align:center;">🕐</span>${ev.time}
