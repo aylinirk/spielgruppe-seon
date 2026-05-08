@@ -55,7 +55,8 @@ async function loadBanner() {
     const banner = $('#top-banner');
     if (!data.visible || !banner) return;
 
-    $('#banner-text').textContent = data.text;
+    const isMobile = window.innerWidth < 640;
+    $('#banner-text').textContent = (isMobile && data.mobileText) ? data.mobileText : data.text;
     const btn = $('#banner-btn');
     btn.textContent = data.buttonText;
     btn.href = data.buttonUrl;

@@ -34,7 +34,8 @@ collections:
         format: json
         fields:
           - { label: "Banner anzeigen", name: "visible", widget: "boolean", default: false, hint: "Banner ein- oder ausschalten" }
-          - { label: "Text", name: "text", widget: "string", hint: "z.B. 🗓 Tag der offenen Tür am 17. Mai 2026" }
+          - { label: "Text (Desktop)", name: "text", widget: "string", hint: "z.B. 🗓 Tag der offenen Tür am 17. Mai 2026 – 11 bis 16 Uhr · Oholten 3, Seon" }
+          - { label: "Text (Mobile, kurz)", name: "mobileText", widget: "string", required: false, hint: "Kürzere Version für kleine Screens, z.B. 🗓 Tag der offenen Tür · 17. Mai, 11–16 Uhr" }
           - { label: "Button-Text", name: "buttonText", widget: "string", default: "Mehr erfahren" }
           - { label: "Button-Link", name: "buttonUrl", widget: "string", default: "#events", hint: "URL oder Anker wie #events" }
 
