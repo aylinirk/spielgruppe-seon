@@ -761,8 +761,8 @@
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-[1fr_1.2fr] gap-14 items-start">
-      <!-- Kontaktinfos (JS-populated from _data/contact.json) -->
-      <div>
+      <!-- Kontaktinfos (JS-populated from _data/contact.json) — mobile: order 2 -->
+      <div class="order-2 md:order-none">
         <div class="flex flex-col gap-5">
           <div class="reveal delay-1 flex gap-4 items-start">
             <div class="w-11 h-11 rounded-xl bg-[var(--sage-light)] flex items-center justify-center text-[var(--sage-dark)] shrink-0">
@@ -802,24 +802,10 @@
           </div>
         </div>
 
-        <!-- Google Maps Embed -->
-        <div class="mt-7 rounded-3xl overflow-hidden border border-[var(--cream-dark)] shadow-sm relative" style="height:220px;">
-          <iframe
-            src="https://www.google.com/maps?q=Oholten+3,+5703+Seon,+Switzerland&output=embed"
-            width="100%" height="100%" style="border:0;display:block;" allowfullscreen loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade" title="Spielgruppe Seon – Oholten 3, 5703 Seon">
-          </iframe>
-          <a href="https://www.google.com/maps/search/Oholten+3,+5703+Seon,+Switzerland"
-             target="_blank" rel="noopener noreferrer"
-             class="absolute bottom-3 right-3 inline-flex items-center gap-[6px] bg-white text-[var(--sage-dark)] font-bold text-[.78rem] px-3 py-[6px] rounded-full shadow-md hover:shadow-lg hover:bg-[var(--cream)] transition-all border border-[var(--cream-dark)]">
-            <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M6.5 1a4 4 0 100 8 4 4 0 000-8zM3.5 8.5L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-            In Google Maps öffnen
-          </a>
-        </div>
       </div>
 
-      <!-- Kontaktformular -->
-      <div class="reveal delay-2">
+      <!-- Kontaktformular — mobile: order 1, desktop: spans 2 rows (right col) -->
+      <div class="order-1 md:order-none md:row-span-2 reveal delay-2">
         <div class="bg-cream rounded-3xl p-8 border border-cream-dark">
           <h3 class="font-display font-bold text-[1.25rem] text-ink mb-5">Allgemeine Anfrage</h3>
           <form id="kontakt-form" novalidate>
@@ -853,6 +839,21 @@
             </div>
           </form>
         </div>
+      </div>
+
+      <!-- Google Maps — mobile: order 3, desktop: row 2 col 1 -->
+      <div class="order-3 md:order-none rounded-3xl overflow-hidden border border-[var(--cream-dark)] shadow-sm relative" style="height:220px;">
+        <iframe
+          src="https://www.google.com/maps?q=Oholten+3,+5703+Seon,+Switzerland&output=embed"
+          width="100%" height="100%" style="border:0;display:block;" allowfullscreen loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade" title="Spielgruppe Seon – Oholten 3, 5703 Seon">
+        </iframe>
+        <a href="https://www.google.com/maps/search/Oholten+3,+5703+Seon,+Switzerland"
+           target="_blank" rel="noopener noreferrer"
+           class="absolute bottom-3 right-3 inline-flex items-center gap-[6px] bg-white text-[var(--sage-dark)] font-bold text-[.78rem] px-3 py-[6px] rounded-full shadow-md hover:shadow-lg hover:bg-[var(--cream)] transition-all border border-[var(--cream-dark)]">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M6.5 1a4 4 0 100 8 4 4 0 000-8zM3.5 8.5L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          In Google Maps öffnen
+        </a>
       </div>
     </div>
   </div>
