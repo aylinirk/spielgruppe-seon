@@ -1,8 +1,9 @@
 {
   "badge": "Willkommen in Seon",
   "headingLine1": "Ein Ort zum",
-  "headingHighlight": "Spielen, Wachsen",
-  "headingLine2": "und Entdecken",
+  "headingWord1": "Spielen,",
+  "headingWord2": "Wachsen",
+  "headingWord3": "Entdecken",
   "subtitle": "Die Spielgruppe Seon bietet Kindern ab 2½ Jahren einen liebevollen Ort, um die Welt zu erkunden – in einer kleinen, familiären Gruppe mit erfahrener Begleitung.",
   "primaryCta": { "text": "Jetzt anmelden", "url": "#anmeldung" },
   "secondaryCta": { "text": "Schnuppertag anfragen", "url": "#schnuppertag" }

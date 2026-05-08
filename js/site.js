@@ -415,8 +415,12 @@ async function loadHero() {
     const ctaPrimary  = document.getElementById('hero-cta-primary');
     const ctaSecondary= document.getElementById('hero-cta-secondary');
     if (d.badge && badge) badge.textContent = d.badge;
-    if (heading && (d.headingLine1 || d.headingHighlight || d.headingLine2)) {
-      heading.innerHTML = `${d.headingLine1 || ''}<br /><em style="color:oklch(0.48 0.09 148);font-style:normal;">${d.headingHighlight || ''}</em><br />${d.headingLine2 || ''}`;
+    if (heading && (d.headingLine1 || d.headingWord1 || d.headingWord2 || d.headingWord3)) {
+      heading.innerHTML =
+        `${d.headingLine1 || ''}<br />` +
+        `<em style="color:var(--terra);font-style:normal;">${d.headingWord1 || ''}</em> ` +
+        `<em style="color:oklch(0.48 0.09 148);font-style:normal;">${d.headingWord2 || ''}</em><br />` +
+        `und <em style="color:var(--honey-dark);font-style:normal;">${d.headingWord3 || ''}</em>`;
     }
     if (d.subtitle && subtitle) subtitle.textContent = d.subtitle;
     if (d.primaryCta)   { if (ctaPrimary)   { ctaPrimary.textContent   = d.primaryCta.text;   ctaPrimary.href   = d.primaryCta.url;   } }
