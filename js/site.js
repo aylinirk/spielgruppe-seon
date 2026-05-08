@@ -60,6 +60,9 @@ async function loadBanner() {
     const btn = $('#banner-btn');
     btn.textContent = data.buttonText;
     btn.href = data.buttonUrl;
+    // On mobile, text-link acts as the button
+    const textLink = $('#banner-text-link');
+    if (textLink) textLink.href = data.buttonUrl;
     banner.classList.remove('hidden');
     banner.style.display = 'flex';
 
