@@ -83,6 +83,9 @@ function adjustNavTop() {
   navbar.style.top = bannerH + 'px';
   const mobileMenu = $('#mobile-menu');
   if (mobileMenu) mobileMenu.style.paddingTop = (bannerH + 90) + 'px';
+  // Keep hero padding-top in sync so content is never hidden behind fixed header
+  const hero = $('#home');
+  if (hero) hero.style.paddingTop = (bannerH + navbar.offsetHeight + 16) + 'px';
 }
 
 window.adjustNavTop = adjustNavTop;
