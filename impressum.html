@@ -51,7 +51,7 @@
           <polygon points="20,6 28,20 12,20" fill="oklch(0.64 0.09 148)"/>
           <polygon points="20,11 27,23 13,23" fill="oklch(0.55 0.09 148)"/>
         </svg>
-        <span class="font-display font-extrabold text-[1.1rem] text-[var(--sage-dark)]">Spielgruppe Seon</span>
+        <span class="font-display font-extrabold text-[1.1rem] text-ink">Spielgruppe Seon</span>
       </a>
       <a href="index.html" class="inline-flex items-center gap-2 text-[.88rem] font-semibold text-[var(--ink-mid)] hover:text-[var(--sage-dark)] transition-colors">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -61,57 +61,98 @@
   </header>
 
   <!-- Content -->
-  <main class="max-w-[760px] mx-auto px-6 py-16">
-    <div class="bg-white rounded-3xl p-8 md:p-12 border border-[var(--cream-dark)] shadow-sm">
+  <main class="max-w-[760px] mx-auto px-4 sm:px-6 py-10 sm:py-16">
+    <div class="bg-white rounded-3xl p-6 sm:p-10 md:p-12 border border-[var(--cream-dark)] shadow-sm">
 
-      <h1 class="font-display font-extrabold text-[2rem] text-ink mb-8">Impressum</h1>
+      <h1 class="font-display font-extrabold text-[1.8rem] sm:text-[2.2rem] text-ink mb-2">Impressum</h1>
+      <p class="text-[.85rem] text-[var(--ink-mid)] mb-8">Angaben gemäss Art. 3 Abs. 1 lit. s des Schweizer Bundesgesetzes gegen den unlauteren Wettbewerb (UWG)</p>
 
+      <!-- 1. Betreiberin -->
       <section class="mb-8">
-        <h2 class="font-display font-bold text-[1.1rem] text-ink mb-3">Angaben gemäss Schweizer Recht</h2>
-        <address class="not-italic text-[.95rem] text-[var(--ink-mid)] leading-[1.8]">
-          <strong class="text-ink">Spielgruppe Seon</strong><br />
-          <span id="imp-inhaber">Dina [Nachname]</span><br />
-          <span id="imp-street">Oholten 3</span><br />
-          <span id="imp-city">5703 Seon</span><br />
-          Schweiz
-        </address>
+        <div class="flex items-center gap-3 mb-4">
+          <span class="w-7 h-7 rounded-full bg-[var(--cream-dark)] flex items-center justify-center text-[.78rem] font-extrabold text-[var(--sage-dark)] shrink-0">1</span>
+          <h2 class="font-display font-bold text-[1.1rem] text-ink">Betreiberin</h2>
+        </div>
+        <div class="pl-10">
+          <address class="not-italic text-[.95rem] text-[var(--ink-mid)] leading-[1.9]">
+            <strong class="text-ink block mb-1">Spielgruppe Seon</strong>
+            <span id="imp-inhaber">Konstantina Vlachoudimou</span><br />
+            <span id="imp-street">Oholten 3</span><br />
+            <span id="imp-city">5703 Seon</span><br />
+            Schweiz
+          </address>
+        </div>
       </section>
 
+      <!-- 2. Kontakt -->
       <section class="mb-8">
-        <h2 class="font-display font-bold text-[1.1rem] text-ink mb-3">Kontakt</h2>
-        <p class="text-[.95rem] text-[var(--ink-mid)] leading-[1.8]">
-          E-Mail: <a id="imp-email" href="mailto:" class="text-[var(--sage-dark)] hover:underline">[E-Mail]</a><br />
-          Telefon: <a id="imp-tel" href="tel:" class="text-[var(--sage-dark)] hover:underline">[Telefon]</a>
-        </p>
+        <div class="flex items-center gap-3 mb-4">
+          <span class="w-7 h-7 rounded-full bg-[var(--cream-dark)] flex items-center justify-center text-[.78rem] font-extrabold text-[var(--sage-dark)] shrink-0">2</span>
+          <h2 class="font-display font-bold text-[1.1rem] text-ink">Kontakt</h2>
+        </div>
+        <div class="pl-10 flex flex-col gap-2 text-[.95rem] text-[var(--ink-mid)]">
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="font-semibold text-ink w-20 shrink-0">E-Mail</span>
+            <a id="imp-email" href="mailto:dina@spielgruppe-seon.ch" class="text-[var(--sage-dark)] hover:underline">dina@spielgruppe-seon.ch</a>
+          </div>
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="font-semibold text-ink w-20 shrink-0">Telefon</span>
+            <a id="imp-tel" href="tel:+41763078753" class="text-[var(--sage-dark)] hover:underline">076 307 87 53</a>
+          </div>
+        </div>
       </section>
 
+      <!-- 3. Haftungsausschluss -->
       <section class="mb-8">
-        <h2 class="font-display font-bold text-[1.1rem] text-ink mb-3">Haftungsausschluss</h2>
-        <p id="imp-haftung" class="text-[.92rem] text-[var(--ink-mid)] leading-[1.75]">
-          Die Autorin übernimmt keine Gewähr für die Richtigkeit, Genauigkeit, Aktualität, Zuverlässigkeit und Vollständigkeit der Informationen. Haftungsansprüche gegen die Autorin wegen Schäden materieller oder immaterieller Art, welche aus dem Zugriff oder der Nutzung bzw. Nichtnutzung der veröffentlichten Informationen, durch Missbrauch der Verbindung oder durch technische Störungen entstanden sind, werden ausgeschlossen.
-        </p>
+        <div class="flex items-center gap-3 mb-4">
+          <span class="w-7 h-7 rounded-full bg-[var(--cream-dark)] flex items-center justify-center text-[.78rem] font-extrabold text-[var(--sage-dark)] shrink-0">3</span>
+          <h2 class="font-display font-bold text-[1.1rem] text-ink">Haftungsausschluss</h2>
+        </div>
+        <div class="pl-10">
+          <p id="imp-haftung" class="text-[.92rem] text-[var(--ink-mid)] leading-[1.75]">
+            Die Autorin übernimmt keine Gewähr für die Richtigkeit, Genauigkeit, Aktualität, Zuverlässigkeit und Vollständigkeit der Informationen. Haftungsansprüche gegen die Autorin wegen Schäden materieller oder immaterieller Art, welche aus dem Zugriff oder der Nutzung bzw. Nichtnutzung der veröffentlichten Informationen entstanden sind, werden ausgeschlossen.
+          </p>
+        </div>
       </section>
 
+      <!-- 4. Urheberrechte -->
       <section class="mb-8">
-        <h2 class="font-display font-bold text-[1.1rem] text-ink mb-3">Urheberrechte</h2>
-        <p id="imp-urheberrecht" class="text-[.92rem] text-[var(--ink-mid)] leading-[1.75]">
-          Die Urheber- und alle anderen Rechte an Inhalten, Bildern, Fotos oder anderen Dateien auf der Website gehören ausschliesslich Dina [Nachname] oder den speziell genannten Rechtsinhabern. Für die Reproduktion jeglicher Elemente ist die schriftliche Zustimmung der Urheberrechtsträgerin im Voraus einzuholen.
-        </p>
+        <div class="flex items-center gap-3 mb-4">
+          <span class="w-7 h-7 rounded-full bg-[var(--cream-dark)] flex items-center justify-center text-[.78rem] font-extrabold text-[var(--sage-dark)] shrink-0">4</span>
+          <h2 class="font-display font-bold text-[1.1rem] text-ink">Urheberrechte</h2>
+        </div>
+        <div class="pl-10">
+          <p id="imp-urheberrecht" class="text-[.92rem] text-[var(--ink-mid)] leading-[1.75]">
+            Die Urheber- und alle anderen Rechte an Inhalten, Bildern, Fotos oder anderen Dateien auf der Website gehören ausschliesslich Konstantina Vlachoudimou oder den speziell genannten Rechtsinhabern. Für die Reproduktion jeglicher Elemente ist die schriftliche Zustimmung der Urheberrechtsträgerin im Voraus einzuholen.
+          </p>
+        </div>
       </section>
 
+      <!-- 5. Datenschutz -->
       <section class="mb-8">
-        <h2 class="font-display font-bold text-[1.1rem] text-ink mb-3">Datenschutz</h2>
-        <p id="imp-datenschutz" class="text-[.92rem] text-[var(--ink-mid)] leading-[1.75]">
-          Gestützt auf Artikel 13 der schweizerischen Bundesverfassung und die datenschutzrechtlichen Bestimmungen des Bundes (Datenschutzgesetz, DSG) hat jede Person Anspruch auf Schutz ihrer Privatsphäre sowie auf Schutz vor Missbrauch ihrer persönlichen Daten. Die über das Kontakt- und Anmeldeformular übermittelten Daten werden ausschliesslich zur Bearbeitung Ihrer Anfrage verwendet und nicht an Dritte weitergegeben.
-        </p>
+        <div class="flex items-center gap-3 mb-4">
+          <span class="w-7 h-7 rounded-full bg-[var(--cream-dark)] flex items-center justify-center text-[.78rem] font-extrabold text-[var(--sage-dark)] shrink-0">5</span>
+          <h2 class="font-display font-bold text-[1.1rem] text-ink">Datenschutz</h2>
+        </div>
+        <div class="pl-10">
+          <p class="text-[.92rem] text-[var(--ink-mid)] leading-[1.75] mb-3">
+            Gestützt auf das Schweizer Datenschutzgesetz (DSG) hat jede Person Anspruch auf Schutz ihrer Privatsphäre sowie auf Schutz vor Missbrauch ihrer persönlichen Daten. Die über das Kontakt- und Anmeldeformular übermittelten Daten werden ausschliesslich zur Bearbeitung von Anfragen verwendet und nicht an Dritte weitergegeben.
+          </p>
+          <a href="datenschutz.html" class="inline-flex items-center gap-2 text-[.88rem] font-bold text-[var(--sage-dark)] hover:underline">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Vollständige Datenschutzerklärung lesen
+          </a>
+        </div>
       </section>
 
+      <!-- Back button -->
       <div class="mt-10 pt-8 border-t border-[var(--cream-dark)]">
         <a href="index.html" class="inline-flex items-center gap-2 bg-[oklch(0.64_0.09_148)] text-white font-bold rounded-full px-6 py-3 text-[.92rem] hover:bg-[oklch(0.48_0.09_148)] transition-colors">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           Zurück zur Website
         </a>
       </div>
+
     </div>
   </main>
 
@@ -126,21 +167,12 @@
           fetch('_data/impressum.json').then(r => r.ok ? r.json() : {}),
           fetch('_data/contact.json').then(r => r.ok ? r.json() : {}),
         ]);
-        const set    = (id, val) => { const el = document.getElementById(id); if (el && val) el.textContent = val; };
-        const setRich = (id, val) => {
-          const el = document.getElementById(id);
-          if (!el || !val) return;
-          el.innerHTML = val
-            .split(/\n\n+/)
-            .map(p => `<p>${p.replace(/\n/g, '<br />')}</p>`)
-            .join('');
-        };
+        const set = (id, val) => { const el = document.getElementById(id); if (el && val) el.textContent = val; };
         set('imp-inhaber', imp.inhaber);
         set('imp-street',  contact.address?.street);
         set('imp-city',    contact.address?.city);
-        setRich('imp-haftung',      imp.haftung);
-        setRich('imp-urheberrecht', imp.urheberrecht);
-        setRich('imp-datenschutz',  imp.datenschutz);
+        if (imp.haftung)      document.getElementById('imp-haftung').textContent      = imp.haftung;
+        if (imp.urheberrecht) document.getElementById('imp-urheberrecht').textContent = imp.urheberrecht;
         if (contact.email) {
           const el = document.getElementById('imp-email');
           if (el) { el.textContent = contact.email; el.href = 'mailto:' + contact.email; }
