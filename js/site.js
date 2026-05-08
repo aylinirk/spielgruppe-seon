@@ -121,6 +121,23 @@ document.addEventListener('click', e => {
   }
 });
 
+/* ── smooth scroll with correct offset (accounts for banner + fixed navbar) ── */
+document.addEventListener('click', e => {
+  const a = e.target.closest('a[href^="#"]');
+  if (!a) return;
+  const id = a.getAttribute('href').slice(1);
+  if (!id) return;
+  const target = document.getElementById(id);
+  if (!target) return;
+  e.preventDefault();
+  const banner = $('#top-banner');
+  const bannerH = (banner && banner.style.display !== 'none' && !banner.classList.contains('hidden'))
+    ? banner.offsetHeight : 0;
+  const navH = navbar ? navbar.offsetHeight : 68;
+  const top = target.getBoundingClientRect().top + window.scrollY - bannerH - navH - 8;
+  window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+});
+
 /* active nav link on scroll */
 (function initActiveNav() {
   const sections = $$('section[id], header[id]');

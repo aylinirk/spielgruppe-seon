@@ -171,13 +171,13 @@
 
     <!-- Desktop links -->
     <ul class="hidden lg:flex items-center gap-1 list-none" id="nav-links">
-      <li><a href="#ueber-uns"   class="nav-link text-[.88rem] font-semibold px-3 py-[6px] rounded-full text-[var(--ink-mid)] hover:bg-[var(--sage-light)] hover:text-[var(--sage-dark)] transition-all">Über uns</a></li>
-      <li><a href="#spielgruppe" class="nav-link text-[.88rem] font-semibold px-3 py-[6px] rounded-full text-[var(--ink-mid)] hover:bg-[var(--sage-light)] hover:text-[var(--sage-dark)] transition-all">Spielgruppe</a></li>
+      <li><a href="#ueber-uns"    class="nav-link text-[.88rem] font-semibold px-3 py-[6px] rounded-full text-[var(--ink-mid)] hover:bg-[var(--sage-light)] hover:text-[var(--sage-dark)] transition-all">Über uns</a></li>
+      <li><a href="#team"         class="nav-link text-[.88rem] font-semibold px-3 py-[6px] rounded-full text-[var(--ink-mid)] hover:bg-[var(--sage-light)] hover:text-[var(--sage-dark)] transition-all">Team</a></li>
       <li><a href="#zeiten-preise" class="nav-link text-[.88rem] font-semibold px-3 py-[6px] rounded-full text-[var(--ink-mid)] hover:bg-[var(--sage-light)] hover:text-[var(--sage-dark)] transition-all">Zeiten & Preise</a></li>
-      <li><a href="#events"      class="nav-link text-[.88rem] font-semibold px-3 py-[6px] rounded-full text-[var(--ink-mid)] hover:bg-[var(--sage-light)] hover:text-[var(--sage-dark)] transition-all">Events</a></li>
       <li><a href="#schnuppertag" class="nav-link text-[.88rem] font-semibold px-3 py-[6px] rounded-full text-[var(--ink-mid)] hover:bg-[var(--sage-light)] hover:text-[var(--sage-dark)] transition-all">Schnuppertag</a></li>
-      <li><a href="#team"        class="nav-link text-[.88rem] font-semibold px-3 py-[6px] rounded-full text-[var(--ink-mid)] hover:bg-[var(--sage-light)] hover:text-[var(--sage-dark)] transition-all">Team</a></li>
-      <li><a href="#kontakt"     class="nav-link text-[.88rem] font-semibold px-3 py-[6px] rounded-full text-[var(--ink-mid)] hover:bg-[var(--sage-light)] hover:text-[var(--sage-dark)] transition-all">Kontakt</a></li>
+      <li><a href="#events"       class="nav-link text-[.88rem] font-semibold px-3 py-[6px] rounded-full text-[var(--ink-mid)] hover:bg-[var(--sage-light)] hover:text-[var(--sage-dark)] transition-all">Events</a></li>
+      <li><a href="#spielgruppe"  class="nav-link text-[.88rem] font-semibold px-3 py-[6px] rounded-full text-[var(--ink-mid)] hover:bg-[var(--sage-light)] hover:text-[var(--sage-dark)] transition-all">Spielgruppe</a></li>
+      <li><a href="#kontakt"      class="nav-link text-[.88rem] font-semibold px-3 py-[6px] rounded-full text-[var(--ink-mid)] hover:bg-[var(--sage-light)] hover:text-[var(--sage-dark)] transition-all">Kontakt</a></li>
     </ul>
 
     <div class="flex items-center gap-3">
@@ -195,11 +195,11 @@
 <!-- Mobile menu -->
 <div id="mobile-menu" class="hidden fixed inset-0 z-[99] bg-cream flex-col gap-2 px-8 pb-10 pt-[90px]">
   <a href="#ueber-uns"    class="font-display text-2xl font-bold text-ink py-[10px] border-b border-cream-dark" onclick="closeMobileMenu()">Über uns</a>
-  <a href="#spielgruppe"  class="font-display text-2xl font-bold text-ink py-[10px] border-b border-cream-dark" onclick="closeMobileMenu()">Spielgruppe</a>
-  <a href="#zeiten-preise" class="font-display text-2xl font-bold text-ink py-[10px] border-b border-cream-dark" onclick="closeMobileMenu()">Zeiten & Preise</a>
-  <a href="#events"       class="font-display text-2xl font-bold text-ink py-[10px] border-b border-cream-dark" onclick="closeMobileMenu()">Events</a>
-  <a href="#schnuppertag" class="font-display text-2xl font-bold text-ink py-[10px] border-b border-cream-dark" onclick="closeMobileMenu()">Schnuppertag</a>
   <a href="#team"         class="font-display text-2xl font-bold text-ink py-[10px] border-b border-cream-dark" onclick="closeMobileMenu()">Team</a>
+  <a href="#zeiten-preise" class="font-display text-2xl font-bold text-ink py-[10px] border-b border-cream-dark" onclick="closeMobileMenu()">Zeiten & Preise</a>
+  <a href="#schnuppertag" class="font-display text-2xl font-bold text-ink py-[10px] border-b border-cream-dark" onclick="closeMobileMenu()">Schnuppertag</a>
+  <a href="#events"       class="font-display text-2xl font-bold text-ink py-[10px] border-b border-cream-dark" onclick="closeMobileMenu()">Events</a>
+  <a href="#spielgruppe"  class="font-display text-2xl font-bold text-ink py-[10px] border-b border-cream-dark" onclick="closeMobileMenu()">Spielgruppe</a>
   <a href="#anmeldung"    class="font-display text-2xl font-bold text-ink py-[10px] border-b border-cream-dark" onclick="closeMobileMenu()">Anmeldung</a>
   <a href="#kontakt"      class="font-display text-2xl font-bold text-ink py-[10px] border-b border-cream-dark" onclick="closeMobileMenu()">Kontakt</a>
   <a href="#anmeldung" class="mt-4 self-start inline-flex items-center bg-[var(--terra)] text-white font-bold rounded-full px-6 py-3 text-base" onclick="closeMobileMenu()">Jetzt anmelden</a>
@@ -884,15 +884,39 @@
 </section>
 
 <!-- ═══ FOOTER ════════════════════════════════════════════════ -->
-<footer class="bg-ink text-white/60 py-8 px-6 text-[.85rem] text-center">
-  <div class="max-w-[1140px] mx-auto flex justify-between items-center flex-wrap gap-3">
-    <span>© 2026 Spielgruppe Seon · Oholten 3, 5703 Seon</span>
-    <span>
-      <a href="impressum.html" class="text-honey hover:underline">Impressum</a> ·
-      <a href="datenschutz.html" class="text-honey hover:underline">Datenschutz</a> ·
-      <a href="#kontakt" class="text-honey hover:underline">Kontakt</a> ·
-      <a href="#anmeldung" class="text-honey hover:underline">Anmeldung</a>
-    </span>
+<footer class="bg-ink text-white px-6 pt-12 pb-8 text-[.85rem]">
+  <div class="max-w-[1140px] mx-auto">
+
+    <!-- Top row: brand + links -->
+    <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-8 pb-8 border-b border-white/10">
+
+      <!-- Brand -->
+      <div class="flex flex-col gap-2">
+        <span class="font-display font-extrabold text-[1.1rem] text-white">Spielgruppe Seon</span>
+        <span class="text-white/45 text-[.82rem] leading-relaxed">Oholten 3, 5703 Seon<br />Montag – Freitag</span>
+      </div>
+
+      <!-- Links -->
+      <div class="flex flex-wrap gap-x-6 gap-y-2 text-white/55 sm:text-right">
+        <a href="#ueber-uns"    class="hover:text-white transition-colors">Über uns</a>
+        <a href="#team"         class="hover:text-white transition-colors">Team</a>
+        <a href="#zeiten-preise" class="hover:text-white transition-colors">Zeiten & Preise</a>
+        <a href="#schnuppertag" class="hover:text-white transition-colors">Schnuppertag</a>
+        <a href="#events"       class="hover:text-white transition-colors">Events</a>
+        <a href="#spielgruppe"  class="hover:text-white transition-colors">Spielgruppe</a>
+        <a href="#kontakt"      class="hover:text-white transition-colors">Kontakt</a>
+      </div>
+    </div>
+
+    <!-- Bottom row: copyright + legal -->
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-6 text-white/35 text-[.80rem]">
+      <span>© 2026 Spielgruppe Seon</span>
+      <span class="flex gap-4">
+        <a href="impressum.html"   class="hover:text-white/70 transition-colors">Impressum</a>
+        <a href="datenschutz.html" class="hover:text-white/70 transition-colors">Datenschutz</a>
+      </span>
+    </div>
+
   </div>
 </footer>
 
