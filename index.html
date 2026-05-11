@@ -255,7 +255,7 @@
             <h3 class="font-display font-bold text-[1.3rem] text-ink mb-4">Spielgruppe Seon</h3>
             <div class="flex flex-col gap-[10px]">
               <div class="flex justify-between items-center px-3 py-2 bg-cream rounded-xl"><span class="text-[.82rem] text-[var(--ink-mid)] font-semibold">Tage</span><span id="hero-card-tage" class="text-[.88rem] text-ink font-bold">Mo / Di / Do</span></div>
-              <div class="flex justify-between items-center px-3 py-2 bg-cream rounded-xl"><span class="text-[.82rem] text-[var(--ink-mid)] font-semibold">Morgen</span><span id="hero-card-morgen" class="text-[.88rem] text-ink font-bold">08:45 – 11:30</span></div>
+              <div class="flex justify-between items-center px-3 py-2 bg-cream rounded-xl"><span class="text-[.82rem] text-[var(--ink-mid)] font-semibold">Morgen</span><span id="hero-card-morgen" class="text-[.88rem] text-ink font-bold">08:30 – 11:30</span></div>
               <div class="flex justify-between items-center px-3 py-2 bg-cream rounded-xl"><span class="text-[.82rem] text-[var(--ink-mid)] font-semibold">Nachmittag</span><span id="hero-card-nachmittag" class="text-[.88rem] text-ink font-bold">13:30 – 16:00</span></div>
               <div class="flex justify-between items-center px-3 py-2 bg-cream rounded-xl"><span class="text-[.82rem] text-[var(--ink-mid)] font-semibold">Alter</span><span id="hero-card-alter" class="text-[.88rem] text-ink font-bold">2½ – 4 Jahre</span></div>
             </div>
@@ -444,8 +444,8 @@
           <div class="w-9 h-9 rounded-[9px] bg-[var(--terra-light)] flex items-center justify-center text-[var(--terra)] mb-1">
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="3.5" stroke="currentColor" stroke-width="1.5"/><path d="M9 1v2M9 15v2M1 9h2M15 9h2M3.1 3.1l1.4 1.4M13.5 13.5l1.4 1.4M14.9 3.1l-1.4 1.4M4.5 13.5l-1.4 1.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
           </div>
-          <div class="text-[.75rem] font-bold text-[var(--ink-light)] uppercase tracking-[.06em]">Morgen <span class="font-medium normal-case text-[.72rem]">2h45</span></div>
-          <div id="zeiten-morgen" class="text-[1.2rem] font-bold text-ink leading-[1.3]">08:45 – 11:30 <span class="text-[.75rem] font-medium text-[var(--ink-light)]">Uhr</span></div>
+          <div class="text-[.75rem] font-bold text-[var(--ink-light)] uppercase tracking-[.06em]">Morgen <span class="font-medium normal-case text-[.72rem]">3h</span></div>
+          <div id="zeiten-morgen" class="text-[1.2rem] font-bold text-ink leading-[1.3]">08:30 – 11:30 <span class="text-[.75rem] font-medium text-[var(--ink-light)]">Uhr</span></div>
         </div>
         <!-- Nachmittag -->
         <div class="bg-cream border border-cream-dark rounded-2xl p-5 flex flex-col gap-1">
@@ -463,7 +463,7 @@
       <div id="preise-table" class="bg-white border border-cream-dark rounded-3xl overflow-hidden shadow-sm">
         <div class="px-6 py-4 text-[.82rem] font-bold text-[var(--ink-mid)] uppercase tracking-[.06em] border-b border-cream-dark bg-cream">Preis pro Kind / Monat</div>
 
-        <div class="px-6 pt-3 pb-2 text-[.78rem] font-bold text-[var(--ink-light)] uppercase tracking-[.06em] bg-cream">Morgen (08:45 – 11:30 Uhr)</div>
+        <div class="px-6 pt-3 pb-2 text-[.78rem] font-bold text-[var(--ink-light)] uppercase tracking-[.06em] bg-cream">Morgen (08:30 – 11:30 Uhr)</div>
         <div class="flex justify-between items-center px-6 py-[13px] border-b border-dashed border-cream-dark hover:bg-cream transition-colors">
           <span class="text-[.92rem] font-semibold text-ink">1 Morgen / Woche</span>
           <span class="font-display font-extrabold text-base text-[var(--sage-dark)]">CHF 140.–</span>
@@ -668,7 +668,7 @@
                   <label class="checkbox-label flex items-center gap-2 px-4 py-2 rounded-xl border border-cream-dark bg-cream font-semibold text-[.9rem]">
                     <input type="checkbox" name="tage" value="Montag Morgen" class="hidden" />
                     <span class="checkbox-custom w-[18px] h-[18px] rounded-[4px] border-2 border-current flex items-center justify-center shrink-0"></span>
-                    Morgen 08:45–11:30
+                    Morgen 08:30–11:30
                   </label>
                   <label class="checkbox-label flex items-center gap-2 px-4 py-2 rounded-xl border border-cream-dark bg-cream font-semibold text-[.9rem]">
                     <input type="checkbox" name="tage" value="Montag Nachmittag" class="hidden" />
@@ -684,7 +684,7 @@
                   <label class="checkbox-label flex items-center gap-2 px-4 py-2 rounded-xl border border-cream-dark bg-cream font-semibold text-[.9rem]">
                     <input type="checkbox" name="tage" value="Dienstag Morgen" class="hidden" />
                     <span class="checkbox-custom w-[18px] h-[18px] rounded-[4px] border-2 border-current flex items-center justify-center shrink-0"></span>
-                    Morgen 08:45–11:30
+                    Morgen 08:30–11:30
                   </label>
                   <label class="checkbox-label flex items-center gap-2 px-4 py-2 rounded-xl border border-cream-dark bg-cream font-semibold text-[.9rem]">
                     <input type="checkbox" name="tage" value="Dienstag Nachmittag" class="hidden" />
@@ -700,7 +700,7 @@
                   <label class="checkbox-label flex items-center gap-2 px-4 py-2 rounded-xl border border-cream-dark bg-cream font-semibold text-[.9rem]">
                     <input type="checkbox" name="tage" value="Mittwoch Morgen" class="hidden" />
                     <span class="checkbox-custom w-[18px] h-[18px] rounded-[4px] border-2 border-current flex items-center justify-center shrink-0"></span>
-                    Morgen 08:45–11:30
+                    Morgen 08:30–11:30
                   </label>
                   <label class="checkbox-label flex items-center gap-2 px-4 py-2 rounded-xl border border-cream-dark bg-cream font-semibold text-[.9rem]">
                     <input type="checkbox" name="tage" value="Mittwoch Nachmittag" class="hidden" />
@@ -716,7 +716,7 @@
                   <label class="checkbox-label flex items-center gap-2 px-4 py-2 rounded-xl border border-cream-dark bg-cream font-semibold text-[.9rem]">
                     <input type="checkbox" name="tage" value="Donnerstag Morgen" class="hidden" />
                     <span class="checkbox-custom w-[18px] h-[18px] rounded-[4px] border-2 border-current flex items-center justify-center shrink-0"></span>
-                    Morgen 08:45–11:30
+                    Morgen 08:30–11:30
                   </label>
                   <label class="checkbox-label flex items-center gap-2 px-4 py-2 rounded-xl border border-cream-dark bg-cream font-semibold text-[.9rem]">
                     <input type="checkbox" name="tage" value="Donnerstag Nachmittag" class="hidden" />
@@ -732,7 +732,7 @@
                   <label class="checkbox-label flex items-center gap-2 px-4 py-2 rounded-xl border border-cream-dark bg-cream font-semibold text-[.9rem]">
                     <input type="checkbox" name="tage" value="Freitag Morgen" class="hidden" />
                     <span class="checkbox-custom w-[18px] h-[18px] rounded-[4px] border-2 border-current flex items-center justify-center shrink-0"></span>
-                    Morgen 08:45–11:30
+                    Morgen 08:30–11:30
                   </label>
                   <label class="checkbox-label flex items-center gap-2 px-4 py-2 rounded-xl border border-cream-dark bg-cream font-semibold text-[.9rem]">
                     <input type="checkbox" name="tage" value="Freitag Nachmittag" class="hidden" />
@@ -809,7 +809,7 @@
             </div>
             <div>
               <h4 class="text-[.88rem] font-bold text-[var(--ink-mid)] mb-[2px]">Spielgruppenzeiten</h4>
-              <p id="kontakt-zeiten" class="text-[.95rem] text-ink font-semibold">Mo, Di, Do<br />Morgen: 08:45 – 11:30 Uhr<br />Nachmittag: 13:30 – 16:00 Uhr</p>
+              <p id="kontakt-zeiten" class="text-[.95rem] text-ink font-semibold">Mo, Di, Do<br />Morgen: 08:30 – 11:30 Uhr<br />Nachmittag: 13:30 – 16:00 Uhr</p>
             </div>
           </div>
         </div>
