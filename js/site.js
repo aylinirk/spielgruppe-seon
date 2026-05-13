@@ -554,12 +554,8 @@ async function loadZeitenPreise() {
       ).join('');
       let html = `<div class="px-6 py-4 text-[.82rem] font-bold text-[var(--ink-mid)] uppercase tracking-[.06em] border-b border-cream-dark bg-cream">Preis pro Kind / Monat</div>`;
       if (d.preise_morgen) {
-        html += `<div class="px-6 pt-3 pb-2 text-[.78rem] font-bold text-[var(--ink-light)] uppercase tracking-[.06em] bg-cream">Morgen (${d.morgen || '08:30 – 11:45'} Uhr)</div>`;
-        html += rows(d.preise_morgen, !d.preise_nachmittag);
-      }
-      if (d.preise_nachmittag) {
-        html += `<div class="px-6 pt-3 pb-2 text-[.78rem] font-bold text-[var(--ink-light)] uppercase tracking-[.06em] bg-cream border-t border-dashed border-cream-dark">Nachmittag (${d.nachmittag || '13:30 – 16:00'} Uhr)</div>`;
-        html += rows(d.preise_nachmittag, true);
+        html += `<div class="px-6 pt-3 pb-2 text-[.78rem] font-bold text-[var(--ink-light)] uppercase tracking-[.06em] bg-cream">Halbtag (${d.morgen || '08:45 – 11:30'} oder ${d.nachmittag || '13:30 – 16:15'} Uhr)</div>`;
+        html += rows(d.preise_morgen, true);
       }
       table.innerHTML = html;
     }

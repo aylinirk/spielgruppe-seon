@@ -2,35 +2,21 @@
   "start": "10. August 2026",
   "alter": "ab 2½ Jahre",
   "tage": "Montag - Freitag",
-  "morgen": "08:30 – 11:30",
-  "nachmittag": "13:30 – 16:00",
+  "morgen": "08:45 – 11:30",
+  "nachmittag": "13:30 – 16:15",
   "preise_morgen": [
     {
-      "label": "1 Morgen / Woche",
+      "label": "1 Halbtag / Woche",
       "price": "CHF 140.–"
     },
     {
-      "label": "2 Morgen / Woche",
+      "label": "2 Halbtage / Woche",
       "price": "CHF 260.–"
     },
     {
-      "label": "3 Morgen / Woche",
+      "label": "3 Halbtage / Woche",
       "price": "CHF 380.–"
     }
   ],
-  "preise_nachmittag": [
-    {
-      "label": "1 Nachmittag / Woche",
-      "price": "CHF 130.–"
-    },
-    {
-      "label": "2 Nachmittage / Woche",
-      "price": "CHF 240.–"
-    },
-    {
-      "label": "3 Nachmittage / Woche",
-      "price": "CHF 360.–"
-    }
-  ],
-  "warteliste_text": "Mehr als 3 Morgen oder Nachmittage sind auch möglich auf Anfrage."
+  "warteliste_text": "Mehr als 3 Halbtage sind auch möglich auf Anfrage."
 }
