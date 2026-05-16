@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="/uploads/spielgruppe-seon-1-.png" />
+  <title>Anmeldung – Spielgruppe Seon</title>
+  <meta name="robots" content="noindex" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sage:  { DEFAULT: 'oklch(0.64 0.09 148)', light: 'oklch(0.88 0.05 148)', dark: 'oklch(0.48 0.09 148)' },
+            terra: { DEFAULT: 'oklch(0.62 0.11 42)',  light: 'oklch(0.90 0.05 42)' },
+            cream: { DEFAULT: 'oklch(0.97 0.015 85)', dark:  'oklch(0.93 0.02 85)' },
+            ink:   { DEFAULT: 'oklch(0.26 0.02 85)',  mid:   'oklch(0.45 0.02 85)', light: 'oklch(0.68 0.02 85)' },
+          },
+          fontFamily: {
+            display: ['"Baloo 2"', 'sans-serif'],
+            body:    ['Nunito', 'sans-serif'],
+          },
+          borderRadius: {
+            '4xl': '2rem',
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --sage:       oklch(0.64 0.09 148);
+      --sage-light: oklch(0.88 0.05 148);
+      --sage-dark:  oklch(0.48 0.09 148);
+      --terra:      oklch(0.62 0.11 42);
+      --terra-light:oklch(0.90 0.05 42);
+      --cream:      oklch(0.97 0.015 85);
+      --cream-dark: oklch(0.93 0.02 85);
+      --ink:        oklch(0.26 0.02 85);
+      --ink-mid:    oklch(0.45 0.02 85);
+      --ink-light:  oklch(0.68 0.02 85);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Nunito', sans-serif; background: var(--cream); color: var(--ink); font-size: 16px; line-height: 1.6; }
+    h1,h2,h3,h4 { font-family: 'Baloo 2', sans-serif; }
+
+    /* ── Form inputs ── */
+    .field {
+      border: 1.5px solid var(--cream-dark);
+      border-radius: 12px;
+      padding: 11px 14px;
+      font-size: .95rem;
+      font-family: 'Nunito', sans-serif;
+      background: white;
+      color: var(--ink);
+      outline: none;
+      width: 100%;
+      transition: border-color .15s, box-shadow .15s;
+    }
+    .field:focus {
+      border-color: var(--sage);
+      box-shadow: 0 0 0 3px oklch(0.64 0.09 148 / .15);
+    }
+    .field.error { border-color: var(--terra); }
+    textarea.field { resize: vertical; min-height: 90px; }
+
+    /* ── Section header ── */
+    .sec-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Baloo 2', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--ink);
+      margin-bottom: 18px;
+    }
+    .sec-label::before {
+      content: '';
+      width: 4px;
+      height: 22px;
+      border-radius: 2px;
+      background: var(--sage);
+      flex-shrink: 0;
+    }
+
+    /* ── Checkbox pills ── */
+    .cb-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 12px;
+      border: 1.5px solid var(--cream-dark);
+      background: white;
+      font-weight: 600;
+      font-size: .88rem;
+      cursor: pointer;
+      transition: border-color .15s, background .15s, color .15s;
+      color: var(--ink-mid);
+      user-select: none;
+    }
+    .cb-label.checked {
+      border-color: var(--sage);
+      background: var(--sage-light);
+      color: var(--sage-dark);
+    }
+    .cb-box {
+      width: 17px; height: 17px;
+      border-radius: 4px;
+      border: 2px solid currentColor;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* ── Radio pills ── */
+    .rb-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 12px;
+      border: 1.5px solid var(--cream-dark);
+      background: white;
+      font-weight: 600;
+      font-size: .88rem;
+      cursor: pointer;
+      transition: border-color .15s, background .15s, color .15s;
+      color: var(--ink-mid);
+      user-select: none;
+    }
+    .rb-label.checked {
+      border-color: var(--sage);
+      background: var(--sage-light);
+      color: var(--sage-dark);
+    }
+    .rb-circle {
+      width: 17px; height: 17px;
+      border-radius: 50%;
+      border: 2px solid currentColor;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .rb-circle::after {
+      content: '';
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--sage-dark);
+      display: none;
+    }
+    .rb-label.checked .rb-circle::after { display: block; }
+
+    /* ── Error text ── */
+    .err { font-size: .78rem; color: var(--terra); font-weight: 600; margin-top: 4px; display: none; }
+    .err.show { display: block; }
+
+    /* ── Kosten-Info ── */
+    .kosten-box {
+      background: var(--sage-light);
+      border: 1.5px solid oklch(0.80 0.06 148);
+      border-radius: 16px;
+      padding: 20px 24px;
+    }
+
+    /* ── Success ── */
+    .success-wrap {
+      background: var(--sage-light);
+      border: 2px solid var(--sage);
+      border-radius: 28px;
+      padding: 56px 40px;
+      text-align: center;
+      display: none;
+    }
+  </style>
+</head>
+<body class="min-h-screen">
+
+  <!-- ── Top bar ── -->
+  <div style="background: oklch(0.97 0.015 85); border-bottom: 1px solid oklch(0.93 0.02 85); padding: 14px 24px; display: flex; align-items: center; justify-content: space-between;">
+    <a href="/" style="display:inline-flex;align-items:center;gap:8px;color:var(--ink-mid);font-size:.9rem;font-weight:600;text-decoration:none;transition:color .15s;" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--ink-mid)'">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Zur Hauptseite
+    </a>
+    <span style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:.95rem;color:var(--sage-dark);">Spielgruppe Seon</span>
+  </div>
+
+  <!-- ── Hero ── -->
+  <div style="background: linear-gradient(135deg, var(--sage-light) 0%, oklch(0.97 0.015 85) 60%); padding: 52px 24px 40px; text-align: center;">
+    <div style="display:inline-flex;align-items:center;gap:6px;font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--terra);margin-bottom:12px;">Anmeldeformular</div>
+    <h1 style="font-family:'Baloo 2',sans-serif;font-size:clamp(1.9rem,4vw,2.6rem);font-weight:800;color:var(--ink);line-height:1.15;margin-bottom:12px;">Jetzt anmelden</h1>
+    <p style="font-size:1rem;color:var(--ink-mid);max-width:520px;margin:0 auto;line-height:1.7;">Füllt das Formular aus und Dina meldet sich persönlich bei euch. <strong style="color:var(--ink);">Vollständig unverbindlich.</strong></p>
+  </div>
+
+  <!-- ── Form card ── -->
+  <div style="max-width:780px;margin:0 auto;padding:32px 16px 80px;">
+
+    <div id="form-wrap" style="background:white;border-radius:28px;padding:clamp(24px,5vw,48px);box-shadow:0 4px 24px oklch(0.26 0.02 85 / .09);">
+
+      <form id="anmeldung-form" novalidate>
+        <input type="hidden" name="access_key" value="f2ae7a08-a61a-44d7-aca4-13f0ae2ed2b9" />
+        <input type="hidden" name="subject" value="Neue Anmeldung – Spielgruppe Seon" />
+        <input type="hidden" name="from_name" value="Spielgruppe Seon Website" />
+        <input type="checkbox" name="botcheck" style="display:none;" />
+
+        <!-- ═══ 1a. PERSONALIEN ELTERNTEIL 1 ════════════════════════════════ -->
+        <div class="sec-label">Personalien Elternteil 1</div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+
+          <div class="flex flex-col gap-1">
+            <label class="text-[.83rem] font-bold text-ink" for="ep1-vorname">Vorname <span class="text-[var(--terra)]">*</span></label>
+            <input class="field" type="text" id="ep1-vorname" name="ep1Vorname" placeholder="Vorname" />
+            <span class="err" id="err-ep1-vorname"></span>
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <label class="text-[.83rem] font-bold text-ink" for="ep1-nachname">Nachname <span class="text-[var(--terra)]">*</span></label>
+            <input class="field" type="text" id="ep1-nachname" name="ep1Nachname" placeholder="Nachname" />
+            <span class="err" id="err-ep1-nachname"></span>
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <label class="text-[.83rem] font-bold text-ink" for="ep1-mobile">Mobile <span class="text-[var(--terra)]">*</span></label>
+            <input class="field" type="tel" id="ep1-mobile" name="ep1Mobile" placeholder="079 123 45 67" />
+            <span class="err" id="err-ep1-mobile"></span>
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <label class="text-[.83rem] font-bold text-ink" for="strasse">Strasse / Nr. <span class="text-[var(--terra)]">*</span></label>
+            <input class="field" type="text" id="strasse" name="strasse" placeholder="Musterstrasse 12" />
+            <span class="err" id="err-strasse"></span>
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <label class="text-[.83rem] font-bold text-ink" for="plz-ort">PLZ / Ort <span class="text-[var(--terra)]">*</span></label>
+            <input class="field" type="text" id="plz-ort" name="plzOrt" placeholder="5703 Seon" />
+            <span class="err" id="err-plz"></span>
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <label class="text-[.83rem] font-bold text-ink" for="tel-priv">Tel. (Privat) <span class="text-[var(--terra)]">*</span></label>
+            <input class="field" type="tel" id="tel-priv" name="telPrivat" placeholder="062 123 45 67" />
+            <span class="err" id="err-tel-priv"></span>
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <label class="text-[.83rem] font-bold text-ink" for="tel-geschaeft">Tel. (Geschäft)</label>
+            <input class="field" type="tel" id="tel-geschaeft" name="telGeschaeft" placeholder="062 123 45 67" />
+          </div>
+
+          <div class="flex flex-col gap-1 sm:col-span-2">
+            <label class="text-[.83rem] font-bold text-ink" for="email">E-Mail <span class="text-[var(--terra)]">*</span></label>
+            <input class="field" type="email" id="email" name="email" placeholder="name@beispiel.ch" />
+            <span class="err" id="err-email"></span>
+          </div>
+
+        </div>
+
+        <!-- ═══ 1b. PERSONALIEN ELTERNTEIL 2 ════════════════════════════════ -->
+        <div class="sec-label" style="border-top:1.5px solid var(--cream-dark);padding-top:24px;margin-top:4px;">
+          Personalien Elternteil 2
+          <span style="font-size:.75rem;font-weight:600;color:var(--ink-light);font-family:'Nunito',sans-serif;">(freiwillig)</span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+
+          <div class="flex flex-col gap-1">
+            <label class="text-[.83rem] font-bold text-ink" for="ep2-vorname">Vorname</label>
+            <input class="field" type="text" id="ep2-vorname" name="ep2Vorname" placeholder="Vorname" />
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <label class="text-[.83rem] font-bold text-ink" for="ep2-nachname">Nachname</label>
+            <input class="field" type="text" id="ep2-nachname" name="ep2Nachname" placeholder="Nachname" />
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <label class="text-[.83rem] font-bold text-ink" for="ep2-mobile">Mobile</label>
+            <input class="field" type="tel" id="ep2-mobile" name="ep2Mobile" placeholder="079 123 45 67" />
+          </div>
+
+        </div>
+
+        <!-- ═══ 2. PERSONALIEN KIND ════════════════════════════════════════ -->
+        <div class="sec-label" style="border-top:1.5px solid var(--cream-dark);padding-top:24px;margin-top:4px;">Personalien des Kindes</div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+
+          <div class="flex flex-col gap-1 sm:col-span-2">
+            <label class="text-[.83rem] font-bold text-ink">Geschlecht <span class="text-[var(--terra)]">*</span></label>
+            <div class="flex flex-wrap gap-3 mt-1">
+              <label class="rb-label" id="rb-maedchen">
+                <input type="radio" name="geschlecht" value="Mädchen" style="display:none;" />
+                <span class="rb-circle"></span>
+                Mädchen
+              </label>
+              <label class="rb-label" id="rb-knabe">
+                <input type="radio" name="geschlecht" value="Junge" style="display:none;" />
+                <span class="rb-circle"></span>
+                Junge
+              </label>
+            </div>
+            <span class="err" id="err-geschlecht"></span>
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <label class="text-[.83rem] font-bold text-ink" for="kind-vorname">Vorname <span class="text-[var(--terra)]">*</span></label>
+            <input class="field" type="text" id="kind-vorname" name="kindVorname" placeholder="Vorname" />
+            <span class="err" id="err-kind-vorname"></span>
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <label class="text-[.83rem] font-bold text-ink" for="kind-nachname">Nachname <span class="text-[var(--terra)]">*</span></label>
+            <input class="field" type="text" id="kind-nachname" name="kindNachname" placeholder="Nachname" />
+            <span class="err" id="err-kind-nachname"></span>
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <label class="text-[.83rem] font-bold text-ink" for="geburtsdatum">Geburtsdatum <span class="text-[var(--terra)]">*</span></label>
+            <input class="field" type="date" id="geburtsdatum" name="geburtsdatum" />
+            <span class="err" id="err-geburtsdatum"></span>
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <label class="text-[.83rem] font-bold text-ink" for="muttersprache">Muttersprache</label>
+            <input class="field" type="text" id="muttersprache" name="muttersprache" placeholder="z.B. Deutsch" />
+          </div>
+
+          <div class="flex flex-col gap-1 sm:col-span-2">
+            <label class="text-[.83rem] font-bold text-ink" for="geschwister">Geschwister / Alter</label>
+            <input class="field" type="text" id="geschwister" name="geschwister" placeholder="z.B. Schwester, 4 Jahre" />
+          </div>
+
+          <div class="flex flex-col gap-1 sm:col-span-2">
+            <label class="text-[.83rem] font-bold text-ink" for="allergien">Spezielle Krankheiten / Allergien</label>
+            <input class="field" type="text" id="allergien" name="allergien" placeholder="Falls vorhanden, bitte angeben" />
+          </div>
+
+          <div class="flex flex-col gap-1 sm:col-span-2">
+            <label class="text-[.83rem] font-bold text-ink" for="bemerkungen">Bemerkungen / besondere Anliegen</label>
+            <textarea class="field" id="bemerkungen" name="bemerkungen" placeholder="Allfällige Hinweise, gewünschter Starttermin, Warteliste…"></textarea>
+          </div>
+
+        </div>
+
+        <!-- ═══ 3. WEITERER NOTFALLKONTAKT ════════════════════════════════ -->
+        <div class="sec-label" style="border-top:1.5px solid var(--cream-dark);padding-top:24px;margin-top:4px;">Weiterer Notfallkontakt <span style="font-size:.75rem;font-weight:600;color:var(--ink-light);font-family:'Nunito',sans-serif;">(freiwillig)</span></div>
+        <p style="font-size:.85rem;color:var(--ink-mid);margin-bottom:14px;">Falls eine weitere Person erreichbar sein soll, z.B. Grosseltern oder eine andere Bezugsperson.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+
+          <div class="flex flex-col gap-1">
+            <label class="text-[.83rem] font-bold text-ink" for="notfall-name">Name / Vorname</label>
+            <input class="field" type="text" id="notfall-name" name="notfallName" placeholder="Vorname Nachname" />
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <label class="text-[.83rem] font-bold text-ink" for="notfall-tel">Telefon</label>
+            <input class="field" type="tel" id="notfall-tel" name="notfallTel" placeholder="079 123 45 67" />
+          </div>
+
+        </div>
+
+        <!-- ═══ 4. ZEITEN ══════════════════════════════════════════════════ -->
+        <div class="sec-label" style="border-top:1.5px solid var(--cream-dark);padding-top:24px;margin-top:4px;">Gewünschte Zeiten</div>
+        <p style="font-size:.85rem;color:var(--ink-mid);margin-bottom:16px;">Bitte die gewünschten Tage und Halbtage auswählen. Mehrfachauswahl möglich.</p>
+
+        <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:8px;" id="zeiten-wrap">
+
+          <!-- Mo -->
+          <div>
+            <div style="font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-mid);margin-bottom:8px;">Montag</div>
+            <div style="display:flex;flex-wrap:wrap;gap:10px;">
+              <label class="cb-label"><input type="checkbox" name="tage" value="Montag Morgen (08:45–11:30)" style="display:none;" /><span class="cb-box"></span>Morgen 08:45–11:30</label>
+              <label class="cb-label"><input type="checkbox" name="tage" value="Montag Nachmittag (13:30–16:15)" style="display:none;" /><span class="cb-box"></span>Nachmittag 13:30–16:15</label>
+            </div>
+          </div>
+
+          <!-- Di -->
+          <div>
+            <div style="font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-mid);margin-bottom:8px;">Dienstag</div>
+            <div style="display:flex;flex-wrap:wrap;gap:10px;">
+              <label class="cb-label"><input type="checkbox" name="tage" value="Dienstag Morgen (08:45–11:30)" style="display:none;" /><span class="cb-box"></span>Morgen 08:45–11:30</label>
+              <label class="cb-label"><input type="checkbox" name="tage" value="Dienstag Nachmittag (13:30–16:15)" style="display:none;" /><span class="cb-box"></span>Nachmittag 13:30–16:15</label>
+            </div>
+          </div>
+
+          <!-- Mi -->
+          <div>
+            <div style="font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-mid);margin-bottom:8px;">Mittwoch</div>
+            <div style="display:flex;flex-wrap:wrap;gap:10px;">
+              <label class="cb-label"><input type="checkbox" name="tage" value="Mittwoch Morgen (08:45–11:30)" style="display:none;" /><span class="cb-box"></span>Morgen 08:45–11:30</label>
+              <label class="cb-label"><input type="checkbox" name="tage" value="Mittwoch Nachmittag (13:30–16:15)" style="display:none;" /><span class="cb-box"></span>Nachmittag 13:30–16:15</label>
+            </div>
+          </div>
+
+          <!-- Do -->
+          <div>
+            <div style="font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-mid);margin-bottom:8px;">Donnerstag</div>
+            <div style="display:flex;flex-wrap:wrap;gap:10px;">
+              <label class="cb-label"><input type="checkbox" name="tage" value="Donnerstag Morgen (08:45–11:30)" style="display:none;" /><span class="cb-box"></span>Morgen 08:45–11:30</label>
+              <label class="cb-label"><input type="checkbox" name="tage" value="Donnerstag Nachmittag (13:30–16:15)" style="display:none;" /><span class="cb-box"></span>Nachmittag 13:30–16:15</label>
+            </div>
+          </div>
+
+          <!-- Fr -->
+          <div>
+            <div style="font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-mid);margin-bottom:8px;">Freitag</div>
+            <div style="display:flex;flex-wrap:wrap;gap:10px;">
+              <label class="cb-label"><input type="checkbox" name="tage" value="Freitag Morgen (08:45–11:30)" style="display:none;" /><span class="cb-box"></span>Morgen 08:45–11:30</label>
+              <label class="cb-label"><input type="checkbox" name="tage" value="Freitag Nachmittag (13:30–16:15)" style="display:none;" /><span class="cb-box"></span>Nachmittag 13:30–16:15</label>
+            </div>
+          </div>
+
+        </div>
+        <span class="err" id="err-tage"></span>
+
+        <!-- ═══ 5. KOSTEN ═══════════════════════════════════════════════════ -->
+        <div style="border-top:1.5px solid var(--cream-dark);padding-top:24px;margin-top:24px;margin-bottom:24px;">
+          <div class="kosten-box">
+            <div style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:.9rem;color:var(--sage-dark);text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px;">Kosten pro Kind / Monat</div>
+            <div style="display:flex;flex-direction:column;gap:6px;font-size:.88rem;">
+              <div style="color:var(--ink-mid);">1 Halbtag / Woche: <strong style="color:var(--ink);">CHF 140.–</strong></div>
+              <div style="color:var(--ink-mid);">2 Halbtage / Woche: <strong style="color:var(--ink);">CHF 260.–</strong></div>
+              <div style="color:var(--ink-mid);">3 Halbtage / Woche: <strong style="color:var(--ink);">CHF 380.–</strong></div>
+            </div>
+            <p style="font-size:.8rem;color:var(--sage-dark);margin-top:10px;">Mehr als 3 Halbtage sind auch möglich auf Anfrage.</p>
+          </div>
+        </div>
+
+        <!-- ═══ 6. EINWILLIGUNGEN ═══════════════════════════════════════════ -->
+        <div style="border-top:1.5px solid var(--cream-dark);padding-top:24px;margin-top:24px;margin-bottom:0;">
+          <div class="sec-label">Einwilligungen</div>
+          <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:24px;">
+
+            <label class="cb-label" style="align-items:flex-start;gap:12px;padding:14px 16px;">
+              <input type="checkbox" name="einwilligung_whatsapp" value="Ja" style="display:none;" />
+              <span class="cb-box" style="margin-top:2px;flex-shrink:0;"></span>
+              <span style="font-size:.88rem;line-height:1.55;color:var(--ink);">Dina darf mich zum <strong>WhatsApp Elternchat</strong> hinzufügen.</span>
+            </label>
+
+            <label class="cb-label" style="align-items:flex-start;gap:12px;padding:14px 16px;">
+              <input type="checkbox" name="einwilligung_fotos" value="Ja" style="display:none;" />
+              <span class="cb-box" style="margin-top:2px;flex-shrink:0;"></span>
+              <span style="font-size:.88rem;line-height:1.55;color:var(--ink);">Dina darf während der Spielgruppenzeit <strong>Bilder machen</strong> und im Elternchat teilen.</span>
+            </label>
+
+            <label class="cb-label" id="cb-versicherung" style="align-items:flex-start;gap:12px;padding:14px 16px;">
+              <input type="checkbox" name="einwilligung_versicherung" value="Ja, zur Kenntnis genommen" style="display:none;" />
+              <span class="cb-box" style="margin-top:2px;flex-shrink:0;"></span>
+              <span style="font-size:.88rem;line-height:1.55;color:var(--ink);">Ich nehme zur Kenntnis, dass <strong>das Kind durch die Spielgruppe nicht versichert ist</strong>. Kranken-, Unfall- und Haftpflichtversicherung sind ausschliesslich Sache der Eltern. <span class="text-[var(--terra)]">*</span></span>
+            </label>
+
+            <label class="cb-label" id="cb-datenschutz" style="align-items:flex-start;gap:12px;padding:14px 16px;">
+              <input type="checkbox" name="einwilligung_datenschutz" value="Ja" style="display:none;" />
+              <span class="cb-box" style="margin-top:2px;flex-shrink:0;"></span>
+              <span style="font-size:.88rem;line-height:1.55;color:var(--ink);">Ich habe die <a href="/datenschutz.html" target="_blank" onclick="event.stopPropagation()" style="color:var(--sage-dark);font-weight:700;text-decoration:underline;">Datenschutzbestimmungen</a> gelesen und akzeptiert. <span class="text-[var(--terra)]">*</span></span>
+            </label>
+            <span class="err" id="err-pflicht"></span>
+
+          </div>
+        </div>
+
+        <!-- ═══ 7. SUBMIT ══════════════════════════════════════════════════ -->
+        <div style="border-top:1.5px solid var(--cream-dark);padding-top:24px;">
+          <p style="font-size:.83rem;color:var(--ink-mid);margin-bottom:20px;line-height:1.6;">
+            Mit dem Absenden bestätigt ihr die obigen Einwilligungen. Eine Warteliste besteht —
+            erst nach dem persönlichen Kennenlerngespräch und gegenseitiger schriftlicher Bestätigung entsteht eine verbindliche Vereinbarung.
+          </p>
+          <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:center;" class="sm:justify-start">
+            <button type="submit" id="submit-btn" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--terra);color:white;font-family:'Baloo 2',sans-serif;font-weight:700;font-size:1rem;border:none;border-radius:999px;padding:14px 36px;cursor:pointer;transition:background .2s,box-shadow .2s,transform .15s;" onmouseover="this.style.background='oklch(0.55 0.11 42)'" onmouseout="this.style.background='var(--terra)'">
+              Anmeldung absenden
+            </button>
+            <a href="/anmeldung-formular.html" target="_blank" style="font-size:.85rem;color:var(--ink-mid);text-decoration:none;display:inline-flex;align-items:center;gap:5px;" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--ink-mid)'">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Lieber ausdrucken?
+            </a>
+          </div>
+        </div>
+
+      </form>
+
+      <!-- Success state -->
+      <div class="success-wrap" id="success-box">
+        <div style="font-size:3rem;margin-bottom:16px;">🎉</div>
+        <h3 style="font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.5rem;color:var(--sage-dark);margin-bottom:12px;">Vielen Dank für eure Anmeldung!</h3>
+        <p style="color:var(--ink-mid);font-size:.95rem;line-height:1.75;max-width:440px;margin:0 auto 24px;">
+          Dina hat eure Anmeldung erhalten und meldet sich so bald wie möglich persönlich bei euch.<br /><br />
+          <strong style="color:var(--ink);">Bitte beachtet:</strong> Es besteht eine Warteliste. Ihr werdet informiert, sobald ein Platz frei wird.
+        </p>
+        <a href="/" style="display:inline-flex;align-items:center;gap:8px;background:var(--sage);color:white;font-family:'Baloo 2',sans-serif;font-weight:700;font-size:.95rem;border-radius:999px;padding:12px 28px;text-decoration:none;">
+          Zurück zur Hauptseite
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Footer note -->
+    <div style="text-align:center;margin-top:28px;">
+      <p style="font-size:.88rem;font-weight:700;color:var(--ink-mid);">Konstantina Vlachodimou</p>
+      <p style="font-size:.82rem;color:var(--ink-light);margin-top:2px;">Oholten 3, 5703 Seon</p>
+      <p style="font-size:.82rem;color:var(--ink-light);margin-top:8px;">
+        Fragen? <a href="mailto:dina@spielgruppe-seon.ch" style="color:var(--sage-dark);font-weight:700;text-decoration:none;">dina@spielgruppe-seon.ch</a> · <a href="tel:+41763078753" style="color:var(--sage-dark);font-weight:700;text-decoration:none;">076 307 87 53</a>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    'use strict';
+    const W3F = 'https://api.web3forms.com/submit';
+
+    // ── Checkbox toggle ──────────────────────────────────────────────────────
+    document.querySelectorAll('.cb-label').forEach(label => {
+      const input = label.querySelector('input[type="checkbox"]');
+      const box   = label.querySelector('.cb-box');
+      const update = () => {
+        label.classList.toggle('checked', input.checked);
+        box.innerHTML = input.checked
+          ? '<svg width="11" height="11" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>'
+          : '';
+      };
+      label.addEventListener('click', e => { e.preventDefault(); input.checked = !input.checked; update(); });
+    });
+
+    // ── Radio toggle ─────────────────────────────────────────────────────────
+    document.querySelectorAll('.rb-label').forEach(label => {
+      const input = label.querySelector('input[type="radio"]');
+      label.addEventListener('click', e => {
+        e.preventDefault();
+        // uncheck siblings
+        document.querySelectorAll(`input[name="${input.name}"]`).forEach(r => {
+          r.checked = false;
+          r.closest('.rb-label').classList.remove('checked');
+        });
+        input.checked = true;
+        label.classList.add('checked');
+      });
+    });
+
+    // ── Validation helpers ───────────────────────────────────────────────────
+    function showErr(id, msg) {
+      const el = document.getElementById(id);
+      if (el) { el.textContent = msg; el.classList.add('show'); }
+      const inputId = id.replace('err-', '');
+      const input = document.getElementById(inputId) || document.getElementById(inputId.replace(/-([a-z])/g, (_, c) => c.toUpperCase()));
+      if (input) input.classList.add('error');
+      return false;
+    }
+    function clearErr(id) {
+      const el = document.getElementById(id);
+      if (el) { el.textContent = ''; el.classList.remove('show'); }
+      return true;
+    }
+
+    // ── Form submit ──────────────────────────────────────────────────────────
+    document.getElementById('anmeldung-form').addEventListener('submit', async e => {
+      e.preventDefault();
+      let valid = true;
+
+      // Required text/email fields
+      const required = [
+        { id: 'ep1-vorname',    err: 'err-ep1-vorname',    msg: 'Bitte Vorname (Elternteil 1) angeben.' },
+        { id: 'ep1-nachname',   err: 'err-ep1-nachname',   msg: 'Bitte Nachname (Elternteil 1) angeben.' },
+        { id: 'ep1-mobile',      err: 'err-ep1-mobile',      msg: 'Bitte Mobile (Elternteil 1) angeben.' },
+        { id: 'strasse',        err: 'err-strasse',        msg: 'Bitte Strasse angeben.' },
+        { id: 'plz-ort',        err: 'err-plz',            msg: 'Bitte PLZ / Ort angeben.' },
+        { id: 'tel-priv',       err: 'err-tel-priv',       msg: 'Bitte Tel. (Privat) angeben.' },
+        { id: 'email',          err: 'err-email',          msg: 'Bitte gültige E-Mail angeben.', re: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ },
+        { id: 'kind-vorname',   err: 'err-kind-vorname',   msg: 'Bitte Vorname des Kindes angeben.' },
+        { id: 'kind-nachname',  err: 'err-kind-nachname',  msg: 'Bitte Nachname des Kindes angeben.' },
+        { id: 'geburtsdatum',   err: 'err-geburtsdatum',   msg: 'Bitte Geburtsdatum angeben.' },
+      ];
+
+      required.forEach(f => {
+        const el  = document.getElementById(f.id);
+        const val = el ? el.value.trim() : '';
+        const ok  = f.re ? f.re.test(val) : val.length > 0;
+        valid = ok ? clearErr(f.err) && valid : showErr(f.err, f.msg) && false;
+      });
+
+      // Geschlecht
+      const geschlecht = document.querySelector('input[name="geschlecht"]:checked');
+      if (!geschlecht) { showErr('err-geschlecht', 'Bitte Geschlecht auswählen.'); valid = false; }
+      else clearErr('err-geschlecht');
+
+      // Tage
+      const tage = document.querySelectorAll('input[name="tage"]:checked');
+      if (tage.length === 0) { showErr('err-tage', 'Bitte mindestens einen Halbtag auswählen.'); valid = false; }
+      else clearErr('err-tage');
+
+      // Pflicht-Einwilligungen
+      const versicherung = document.querySelector('input[name="einwilligung_versicherung"]:checked');
+      const datenschutz  = document.querySelector('input[name="einwilligung_datenschutz"]:checked');
+      if (!versicherung || !datenschutz) {
+        const errEl = document.getElementById('err-pflicht');
+        if (errEl) { errEl.textContent = 'Bitte beide Pflicht-Einwilligungen (Versicherung & Datenschutz) bestätigen.'; errEl.classList.add('show'); }
+        if (!versicherung) document.getElementById('cb-versicherung').style.borderColor = 'var(--terra)';
+        if (!datenschutz)  document.getElementById('cb-datenschutz').style.borderColor  = 'var(--terra)';
+        valid = false;
+      } else {
+        const errEl = document.getElementById('err-pflicht');
+        if (errEl) { errEl.textContent = ''; errEl.classList.remove('show'); }
+        document.getElementById('cb-versicherung').style.borderColor = '';
+        document.getElementById('cb-datenschutz').style.borderColor  = '';
+      }
+
+      if (!valid) {
+        document.querySelector('.show, .error')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      const btn = document.getElementById('submit-btn');
+      btn.disabled = true;
+      btn.textContent = 'Wird gesendet…';
+
+      try {
+        const fd = new FormData(e.target);
+        const res = await fetch(W3F, { method: 'POST', headers: { Accept: 'application/json' }, body: fd });
+        const json = await res.json();
+        if (json.success || location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
+          document.getElementById('form-wrap').querySelector('form').style.display = 'none';
+          document.getElementById('success-box').style.display = 'block';
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else { throw new Error(); }
+      } catch {
+        btn.disabled = false;
+        btn.textContent = 'Anmeldung absenden';
+        alert('Es ist ein Fehler aufgetreten. Bitte versuche es später erneut oder kontaktiere Dina direkt.');
+      }
+    });
+  </script>
+
+</body>
+</html>

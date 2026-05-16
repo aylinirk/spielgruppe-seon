@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anmeldeformular – Spielgruppe Seon</title>
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Nunito', Arial, sans-serif;
+      font-size: 11pt;
+      color: #1a1a1a;
+      background: #f7f7f5;
+      padding: 24px;
+    }
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+      background: white;
+      padding: 36px 40px 48px;
+      border-radius: 12px;
+      box-shadow: 0 2px 20px rgba(0,0,0,.08);
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 28px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #c8dbbf;
+    }
+    .header-left { display: flex; flex-direction: row; align-items: center; gap: 14px; }
+    .header-left img { height: 72px; width: auto; object-fit: contain; flex-shrink: 0; }
+    .header-left h1 {
+      font-family: 'Baloo 2', sans-serif;
+      font-size: 14pt;
+      font-weight: 800;
+      color: #1a1a1a;
+      line-height: 1.2;
+      margin-bottom: 2px;
+    }
+    .header-left p { font-size: 9pt; color: #333; line-height: 1.4; }
+    .header-right {
+      text-align: right;
+      font-size: 8.5pt;
+      color: #888;
+      line-height: 1.7;
+    }
+
+    /* Section */
+    .section { margin-bottom: 22px; }
+    .section-title {
+      font-family: 'Baloo 2', sans-serif;
+      font-size: 10pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: #3a6b35;
+      border-left: 3px solid #6aaa5e;
+      padding-left: 8px;
+      margin-bottom: 12px;
+    }
+
+    /* Grid */
+    .grid { display: grid; gap: 10px 18px; }
+    .grid-2 { grid-template-columns: 1fr 1fr; }
+    .grid-3 { grid-template-columns: 2fr 1fr 1fr; }
+    .span-2 { grid-column: span 2; }
+
+    /* Field */
+    .field-wrap { display: flex; flex-direction: column; gap: 3px; }
+    .field-label { font-size: 8.5pt; font-weight: 700; color: #555; }
+    .field-line {
+      border: none;
+      border-bottom: 1.5px solid #bbb;
+      height: 24px;
+      width: 100%;
+      background: transparent;
+    }
+    .field-line-tall {
+      border: 1.5px solid #bbb;
+      border-radius: 4px;
+      height: 40px;
+      width: 100%;
+      background: transparent;
+    }
+
+    /* Checkboxes */
+    .checks-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 24px; margin-top: 4px; }
+    .check-row { display: flex; align-items: center; gap: 8px; font-size: 9.5pt; }
+    .check-box {
+      width: 13px; height: 13px;
+      border: 1.5px solid #999;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    /* Geschlecht */
+    .radio-row { display: flex; gap: 24px; margin-top: 6px; }
+    .radio-item { display: flex; align-items: center; gap: 7px; font-size: 10pt; }
+    .radio-circle { width: 13px; height: 13px; border-radius: 50%; border: 1.5px solid #999; flex-shrink: 0; }
+
+    /* Kosten box */
+    .kosten {
+      background: #f0f7ee;
+      border: 1.5px solid #b8d4b2;
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin-bottom: 20px;
+    }
+    .kosten-title { font-size: 9pt; font-weight: 700; color: #3a6b35; margin-bottom: 8px; text-transform: uppercase; letter-spacing: .05em; }
+    .kosten-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 16px; font-size: 9pt; }
+    .kosten-sub { font-weight: 700; color: #333; margin-bottom: 2px; }
+    .kosten-row { color: #555; }
+
+    /* Unterschrift */
+    .sig-row { display: grid; grid-template-columns: 1fr 1fr; gap: 32px 32px; margin-top: 56px; }
+    .sig-item { border-top: 1.5px solid #bbb; padding-top: 6px; padding-bottom: 48px; font-size: 8.5pt; color: #888; }
+
+    /* Disclaimer */
+    .disclaimer {
+      font-size: 8pt;
+      color: #888;
+      line-height: 1.5;
+      text-align: center;
+      padding-top: 16px;
+      border-top: 1px solid #e5e5e5;
+      margin-top: 24px;
+    }
+
+    /* Print button */
+    .print-bar {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .print-btn {
+      background: #6aaa5e;
+      color: white;
+      border: none;
+      border-radius: 999px;
+      padding: 11px 28px;
+      font-family: 'Baloo 2', sans-serif;
+      font-weight: 700;
+      font-size: .95rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #888;
+      font-size: .85rem;
+      text-decoration: none;
+      margin-right: 16px;
+    }
+
+    @media print {
+      body { background: white; padding: 0; }
+      .page { box-shadow: none; border-radius: 0; padding: 20px 28px 32px; max-width: 100%; }
+      .print-bar { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="print-bar">
+    <a href="/anmeldung.html" class="back-link">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Online ausfüllen
+    </a>
+    <button class="print-btn" onclick="window.print()">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      Als PDF drucken / speichern
+    </button>
+  </div>
+
+  <div class="page">
+
+    <!-- Header -->
+    <div class="header">
+      <div class="header-left">
+        <img src="/uploads/spielgruppe-seon-1-.png" alt="Spielgruppe Seon" />
+        <div>
+          <h1>Anmeldeformular</h1>
+          <p>Start am 12.08.2026</p>
+        </div>
+      </div>
+      <div class="header-right">
+        Konstantina Vlachodimou<br />
+        dina@spielgruppe-seon.ch<br />
+        076 307 87 53
+      </div>
+    </div>
+
+    <!-- 1a. Personalien Elternteil 1 -->
+    <div class="section">
+      <div class="section-title">Personalien Elternteil 1</div>
+      <div class="grid grid-2">
+        <div class="field-wrap">
+          <div class="field-label">Vorname *</div>
+          <div class="field-line"></div>
+        </div>
+        <div class="field-wrap">
+          <div class="field-label">Nachname *</div>
+          <div class="field-line"></div>
+        </div>
+        <div class="field-wrap">
+          <div class="field-label">Mobile *</div>
+          <div class="field-line"></div>
+        </div>
+        <div class="field-wrap">
+          <div class="field-label">Strasse / Nr. *</div>
+          <div class="field-line"></div>
+        </div>
+        <div class="field-wrap">
+          <div class="field-label">PLZ / Ort *</div>
+          <div class="field-line"></div>
+        </div>
+        <div class="field-wrap">
+          <div class="field-label">Tel. (Privat) *</div>
+          <div class="field-line"></div>
+        </div>
+        <div class="field-wrap">
+          <div class="field-label">Tel. (Geschäft)</div>
+          <div class="field-line"></div>
+        </div>
+        <div class="field-wrap span-2">
+          <div class="field-label">E-Mail *</div>
+          <div class="field-line"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1b. Personalien Elternteil 2 -->
+    <div class="section">
+      <div class="section-title">Personalien Elternteil 2 <span style="font-size:8pt;font-weight:400;text-transform:none;letter-spacing:0;">(freiwillig)</span></div>
+      <div class="grid grid-2">
+        <div class="field-wrap">
+          <div class="field-label">Vorname</div>
+          <div class="field-line"></div>
+        </div>
+        <div class="field-wrap">
+          <div class="field-label">Nachname</div>
+          <div class="field-line"></div>
+        </div>
+        <div class="field-wrap">
+          <div class="field-label">Mobile</div>
+          <div class="field-line"></div>
+        </div>
+        <div class="field-wrap">
+          <div style="height:1px;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Personalien Kind -->
+    <div class="section">
+      <div class="section-title">Personalien des Kindes</div>
+      <div class="grid grid-2">
+        <div class="field-wrap span-2">
+          <div class="field-label">Geschlecht</div>
+          <div class="radio-row">
+            <div class="radio-item"><div class="radio-circle"></div> Mädchen</div>
+            <div class="radio-item"><div class="radio-circle"></div> Junge</div>
+          </div>
+        </div>
+        <div class="field-wrap">
+          <div class="field-label">Vorname</div>
+          <div class="field-line"></div>
+        </div>
+        <div class="field-wrap">
+          <div class="field-label">Nachname</div>
+          <div class="field-line"></div>
+        </div>
+        <div class="field-wrap">
+          <div class="field-label">Geburtsdatum</div>
+          <div class="field-line"></div>
+        </div>
+        <div class="field-wrap">
+          <div class="field-label">Muttersprache</div>
+          <div class="field-line"></div>
+        </div>
+        <div class="field-wrap span-2">
+          <div class="field-label">Geschwister / Alter</div>
+          <div class="field-line"></div>
+        </div>
+        <div class="field-wrap span-2">
+          <div class="field-label">Spezielle Krankheiten / Allergien</div>
+          <div class="field-line"></div>
+        </div>
+        <div class="field-wrap span-2">
+          <div class="field-label">Bemerkungen / besondere Anliegen</div>
+          <div class="field-line-tall"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Notfallkontakt -->
+    <div class="section">
+      <div class="section-title">Notfallkontakt</div>
+      <div style="font-size:8.5pt;color:#666;margin-bottom:10px;">Unter welcher Nummer sind die Eltern / Bezugspersonen während der Spielgruppenzeit erreichbar?</div>
+      <div class="grid grid-2">
+        <div class="field-wrap">
+          <div class="field-label">Name / Vorname</div>
+          <div class="field-line"></div>
+        </div>
+        <div class="field-wrap">
+          <div class="field-label">Telefon</div>
+          <div class="field-line"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Anmeldung Zeiten -->
+    <div class="section">
+      <div class="section-title">Anmeldung – Gewünschte Zeiten</div>
+      <div style="font-size:8.5pt;color:#666;margin-bottom:10px;">Bitte die gewünschten Tage und Halbtage ankreuzen. Mehrfachauswahl möglich.</div>
+      <div class="checks-grid">
+        <div class="check-row"><div class="check-box"></div> Montag, Morgen 08:45–11:30</div>
+        <div class="check-row"><div class="check-box"></div> Montag, Nachmittag 13:30–16:15</div>
+        <div class="check-row"><div class="check-box"></div> Dienstag, Morgen 08:45–11:30</div>
+        <div class="check-row"><div class="check-box"></div> Dienstag, Nachmittag 13:30–16:15</div>
+        <div class="check-row"><div class="check-box"></div> Mittwoch, Morgen 08:45–11:30</div>
+        <div class="check-row"><div class="check-box"></div> Mittwoch, Nachmittag 13:30–16:15</div>
+        <div class="check-row"><div class="check-box"></div> Donnerstag, Morgen 08:45–11:30</div>
+        <div class="check-row"><div class="check-box"></div> Donnerstag, Nachmittag 13:30–16:15</div>
+        <div class="check-row"><div class="check-box"></div> Freitag, Morgen 08:45–11:30</div>
+        <div class="check-row"><div class="check-box"></div> Freitag, Nachmittag 13:30–16:15</div>
+      </div>
+    </div>
+
+    <!-- 5. Kosten -->
+    <div class="kosten">
+      <div class="kosten-title">Kosten pro Kind / Monat</div>
+      <div style="display:flex;flex-direction:column;gap:4px;font-size:9pt;">
+        <div class="kosten-row">1 Halbtag / Woche: <strong>CHF 140.–</strong></div>
+        <div class="kosten-row">2 Halbtage / Woche: <strong>CHF 260.–</strong></div>
+        <div class="kosten-row">3 Halbtage / Woche: <strong>CHF 380.–</strong></div>
+      </div>
+      <div style="font-size:8pt;color:#3a6b35;margin-top:8px;">Mehr als 3 Halbtage sind auch möglich auf Anfrage.</div>
+    </div>
+
+    <!-- Einwilligungen -->
+    <div class="section">
+      <div class="section-title">Einwilligungen</div>
+      <div style="display:flex;flex-direction:column;gap:9px;">
+        <div class="check-row"><div class="check-box"></div> Dina darf mich zum <strong>WhatsApp Elternchat</strong> hinzufügen.</div>
+        <div class="check-row"><div class="check-box"></div> Dina darf während der Spielgruppenzeit <strong>Bilder machen</strong> und im Elternchat teilen.</div>
+        <div class="check-row" style="align-items:flex-start;gap:8px;"><div class="check-box" style="margin-top:2px;flex-shrink:0;"></div><span>Ich nehme zur Kenntnis, dass <strong>das Kind durch die Spielgruppe nicht versichert ist</strong>. Kranken-, Unfall- und Haftpflichtversicherung sind ausschliesslich Sache der Eltern. <strong>*</strong></span></div>
+        <div class="check-row"><div class="check-box"></div> Ich habe die <strong>Datenschutzbestimmungen</strong> gelesen und akzeptiert. <strong>*</strong></div>
+      </div>
+    </div>
+
+    <!-- Unterschrift Eltern -->
+    <div class="sig-row">
+      <div class="sig-item">Datum</div>
+      <div class="sig-item">Unterschrift Eltern</div>
+    </div>
+
+    <!-- Unterschrift Spielgruppe -->
+    <div class="sig-row" style="margin-top:16px;">
+      <div class="sig-item">Datum</div>
+      <div class="sig-item">Unterschrift Konstantina Vlachodimou</div>
+    </div>
+
+    <!-- Disclaimer -->
+    <div class="disclaimer">
+      Mit der Unterzeichnung nehmen wir zur Kenntnis, dass eine Warteliste besteht. Erst nach dem persönlichen Kennenlerngespräch
+      und gegenseitiger schriftlicher Bestätigung entsteht eine verbindliche Vereinbarung.<br />
+      Spielgruppe Seon · Oholten 3, 5703 Seon · dina@spielgruppe-seon.ch · 076 307 87 53 · spielgruppe-seon.ch
+    </div>
+
+  </div>
+
+</body>
+</html>

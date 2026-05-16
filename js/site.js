@@ -792,8 +792,6 @@ document.addEventListener('DOMContentLoaded', () => {
   loadEvents();
   loadGallery();
   loadContactData();
-  loadAnmeldung();
-  initCheckboxes();
-  initAnmeldungForm();
+  // Anmeldeformular ist auf /anmeldung.html (separate Seite)
   initKontaktForm();
 });

@@ -592,158 +592,22 @@
 
 <!-- ═══ ANMELDUNG ══════════════════════════════════════════════ -->
 <section id="anmeldung" class="bg-cream py-24">
-  <div class="max-w-[1140px] mx-auto px-6">
-    <div class="text-center mb-[52px] reveal">
-      <div class="inline-flex items-center gap-[6px] text-[.78rem] font-bold tracking-[.08em] uppercase text-[var(--terra)] mb-3">Online-Anmeldung</div>
+  <div class="max-w-[760px] mx-auto px-6 text-center">
+    <div class="reveal">
+      <div class="inline-flex items-center gap-[6px] text-[.78rem] font-bold tracking-[.08em] uppercase text-[var(--terra)] mb-3">Anmeldung</div>
       <h2 id="anmeldung-heading" class="font-display font-bold text-[clamp(1.8rem,3vw,2.6rem)] leading-[1.2] text-ink mb-4">Jetzt einen Platz sichern</h2>
-      <p id="anmeldung-intro" class="text-[1.05rem] text-[var(--ink-mid)] max-w-[580px] mx-auto leading-[1.7]">Füllt das Formular aus und Dina meldet sich bei euch. Bitte beachtet: Es besteht eine Warteliste.</p>
-    </div>
-
-    <div id="anmeldung-wrap" class="reveal delay-1 bg-white rounded-4xl p-8 md:p-12 shadow-md max-w-[760px] mx-auto">
-
-      <!-- Anmeldeformular (Netlify Forms) -->
-      <form id="anmeldung-form" novalidate>
-        <input type="hidden" name="access_key" value="f2ae7a08-a61a-44d7-aca4-13f0ae2ed2b9" />
-        <input type="hidden" name="subject" value="Neue Anmeldung – Spielgruppe Seon" />
-        <input type="hidden" name="from_name" value="Spielgruppe Seon Website" />
-        <!-- Honeypot -->
-        <input type="checkbox" name="botcheck" class="hidden" style="display:none;" />
-
-        <h3 id="anmeldung-form-title" class="font-display font-bold text-[1.25rem] text-ink mb-6">Anmeldeformular</h3>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-          <!-- Kind -->
-          <div class="flex flex-col gap-[6px]">
-            <label class="text-[.85rem] font-bold text-ink" for="a-kind-name">Name des Kindes <span class="text-[var(--terra)]">*</span></label>
-            <input class="border border-cream-dark rounded-xl px-[14px] py-[10px] text-[.95rem] bg-cream text-ink outline-none transition-all focus:border-[var(--sage)] focus:shadow-[0_0_0_3px_oklch(0.64_0.09_148_/_0.15)] focus:bg-white" type="text" id="a-kind-name" name="kindName" placeholder="Vorname Nachname" required />
-            <span class="form-error text-[.78rem] text-[var(--terra)] font-semibold hidden" id="err-kind-name"></span>
-          </div>
-          <!-- Geburtsdatum -->
-          <div class="flex flex-col gap-[6px]">
-            <label class="text-[.85rem] font-bold text-ink" for="a-geburtsdatum">Geburtsdatum <span class="text-[var(--terra)]">*</span></label>
-            <input class="border border-cream-dark rounded-xl px-[14px] py-[10px] text-[.95rem] bg-cream text-ink outline-none transition-all focus:border-[var(--sage)] focus:shadow-[0_0_0_3px_oklch(0.64_0.09_148_/_0.15)] focus:bg-white" type="date" id="a-geburtsdatum" name="geburtsdatum" required />
-            <span class="form-error text-[.78rem] text-[var(--terra)] font-semibold hidden" id="err-geburtsdatum"></span>
-          </div>
-          <!-- Eltern -->
-          <div class="flex flex-col gap-[6px]">
-            <label class="text-[.85rem] font-bold text-ink" for="a-eltern-name">Name der Eltern <span class="text-[var(--terra)]">*</span></label>
-            <input class="border border-cream-dark rounded-xl px-[14px] py-[10px] text-[.95rem] bg-cream text-ink outline-none transition-all focus:border-[var(--sage)] focus:shadow-[0_0_0_3px_oklch(0.64_0.09_148_/_0.15)] focus:bg-white" type="text" id="a-eltern-name" name="elternName" placeholder="Mutter / Vater" required />
-            <span class="form-error text-[.78rem] text-[var(--terra)] font-semibold hidden" id="err-eltern-name"></span>
-          </div>
-          <!-- E-Mail -->
-          <div class="flex flex-col gap-[6px]">
-            <label class="text-[.85rem] font-bold text-ink" for="a-email">E-Mail <span class="text-[var(--terra)]">*</span></label>
-            <input class="border border-cream-dark rounded-xl px-[14px] py-[10px] text-[.95rem] bg-cream text-ink outline-none transition-all focus:border-[var(--sage)] focus:shadow-[0_0_0_3px_oklch(0.64_0.09_148_/_0.15)] focus:bg-white" type="email" id="a-email" name="email" placeholder="name@beispiel.ch" required />
-            <span class="form-error text-[.78rem] text-[var(--terra)] font-semibold hidden" id="err-email"></span>
-          </div>
-          <!-- Telefon -->
-          <div class="flex flex-col gap-[6px] sm:col-span-2">
-            <label class="text-[.85rem] font-bold text-ink" for="a-telefon">Telefon <span class="text-[var(--terra)]">*</span></label>
-            <input class="border border-cream-dark rounded-xl px-[14px] py-[10px] text-[.95rem] bg-cream text-ink outline-none transition-all focus:border-[var(--sage)] focus:shadow-[0_0_0_3px_oklch(0.64_0.09_148_/_0.15)] focus:bg-white" type="tel" id="a-telefon" name="telefon" placeholder="079 123 45 67" required />
-            <span class="form-error text-[.78rem] text-[var(--terra)] font-semibold hidden" id="err-telefon"></span>
-          </div>
-
-          <!-- Tage (Checkboxen) -->
-          <div class="flex flex-col gap-[6px] sm:col-span-2">
-            <label class="text-[.85rem] font-bold text-ink">Gewünschte Tage & Zeit <span class="text-[var(--terra)]">*</span></label>
-            <div class="flex flex-col gap-3 mt-1">
-
-              <div>
-                <div class="text-[.8rem] font-bold text-[var(--ink-mid)] mb-[6px] uppercase tracking-[.05em]">Montag</div>
-                <div class="flex flex-wrap gap-[10px]">
-                  <label class="checkbox-label flex items-center gap-2 px-4 py-2 rounded-xl border border-cream-dark bg-cream font-semibold text-[.9rem]">
-                    <input type="checkbox" name="tage" value="Montag Morgen" class="hidden" />
-                    <span class="checkbox-custom w-[18px] h-[18px] rounded-[4px] border-2 border-current flex items-center justify-center shrink-0"></span>
-                    Morgen 08:45–11:30
-                  </label>
-                  <label class="checkbox-label flex items-center gap-2 px-4 py-2 rounded-xl border border-cream-dark bg-cream font-semibold text-[.9rem]">
-                    <input type="checkbox" name="tage" value="Montag Nachmittag" class="hidden" />
-                    <span class="checkbox-custom w-[18px] h-[18px] rounded-[4px] border-2 border-current flex items-center justify-center shrink-0"></span>
-                    Nachmittag 13:30–16:15
-                  </label>
-                </div>
-              </div>
-
-              <div>
-                <div class="text-[.8rem] font-bold text-[var(--ink-mid)] mb-[6px] uppercase tracking-[.05em]">Dienstag</div>
-                <div class="flex flex-wrap gap-[10px]">
-                  <label class="checkbox-label flex items-center gap-2 px-4 py-2 rounded-xl border border-cream-dark bg-cream font-semibold text-[.9rem]">
-                    <input type="checkbox" name="tage" value="Dienstag Morgen" class="hidden" />
-                    <span class="checkbox-custom w-[18px] h-[18px] rounded-[4px] border-2 border-current flex items-center justify-center shrink-0"></span>
-                    Morgen 08:45–11:30
-                  </label>
-                  <label class="checkbox-label flex items-center gap-2 px-4 py-2 rounded-xl border border-cream-dark bg-cream font-semibold text-[.9rem]">
-                    <input type="checkbox" name="tage" value="Dienstag Nachmittag" class="hidden" />
-                    <span class="checkbox-custom w-[18px] h-[18px] rounded-[4px] border-2 border-current flex items-center justify-center shrink-0"></span>
-                    Nachmittag 13:30–16:15
-                  </label>
-                </div>
-              </div>
-
-              <div>
-                <div class="text-[.8rem] font-bold text-[var(--ink-mid)] mb-[6px] uppercase tracking-[.05em]">Mittwoch</div>
-                <div class="flex flex-wrap gap-[10px]">
-                  <label class="checkbox-label flex items-center gap-2 px-4 py-2 rounded-xl border border-cream-dark bg-cream font-semibold text-[.9rem]">
-                    <input type="checkbox" name="tage" value="Mittwoch Morgen" class="hidden" />
-                    <span class="checkbox-custom w-[18px] h-[18px] rounded-[4px] border-2 border-current flex items-center justify-center shrink-0"></span>
-                    Morgen 08:45–11:30
-                  </label>
-                  <label class="checkbox-label flex items-center gap-2 px-4 py-2 rounded-xl border border-cream-dark bg-cream font-semibold text-[.9rem]">
-                    <input type="checkbox" name="tage" value="Mittwoch Nachmittag" class="hidden" />
-                    <span class="checkbox-custom w-[18px] h-[18px] rounded-[4px] border-2 border-current flex items-center justify-center shrink-0"></span>
-                    Nachmittag 13:30–16:15
-                  </label>
-                </div>
-              </div>
-
-              <div>
-                <div class="text-[.8rem] font-bold text-[var(--ink-mid)] mb-[6px] uppercase tracking-[.05em]">Donnerstag</div>
-                <div class="flex flex-wrap gap-[10px]">
-                  <label class="checkbox-label flex items-center gap-2 px-4 py-2 rounded-xl border border-cream-dark bg-cream font-semibold text-[.9rem]">
-                    <input type="checkbox" name="tage" value="Donnerstag Morgen" class="hidden" />
-                    <span class="checkbox-custom w-[18px] h-[18px] rounded-[4px] border-2 border-current flex items-center justify-center shrink-0"></span>
-                    Morgen 08:45–11:30
-                  </label>
-                  <label class="checkbox-label flex items-center gap-2 px-4 py-2 rounded-xl border border-cream-dark bg-cream font-semibold text-[.9rem]">
-                    <input type="checkbox" name="tage" value="Donnerstag Nachmittag" class="hidden" />
-                    <span class="checkbox-custom w-[18px] h-[18px] rounded-[4px] border-2 border-current flex items-center justify-center shrink-0"></span>
-                    Nachmittag 13:30–16:15
-                  </label>
-                </div>
-              </div>
-
-              <div>
-                <div class="text-[.8rem] font-bold text-[var(--ink-mid)] mb-[6px] uppercase tracking-[.05em]">Freitag</div>
-                <div class="flex flex-wrap gap-[10px]">
-                  <label class="checkbox-label flex items-center gap-2 px-4 py-2 rounded-xl border border-cream-dark bg-cream font-semibold text-[.9rem]">
-                    <input type="checkbox" name="tage" value="Freitag Morgen" class="hidden" />
-                    <span class="checkbox-custom w-[18px] h-[18px] rounded-[4px] border-2 border-current flex items-center justify-center shrink-0"></span>
-                    Morgen 08:45–11:30
-                  </label>
-                  <label class="checkbox-label flex items-center gap-2 px-4 py-2 rounded-xl border border-cream-dark bg-cream font-semibold text-[.9rem]">
-                    <input type="checkbox" name="tage" value="Freitag Nachmittag" class="hidden" />
-                    <span class="checkbox-custom w-[18px] h-[18px] rounded-[4px] border-2 border-current flex items-center justify-center shrink-0"></span>
-                    Nachmittag 13:30–16:15
-                  </label>
-                </div>
-              </div>
-            </div>
-            <span class="form-error text-[.78rem] text-[var(--terra)] font-semibold hidden" id="err-tage"></span>
-          </div>
-
-          <!-- Bemerkungen -->
-          <div class="flex flex-col gap-[6px] sm:col-span-2">
-            <label class="text-[.85rem] font-bold text-ink" for="a-bemerkungen">Bemerkungen / Warteliste</label>
-            <textarea class="border border-cream-dark rounded-xl px-[14px] py-[10px] text-[.95rem] bg-cream text-ink outline-none transition-all focus:border-[var(--sage)] focus:shadow-[0_0_0_3px_oklch(0.64_0.09_148_/_0.15)] focus:bg-white resize-y min-h-[100px]" id="a-bemerkungen" name="bemerkungen" placeholder="Allfällige Bemerkungen, gewünschter Starttermin, Hinweis auf Warteliste…"></textarea>
-          </div>
-        </div>
-
-        <div class="mt-7 flex items-center gap-4 flex-wrap">
-          <button type="submit" class="inline-flex items-center justify-center bg-[var(--terra)] text-white font-bold rounded-full px-9 py-4 text-[1.05rem] hover:bg-[oklch(0.55_0.11_42)] hover:shadow-[0_4px_16px_oklch(0.62_0.11_42_/_0.35)] hover:-translate-y-px transition-all">Anmeldung absenden</button>
-          <span id="anmeldung-disclaimer" class="text-[.8rem] text-[var(--ink-light)]">Mit dem Absenden nehmt ihr zur Kenntnis, dass eine Warteliste besteht und Dina sich persönlich bei euch melden wird.</span>
-        </div>
-      </form>
-
+      <p id="anmeldung-intro" class="text-[1.05rem] text-[var(--ink-mid)] max-w-[540px] mx-auto leading-[1.7] mb-10">Habt ihr Interesse? Füllt das Formular aus und Dina meldet sich persönlich bei euch — ganz unverbindlich.</p>
+      <div class="flex gap-4 justify-center flex-wrap">
+        <a href="/anmeldung.html" class="inline-flex items-center justify-center gap-2 bg-[var(--terra)] text-white font-bold rounded-full px-9 py-4 text-[1.05rem] hover:bg-[oklch(0.55_0.11_42)] hover:shadow-[0_4px_16px_oklch(0.62_0.11_42_/_0.35)] hover:-translate-y-px transition-all">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          Online ausfüllen
+        </a>
+        <a href="/anmeldung-formular.html" target="_blank" class="inline-flex items-center justify-center gap-2 bg-white text-ink font-bold rounded-full px-9 py-4 text-[1.05rem] border-2 border-cream-dark hover:border-[var(--sage)] hover:text-[var(--sage-dark)] transition-all">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Formular herunterladen
+        </a>
+      </div>
+      <p id="anmeldung-disclaimer" class="text-[.82rem] text-[var(--ink-light)] mt-6">✓ Vollständig unverbindlich – erst nach dem persönlichen Kennenlerngespräch und gegenseitiger Bestätigung entsteht eine verbindliche Vereinbarung.</p>
     </div>
   </div>
 </section>
