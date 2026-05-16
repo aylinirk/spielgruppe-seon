@@ -228,9 +228,9 @@
           </div>
 
           <div class="flex flex-col gap-1">
-            <label class="text-[.83rem] font-bold text-ink" for="ep1-mobile">Mobile <span class="text-[var(--terra)]">*</span></label>
-            <input class="field" type="tel" id="ep1-mobile" name="ep1Mobile" placeholder="079 123 45 67" />
-            <span class="err" id="err-ep1-mobile"></span>
+            <label class="text-[.83rem] font-bold text-ink" for="plz-ort">PLZ / Ort <span class="text-[var(--terra)]">*</span></label>
+            <input class="field" type="text" id="plz-ort" name="plzOrt" placeholder="5703 Seon" />
+            <span class="err" id="err-plz"></span>
           </div>
 
           <div class="flex flex-col gap-1">
@@ -240,15 +240,14 @@
           </div>
 
           <div class="flex flex-col gap-1">
-            <label class="text-[.83rem] font-bold text-ink" for="plz-ort">PLZ / Ort <span class="text-[var(--terra)]">*</span></label>
-            <input class="field" type="text" id="plz-ort" name="plzOrt" placeholder="5703 Seon" />
-            <span class="err" id="err-plz"></span>
+            <label class="text-[.83rem] font-bold text-ink" for="ep1-mobile">Mobile <span class="text-[var(--terra)]">*</span></label>
+            <input class="field" type="tel" id="ep1-mobile" name="ep1Mobile" placeholder="079 123 45 67" />
+            <span class="err" id="err-ep1-mobile"></span>
           </div>
 
           <div class="flex flex-col gap-1">
-            <label class="text-[.83rem] font-bold text-ink" for="tel-priv">Tel. (Privat) <span class="text-[var(--terra)]">*</span></label>
+            <label class="text-[.83rem] font-bold text-ink" for="tel-priv">Tel. (Privat)</label>
             <input class="field" type="tel" id="tel-priv" name="telPrivat" placeholder="062 123 45 67" />
-            <span class="err" id="err-tel-priv"></span>
           </div>
 
           <div class="flex flex-col gap-1">
@@ -472,7 +471,7 @@
             Mit dem Absenden bestätigt ihr die obigen Einwilligungen. Eine Warteliste besteht —
             erst nach dem persönlichen Kennenlerngespräch und gegenseitiger schriftlicher Bestätigung entsteht eine verbindliche Vereinbarung.
           </p>
-          <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:center;" class="sm:justify-start">
+          <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;" class="justify-center sm:justify-start">
             <button type="submit" id="submit-btn" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--terra);color:white;font-family:'Baloo 2',sans-serif;font-weight:700;font-size:1rem;border:none;border-radius:999px;padding:14px 36px;cursor:pointer;transition:background .2s,box-shadow .2s,transform .15s;" onmouseover="this.style.background='oklch(0.55 0.11 42)'" onmouseout="this.style.background='var(--terra)'">
               Anmeldung absenden
             </button>
@@ -501,12 +500,15 @@
     </div>
 
     <!-- Footer note -->
-    <div style="text-align:center;margin-top:28px;">
-      <p style="font-size:.88rem;font-weight:700;color:var(--ink-mid);">Konstantina Vlachodimou</p>
-      <p style="font-size:.82rem;color:var(--ink-light);margin-top:2px;">Oholten 3, 5703 Seon</p>
-      <p style="font-size:.82rem;color:var(--ink-light);margin-top:8px;">
-        Fragen? <a href="mailto:dina@spielgruppe-seon.ch" style="color:var(--sage-dark);font-weight:700;text-decoration:none;">dina@spielgruppe-seon.ch</a> · <a href="tel:+41763078753" style="color:var(--sage-dark);font-weight:700;text-decoration:none;">076 307 87 53</a>
-      </p>
+    <div style="display:flex;align-items:center;gap:16px;margin-top:28px;padding:0 4px;">
+      <img src="/uploads/spielgruppe-seon-1-.png" alt="Spielgruppe Seon" style="height:60px;width:auto;object-fit:contain;flex-shrink:0;" />
+      <div>
+        <p style="font-size:.95rem;font-weight:800;color:var(--ink);font-family:'Baloo 2',sans-serif;line-height:1.2;">Spielgruppe Seon</p>
+        <p style="font-size:.82rem;color:var(--ink-mid);margin-top:2px;">Konstantina Vlachodimou · Oholten 3, 5703 Seon</p>
+        <p style="font-size:.82rem;color:var(--ink-light);margin-top:3px;">
+          <a href="mailto:dina@spielgruppe-seon.ch" style="color:var(--sage-dark);font-weight:700;text-decoration:none;">dina@spielgruppe-seon.ch</a> · <a href="tel:+41763078753" style="color:var(--sage-dark);font-weight:700;text-decoration:none;">076 307 87 53</a>
+        </p>
+      </div>
     </div>
   </div>
 
@@ -569,7 +571,6 @@
         { id: 'ep1-mobile',      err: 'err-ep1-mobile',      msg: 'Bitte Mobile (Elternteil 1) angeben.' },
         { id: 'strasse',        err: 'err-strasse',        msg: 'Bitte Strasse angeben.' },
         { id: 'plz-ort',        err: 'err-plz',            msg: 'Bitte PLZ / Ort angeben.' },
-        { id: 'tel-priv',       err: 'err-tel-priv',       msg: 'Bitte Tel. (Privat) angeben.' },
         { id: 'email',          err: 'err-email',          msg: 'Bitte gültige E-Mail angeben.', re: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ },
         { id: 'kind-vorname',   err: 'err-kind-vorname',   msg: 'Bitte Vorname des Kindes angeben.' },
         { id: 'kind-nachname',  err: 'err-kind-nachname',  msg: 'Bitte Nachname des Kindes angeben.' },

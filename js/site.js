@@ -384,7 +384,7 @@ async function loadContactData() {
         }
         if (d.dina.photo && d.dina.photo.startsWith('/')) {
           const photoSrc  = d.dina.photo;
-          const firstName = d.dina.firstName || 'Dina';
+          const firstName = d.dina.firstName || 'Konstantina';
           const t = new Image();
           t.onload = () => {
             const photoWrap = document.getElementById('team-photo-wrap');
