@@ -456,6 +456,12 @@
               <span style="font-size:.88rem;line-height:1.55;color:var(--ink);">Dina darf während der Spielgruppenzeit <strong>Bilder machen</strong> und im Elternchat teilen.</span>
             </label>
 
+            <label class="cb-label" id="cb-vertrag" style="align-items:flex-start;gap:12px;padding:14px 16px;">
+              <input type="checkbox" name="Einwilligung Vertragsbedingungen" value="Ja, akzeptiert" style="display:none;" />
+              <span class="cb-box" style="margin-top:2px;flex-shrink:0;"></span>
+              <span style="font-size:.88rem;line-height:1.55;color:var(--ink);">Ich habe die <strong>Vertragsbedingungen</strong> gelesen und akzeptiert (Zahlungsmodalitäten, Probezeit, Kündigungsfrist). <span class="text-[var(--terra)]">*</span></span>
+            </label>
+
             <label class="cb-label" id="cb-versicherung" style="align-items:flex-start;gap:12px;padding:14px 16px;">
               <input type="checkbox" name="Einwilligung Versicherung" value="Ja, zur Kenntnis genommen" style="display:none;" />
               <span class="cb-box" style="margin-top:2px;flex-shrink:0;"></span>
@@ -602,17 +608,20 @@
       else clearErr('err-tage');
 
       // Pflicht-Einwilligungen
+      const vertrag      = document.querySelector('input[name="Einwilligung Vertragsbedingungen"]:checked');
       const versicherung = document.querySelector('input[name="Einwilligung Versicherung"]:checked');
       const datenschutz  = document.querySelector('input[name="Einwilligung Datenschutz"]:checked');
-      if (!versicherung || !datenschutz) {
+      if (!vertrag || !versicherung || !datenschutz) {
         const errEl = document.getElementById('err-pflicht');
-        if (errEl) { errEl.textContent = 'Bitte beide Pflicht-Einwilligungen (Versicherung & Datenschutz) bestätigen.'; errEl.classList.add('show'); }
+        if (errEl) { errEl.textContent = 'Bitte alle Pflicht-Einwilligungen bestätigen.'; errEl.classList.add('show'); }
+        if (!vertrag)      document.getElementById('cb-vertrag').style.borderColor      = 'var(--terra)';
         if (!versicherung) document.getElementById('cb-versicherung').style.borderColor = 'var(--terra)';
         if (!datenschutz)  document.getElementById('cb-datenschutz').style.borderColor  = 'var(--terra)';
         valid = false;
       } else {
         const errEl = document.getElementById('err-pflicht');
         if (errEl) { errEl.textContent = ''; errEl.classList.remove('show'); }
+        document.getElementById('cb-vertrag').style.borderColor      = '';
         document.getElementById('cb-versicherung').style.borderColor = '';
         document.getElementById('cb-datenschutz').style.borderColor  = '';
       }
